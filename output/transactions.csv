@@ -1,0 +1,510 @@
+node_id,transaction_id,amount_energy_units_raw,amount_energy_units_value,amount_tonnes_raw,amount_tonnes_value,amount_units_raw,amount_units_value,amount_usd_raw,amount_usd_value,amount_yuan_raw,amount_yuan_value,date_of_transaction,expected_date_of_transaction,link_in_chain,notes,notes1,transaction_notes,transaction_realised
+transaction::100PREGANBATSHA,100PREGANBATSHA,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p. 1-1-720 (table section 1),,
+transaction::101BATCATBATGEE,101BATCATBATGEE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::102BATGEEELEGEE,102BATGEEELEGEE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,Yes
+transaction::103CATGEMBATSAM,103CATGEMBATSAM,,,,,,,,,,,,2022,Cathode manufacturing to Battery cell manufacturing,,page 25,,No
+transaction::104CATGEMBATSK,104CATGEMBATSK,,,,,,,2.27B$,,,,2020-2023,,Cathode manufacturing to Battery cell manufacturing,"Once factory in Pohang finished, ECO also supply from there. 2.7T Won converted to $. Biggest supply deal is with SK, so assume supply also goes to other SK factories.",,,Yes
+transaction::105CATGEMBATSK,105CATGEMBATSK,,,,,,,,,,,,2022-23,Cathode manufacturing to Battery cell manufacturing,"Once factory in Pohang finished, ECO also supply from there. 2.7T Won converted to $. Biggest supply deal is with SK, so assume supply also goes to other SK factories.",,,No
+transaction::106CATGEMBATSK,106CATGEMBATSK,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::107PREGEMCATGEM,107PREGEMCATGEM,,,170 000 tonnes / 100 000 tonnes,,,,,,,,22/12/18-31/12/23 / 31/1/20-31/12/26,,Precursor manufacturing to Cathode manufacturing,"16 000T 2019, 24 000T 2020, 40 000T 2021 rest unkown. GEM also has factory in Wuxi; NMC811 soon 9,0.5,0.5; GEM and ECOPRO BM formed JV to make cathode materials, though not a transaction, since has not started producing yet",,Since 2017,Yes
+transaction::108PREGEMCATRON,108PREGEMCATRON,,,29 300 tonnes,,,,,,,,15/3/19-31/12/21,,Precursor manufacturing to Cathode manufacturing,"9 300T 2019, 10 000T 2020&1","p.1, 2nd paragraph",,Yes
+transaction::109PREGEMCATXIA,109PREGEMCATXIA,,,33 000 tonnes,,,,,,,,9/4/19-31/12/23,,Precursor manufacturing to Cathode manufacturing,"5000T 2019, 7000T/year 2020-23;NCM523/622",p.1 2nd paragraph,,Yes
+transaction::10BATBMWELEBMW,10BATBMWELEBMW,,,,,,,,,,,2013-,,Battery pack manufacturing to Electric car manufacturing,"BMW will start making BEV's in all main german plants (Dingolfing, Munich & Regensburg) and they will make packs at each location, so supply chain will change significantly). Currently however, BEV's are still only produced in Leipzig (source: insideevs)",,,Yes
+transaction::110PREGEMCATCAT,110PREGEMCATCAT,,,45 000 tonnes,,,,,,,,9/4/19-31/12/21,,Precursor manufacturing to Cathode manufacturing,"15 000T per year, Bangpu companies part of Brunp (owned by CATL)",p.30 parr.1,,Yes
+transaction::111PREGEMCATCAT,111PREGEMCATCAT,,,,,,,,,,,9/4/19-31/12/21,,Precursor manufacturing to Cathode manufacturing,"15 000T per year, Bangpu companies part of Brunp (owned by CATL)",p.30 parr.1,,Yes
+transaction::112PREGEMCATJIA,112PREGEMCATJIA,,,12 000 tonnes,,,,,,,,30/8/18-31/12/20,,Precursor manufacturing to Cathode manufacturing,"3000T 2018, 4000T 2019, 5000T 2020; renewable agreement; company makes batteries for tools",p.1 parr.2,,Yes
+transaction::113PREGEMBATLG,113PREGEMBATLG,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,,,
+transaction::114ELEGENELEHON,114ELEGENELEHON,,,,,,,,,,,,,Electric car manufacturing to Electric car manufacturing,,,,
+transaction::115ELEGENELEHON,115ELEGENELEHON,,,,,,,,,,,,,Electric car manufacturing to Electric car manufacturing,,,,
+transaction::116TRAGLEREFGAN,116TRAGLEREFGAN,,,,,,,,,,,,,Trading to Refining,,p. 1-1-748,,
+transaction::117TRAGLEBATTES,117TRAGLEBATTES,,,,,,,,,,,,,Trading to Battery cell manufacturing,"Deal signed, MUMI mine under maintenance till 2022. No declaration on length of agreement, but seems it will go on for a few years",,,No
+transaction::118TRAGLEBATTES,118TRAGLEBATTES,,,,,,,,,,,,,Trading to Battery cell manufacturing,"Berlin Gigafactory finished (expected: July 2021). No declaration on length of agreement, but seems it will go on for a few years",,,No
+transaction::119TRAGLEBATTES,119TRAGLEBATTES,,,,,,,,,,,,,Trading to Battery cell manufacturing,,p.49,,
+transaction::11BATBMWELEBMW,11BATBMWELEBMW,,,,,,,,,,,2019-,,Battery pack manufacturing to Electric car manufacturing,,,,Yes
+transaction::120TRAGLEBATBMW,120TRAGLEBATBMW,,,,,,,,,,,,,Trading to Battery pack manufacturing,"Direct sourcing, Glencore 80% of BMW cobalt needs, meaning 85% of Murrin mine. Will make available to their battery makers (CATL and SDI)",,,Yes
+transaction::121TRAGLEBATCAT,121TRAGLEBATCAT,,,,,,,,,,,,,Trading to Battery cell manufacturing,No specifications on which mine...facilitated by BMW,p.1-1-163,,Yes
+transaction::122TRAGLEBATSAM,122TRAGLEBATSAM,,,,,,,,,,,,,Trading to Battery cell manufacturing,,,,Yes
+transaction::123TRAGLEREFUMI,123TRAGLEREFUMI,,,,,,,,,,,,,Trading to Refining,"No details released about volumes and costs by either company...no end date either but everything says long term supply agreement so expect at least 10 years. The refineries selected for Umicore are there 3 largest mine refineries worldwide. Olen is there inital one, Kokkola will become biggest factory, and the one in Guanzhou is another big company, mostly supplying to Umicore in Asia as well as other cathode producers in Asia. It is clear that the cobalt hydroxide to Umicore is from DRC mines of Glencore, and not their Australian nor Canadian operations",,,Yes
+transaction::124TRAGLEREFUMI,124TRAGLEREFUMI,,,,,,,,,,,,,Trading to Refining,"No details released about volumes and costs by either company...no end date either but everything says long term supply agreement so expect at least 10 years. The refineries selected for Umicore are there 3 largest mine refineries worldwide. Olen is there inital one, Kokkola will become biggest factory, and the one in Guanzhou is another big company, mostly supplying to Umicore in Asia as well as other cathode producers in Asia. It is clear that the cobalt hydroxide to Umicore is from DRC mines of Glencore, and not their Australian nor Canadian operations",,,Yes
+transaction::125TRAGLEREFGEM,125TRAGLEREFGEM,,,,,,,,,,,,,Trading to Refining,"In 2020, supply will be 13 000 tonnes. The supply will increase to 13 200 tonnes per year from 2021-2024. The supply will increase to 14 400 tonnes for the last 5 years of the deal.",p.1 parr.2,,Yes
+transaction::126TRAGLEBATSK,126TRAGLEBATSK,,,,,,,,,,,,,Trading to Battery cell manufacturing,"It is unclear what SK does with this Cobalt...do they send it to refineries, or cathode producers?",,,Yes
+transaction::127TRAGLEREFHUA,127TRAGLEREFHUA,,,,,,,,,,,,,Trading to Refining,,p.41 parr.3,,
+transaction::128TRAGLEREFHUA,128TRAGLEREFHUA,,,,,,,,,,,,,Trading to Refining,,p.41 parr.3,,
+transaction::129TRAGLEBATULT,129TRAGLEBATULT,,,,,,,,,,,2022,,Trading to Battery cell manufacturing,,,,
+transaction::12BATBOSELEPEU,12BATBOSELEPEU,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::130TRAGLEREFELE,130TRAGLEREFELE,,,"5,000 tonnes of low carbon cobalt sulfate annually",,,,,,,,2022,,Trading to Refining,,p. 41; This agreement is expected to last for 5 years,,
+transaction::131TRAGLEREFELE,131TRAGLEREFELE,,,,,,,,,,,,,Trading to Refining,,,,
+transaction::132RECGLERECLI-,132RECGLERECLI-,,,,,,,,,,,2023,,Recycling to Recycling,"Glencore and Li-Cycle announce joint study to develop a European recycling hub (lithium, nickel and cobalt), repurposing an existing Glencore metallurgical facility to be the largest source of recycled","This is a investment agreement. Glencore and Li-Cycle announce joint study to develop a European recycling hub (lithium, nickel and cobalt), repurposing an existing Glencore metallurgical facility to be the largest source of recycled.",,
+transaction::133BATGOTELEGEE,133BATGOTELEGEE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::134CATGUABATTES,134CATGUABATTES,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.49,,
+transaction::135REFJIACATGUA,135REFJIACATGUA,,,,,,,,,,,,,Refining to Cathode manufacturing,,,,
+transaction::136CATGUABATPAN,136CATGUABATPAN,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::137RECGUIBATTES,137RECGUIBATTES,,,,,,,,,,,,,Recycling to Battery cell manufacturing,,p.50,,
+transaction::138PRECNGCATBEI,138PRECNGCATBEI,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,,,
+transaction::139PRECNGCATCNG,139PRECNGCATCNG,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,,,
+transaction::13BATBOSBATSUN,13BATBOSBATSUN,,,,,,,,,,,,,Battery pack manufacturing to Battery pack manufacturing,,,,
+transaction::140ELEHANELEMOT,140ELEHANELEMOT,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,,,
+transaction::141ARTHANSMEHAN,141ARTHANSMEHAN,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::142ARTHANSMEHAU,142ARTHANSMEHAU,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::143ELEHORELEMOT,143ELEHORELEMOT,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,,,
+transaction::144ARTHUATRANEW,144ARTHUATRANEW,,,,,,,,,,,,,Artisanal processing to Trading,,,,
+transaction::145TRAHUAREFHUA,145TRAHUAREFHUA,,,,,,,,,,,,,Trading to Refining,,p.7 table 5,,
+transaction::146TRAHUAREFHUA,146TRAHUAREFHUA,,,,,,,,,,,,,Trading to Refining,,p.7 table 5,,
+transaction::147REFHUAPREHUA,147REFHUAPREHUA,,,,,,,,,,,,,Refining to Precursor manufacturing,,p.7 table 5,,
+transaction::148REFHUAPREHUA,148REFHUAPREHUA,,,,,,,,,,,,,Refining to Precursor manufacturing,,p.7 table 5,,
+transaction::149REFHUAPREHUA,149REFHUAPREHUA,,,,,,,,,,,,,Refining to Precursor manufacturing,,p.7 table 5,,
+transaction::14BATCATBAT,14BATCATBAT,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::150REFHUAPREHUA,150REFHUAPREHUA,,,,,,,,,,,,,Refining to Precursor manufacturing,,p.7 table 5,,
+transaction::151REFHUAPREHUA,151REFHUAPREHUA,,,,,,,,,,,,https://pdf.dfcfw.com/pdf/H3_AP202006151385010230_1.pdf?1601215040000.pdf p. 7,Refining to Precursor manufacturing,,p.12 parr.2.4,,
+transaction::152PREHUACATHUA,152PREHUACATHUA,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p.12 parr.2.4,,
+transaction::153PREHUACATB&M,153PREHUACATB&M,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::154PREHUACATBAS,154PREHUACATBAS,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p.17 parr. 2,,
+transaction::155SMEHUAPREBEI,155SMEHUAPREBEI,,,,,,,,,,,,,Smelting to Precursor manufacturing,,p.17 parr.3,,Yes
+transaction::156PREHUABATBYD,156PREHUABATBYD,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p.1 parr.4,,
+transaction::157SMEHUABATBYD,157SMEHUABATBYD,,,,,,,,,,,,,Smelting to Battery cell manufacturing,,p.9,,
+transaction::158PREHUABATCAT,158PREHUABATCAT,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p.1 parr.4,,
+transaction::159SMEHUACATCAT,159SMEHUACATCAT,,,,,,,,,,,,,Smelting to Cathode manufacturing,,p.9,,Yes
+transaction::15BATBS ELEPEU,15BATBS ELEPEU,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::160SMEHUACATCAT,160SMEHUACATCAT,,,,,,,,,,,,,Smelting to Cathode manufacturing,,p.9,,Yes
+transaction::161SMEHUACATCAT,161SMEHUACATCAT,,,,,,,,,,,,,Smelting to Cathode manufacturing,,p.9,,Yes
+transaction::162REFHUAREFCHI,162REFHUAREFCHI,,,,,,,,,,,,,Refining to Refining,,"p.11, this is a joint venture agreement",,
+transaction::163PREHUACATCOS,163PREHUACATCOS,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::164CATGUACATDAN,164CATGUACATDAN,,,,,,,,,,,,,Cathode manufacturing to Cathode manufacturing,,,,
+transaction::165CATDANBATLG,165CATDANBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery pack manufacturing,,,,
+transaction::166CATDANBATSAM,166CATDANBATSAM,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::167TRAGLEREFJIA,167TRAGLEREFJIA,,,,,,,,,,,,,Trading to Refining,,,,
+transaction::168CATGUACATBAS,168CATGUACATBAS,,,,,,,,,,,,,Cathode manufacturing to Cathode manufacturing,,,,
+transaction::169PREHUACATDAN,169PREHUACATDAN,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::16BATBYDBATTOY,16BATBYDBATTOY,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::170BATLG ELEFOR,170BATLG ELEFOR,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p.33-34 section 4,,
+transaction::171PREHUACATHUA,171PREHUACATHUA,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p.7 table 5,,
+transaction::172REFHUAPREHUA,172REFHUAPREHUA,,,,,,,,,,,,,Refining to Precursor manufacturing,,p.1-1-60,,
+transaction::173PREHUACATHUN,173PREHUACATHUN,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::174PREHUACATL&F,174PREHUACATL&F,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::175PREHUACATL&F,175PREHUACATL&F,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,"Very secretive company, but Amnesty exposed them, but unclear if L&F has stopped supply",p.55,Unclear if still ongoing,Yes
+transaction::176CATHUABATLG,176CATHUABATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,They also sell to LG Chem in China and Poland factories,p.12 parr.2.4,,
+transaction::177CATHUABATLG,177CATHUABATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.7 table 5,,
+transaction::178PREHUACATLG,178PREHUACATLG,,,40 000 tonnes / annum,,,,,,,,2020,,Precursor manufacturing to Cathode manufacturing,Unclear if the 40 000 tonnes produced by this JV goes directly to Wuxi or not,,,Yes
+transaction::179SMEHUACATLG,179SMEHUACATLG,,,,,,,,,,,,,Smelting to Cathode manufacturing,,p.9,,Yes
+transaction::17BATBYDELEFOR,17BATBYDELEFOR,,,,,,,,,,,,Soon (no date yet),Battery cell manufacturing to Electric car manufacturing,"BYD first partnership with international company. Have 2 more factories in Chongqing, 1 in Harbin, 1 in Hangzhou. Plant chosen is main one, assume packs made here as well",,,No
+transaction::180PREHUACATLG,180PREHUACATLG,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p.17 parr. 2,,
+transaction::181PREHUACATPOS,181PREHUACATPOS,,,76 300 tonnes,,,,,,,,Apr 2020- Dec 2022,,Precursor manufacturing to Cathode manufacturing,,,,Yes
+transaction::182PREHUACATPUL,182PREHUACATPUL,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::183PREHUABATREN,183PREHUABATREN,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p.33-34 section 4,,
+transaction::184PREHUACATRIS,184PREHUACATRIS,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-190,,
+transaction::185PREHUACATRON,185PREHUACATRON,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p.17 parr. 2,,
+transaction::186SMEHUABATSAM,186SMEHUABATSAM,,,,,,,,,,,,,Smelting to Battery cell manufacturing,As of 2019,p.6 n.4,,
+transaction::187PREHUABATTES,187PREHUABATTES,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p.51,,
+transaction::188PREHUABATVOL,188PREHUABATVOL,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p.33-34 section 4,,
+transaction::189PREHUABATVOL,189PREHUABATVOL,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p.33-34 section 4,,
+transaction::18BATBYDBATSTE,18BATBYDBATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::190BATPROELEGOG,190BATPROELEGOG,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::191BATPROBATPRO,191BATPROBATPRO,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::192BATPROELEMER,192BATPROELEMER,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::193CATPOSBATPRO,193CATPOSBATPRO,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::194BATHUIELESEG,194BATHUIELESEG,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p.190,,
+transaction::195BATHUIELEBMW,195BATHUIELEBMW,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::196TRAIXMREFELE,196TRAIXMREFELE,,,,,,,,,,,,,Trading to Refining,,,,
+transaction::197TRAIXMREFELE,197TRAIXMREFELE,,,,,,,,,,,2021,2022,Trading to Refining,The MoU was signed when Electra was still named First Cobalt,,,
+transaction::198TRAIXMREFUMI,198TRAIXMREFUMI,,,,,,,,,,,,,Trading to Refining,"Tenke Fungurume used to be owned by Freeport, and so did Kokkola refinery Finland (now owned by Umicore), but they are gradually phasing this transaction out since both have been sold to others",,,Yes
+transaction::199TRAIXMBATNIN,199TRAIXMBATNIN,,,,,,,,,,,,,Trading to Battery cell manufacturing,,p.1 parr.3,,
+transaction::19BATCATBATBMW,19BATCATBATBMW,,,,,,,$3.1 billion,,,,2020-2031,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::1RECACETRAGLE,1RECACETRAGLE,,,up to 1.6 million,,,,,,,,2022,2024,Recycling to Trading,,p. 21; The facilities are expected to be completed in 2024,,
+transaction::200PREJINBATLG,200PREJINBATLG,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,,,
+transaction::201ARTKAMARTTEN,201ARTKAMARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::202MINKAMSMEKAM,202MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::203MINKAMSMEKAM,203MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::204MINKAMSMEKAM,204MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::205MINKAMSMEKAM,205MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::206MINKAMSMEKAM,206MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::207MINKAMSMEKAM,207MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::208MINKAMSMEKAM,208MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::209MINKAMSMEKAM,209MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::20BATCATBATBMW,20BATCATBATBMW,,,,,,,$5.0 billion,,,,2020-2031,,Battery cell manufacturing to Battery pack manufacturing,Exact location in Dingolfing Plant not found,,,Yes
+transaction::210MINKAMSMEKAM,210MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::211MINKAMSMEKAM,211MINKAMSMEKAM,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::212SMEKAMTRAGLE,212SMEKAMTRAGLE,,,,,,,,,,,,,Smelting to Trading,,p. 85,,Yes
+transaction::213SMEKAMTRAGLE,213SMEKAMTRAGLE,,,,,,,,,,,,,Smelting to Trading,,p. 85,,Yes
+transaction::214SMEKAMREFELE,214SMEKAMREFELE,,,,,,,,,,,,2019,Smelting to Refining,,p.5. This is a off-take agreement,,
+transaction::215SMEKAMREFELE,215SMEKAMREFELE,,,,,,,,,,,,,Smelting to Refining,,p.5. This is a off-take agreement,,
+transaction::216MINKAMBATTES,216MINKAMBATTES,,,,,,,,,,,,,Mining to Battery cell manufacturing,,p.49,,
+transaction::217MINKAMBATTES,217MINKAMBATTES,,,,,,,,,,,,,Mining to Battery cell manufacturing,,p.49,,
+transaction::218ARTKARARTMET,218ARTKARARTMET,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::219ARTKAWARTGOL,219ARTKAWARTGOL,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::21BATCATBATBMW,21BATCATBATBMW,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::220ARTKAWARTLA,220ARTKAWARTLA,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::221ARTKAYARTTHO,221ARTKAYARTTHO,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::222ARTKAYARTLA,222ARTKAYARTLA,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::223MINKIMTRAIXM,223MINKIMTRAIXM,,,,,,,,,,,,2023,Mining to Trading,Only secondary source,,,
+transaction::224CATL&FBATSAM,224CATL&FBATSAM,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::225CATL&FBATLG,225CATL&FBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::226ARTLA SMEHON,226ARTLA SMEHON,,,,,,,,,,,,,Artisanal processing to Smelting,,https://tradedataplus.com/company/hongkong-excellen-mining-investment/importer/?com_id=76d3e5ff106a3cc5a20e625049681acd,,
+transaction::227BATLG ELEMAH,227BATLG ELEMAH,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::228BATLG ELESEG,228BATLG ELESEG,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p.190,,
+transaction::229BATLG ELEFOR,229BATLG ELEFOR,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,Yes
+transaction::22BATCATBATBMW,22BATCATBATBMW,,,,,,,,,,,,2022,Battery cell manufacturing to Battery pack manufacturing,Erfurt production starting late 2021/early 2022,,,No
+transaction::230BATLG ELEGEN,230BATLG ELEGEN,,,,,,,,,,,2016,,Battery cell manufacturing to Electric car manufacturing,Says Packs also supplied by LG Chem...but no location. Also supply could stop after burning cars,,,Yes
+transaction::231BATLG ELEHON,231BATLG ELEHON,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,"Joint venture: L-H Battery Company, Inc. (tentative name)",,,
+transaction::232BATLG BATHYU,232BATLG BATHYU,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,"Hyundai Ulsan Plant is biggest car plant in world; Details of the supply contract including the electric vehicle (EV) model and the full amount of the deal, which are yet to be decided, will be confidential, the spokesman said.",,Since 2010,Yes
+transaction::233BATLG ELEHYU,233BATLG ELEHYU,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,This is a joint venture agreement,,
+transaction::234BATLG BATJV,234BATLG BATJV,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,"A joint venture, 50-50, production and sales of new energy vehicle batteries",,,Yes
+transaction::235BATJV ELEGEE,235BATJV ELEGEE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::236CATLG BATLG,236CATLG BATLG,,,40 000 tonnes / annum,,,,,,,,2020,,Cathode manufacturing to Battery cell manufacturing,"Unlcear if the tonnes only go to LG Chem or go to other companies as well, Korea Herald alludes to this but benchmark says no decision made yet..capacity for precursor factory and cathode factory is expected to increase to 100 000 tonnes in the years to come...also not clear if just NMC or also NCA cathodes",,,Yes
+transaction::237CATLG BATLG,237CATLG BATLG,,,,,,,,,,,2020,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::238CATLG BATL-H,238CATLG BATL-H,,,,,,,4.4 billion,,,,2022,2025,Cathode manufacturing to Battery cell manufacturing,,This is a joint venture agreement,,
+transaction::239BATLG BATMAH,239BATLG BATMAH,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,"Also for subsidiary company, South Korean Ssangyong. Mahindra very new to EV's so only starting this year",,,Yes
+transaction::23BATCATBATBMW,23BATCATBATBMW,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,"Leipzig start in mid 2021, Erfurt late 2021/early 2022",,,No
+transaction::240BATLG BATMER,240BATLG BATMER,,,,,,,,,,,2016-,,Battery cell manufacturing to Battery pack manufacturing,Packs are made with cells from LG Chem. Smart is first automobile manufacturer to be fully electric. However Hambach site could close and production move to smaller sites in Germany and China,,,Yes
+transaction::241BATLG BATREN,241BATLG BATREN,,,,,,,,,,,2019,,Battery cell manufacturing to Battery pack manufacturing,For Renault Zoe Car; NCM 712. Car produced in Flins with part sent from Cleon,,,Yes
+transaction::242BATLG BATSTE,242BATLG BATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::243BATLG BATSTE,243BATLG BATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,This is a joint venture agreement,,
+transaction::244BATLG ELETOY,244BATLG ELETOY,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::245CATLG BATULT,245CATLG BATULT,,,950000,950000.0,,,,,,,2022,2022,Cathode manufacturing to Battery cell manufacturing,,This agreement is expected to last for 8 years,,
+transaction::246CATLG BATULT,246CATLG BATULT,,,950000,950000.0,,,,,,,2022,2022,Cathode manufacturing to Battery cell manufacturing,,This agreement is expected to last for 8 years,,
+transaction::247CATLG BATULT,247CATLG BATULT,,,950000,950000.0,,,,,,,2022,2022,Cathode manufacturing to Battery cell manufacturing,,This agreement is expected to last for 8 years,,
+transaction::248BATLG BATVOL,248BATLG BATVOL,,,,,,,,,,,2019-,,Battery cell manufacturing to Battery pack manufacturing,"VW has picked LG Chem, Samsung and SK Innovation as battery suppliers for Europe along with Contemporary Amperex Technology for China.",,,Yes
+transaction::249BATLG BATVOL,249BATLG BATVOL,,,,,,,,,,,Spring 2020-2028,,Battery cell manufacturing to Battery pack manufacturing,Ghent battery line just opened. Actually sourcing modules rather than cells. For now this is only main battery assembly line for Volvo,,,Yes
+transaction::24BATCATBATBMW,24BATCATBATBMW,,,,,,,,,,,,2022,Battery cell manufacturing to Battery pack manufacturing,Erfurt production starting late 2021/early 2022,,,No
+transaction::250RECLI-TRAGLE,250RECLI-TRAGLE,,,,,,,200 million,,,,2022,2024,Recycling to Trading,"The feasibility study should start in 2024, the actual building of the facility in 2026",p.21,,
+transaction::251RECLOHTRAGLE,251RECLOHTRAGLE,,,10000,10000.0,,,200 million,,,,2022,2023,Recycling to Trading,,p.13; This agreement is expected to last for 5 years.,,
+transaction::252SMELUATRAXIN,252SMELUATRAXIN,,,,,,,,,,,,,Smelting to Trading,,p.44,,
+transaction::253BATMAHELEMAH,253BATMAHELEMAH,,,,,,,,,,,2021,,Battery pack manufacturing to Electric car manufacturing,"Also for subsidiary company, South Korean Ssangyong. Mahindra very new to EV's so only starting this year",,,Yes
+transaction::254RECMANRECGLE,254RECMANRECGLE,,,1200,1200.0,,,,,,,2022,,Recycling to Recycling,,This is a recycling agreement. This agreement is expected to last for 5 years,,
+transaction::255MINMANPREMAN,255MINMANPREMAN,,,,,,,,,,,,,Mining to Precursor manufacturing,,,,
+transaction::256PREMANBATREN,256PREMANBATREN,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,,,
+transaction::257BATRENBATVER,257BATRENBATVER,,,,,,,,,,,,,Battery pack manufacturing to Battery cell manufacturing,,,,
+transaction::258BATMERELEMER,258BATMERELEMER,,,,,,,,,,,2019-,,Battery pack manufacturing to Electric car manufacturing,,,,Yes
+transaction::259BATMERELEMER,259BATMERELEMER,,,,,,,,,,,2018-,,Battery pack manufacturing to Electric car manufacturing,Packs are made with cells from LG Chem. Smart is first automobile manufacturer to be fully electric. However Hambach site could close and production move to smaller sites in Germany and China,,,Yes
+transaction::25BATCATELEHON,25BATCATELEHON,56 GWh,,,,,,,,,,2020-2027,,Battery pack manufacturing to Electric car manufacturing,"Comprehensive strategic alliance (R&D help as well as transaction). First cars 2022, sold in Japan and China. 7GWh/year",,,Yes
+transaction::260ARTMETARTHAN,260ARTMETARTHAN,,,,,,,,,,,,,Artisanal processing to Artisanal processing,,,,
+transaction::261ARTMILARTHUA,261ARTMILARTHUA,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::262ARTMILARTOM,262ARTMILARTOM,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::263ARTMILARTRUB,263ARTMILARTRUB,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::264ARTMILARTMIN,264ARTMILARTMIN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::265ARTMILARTDIV,265ARTMILARTDIV,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::266ARTMILARTSHI,266ARTMILARTSHI,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::267MINMINSMEMIN,267MINMINSMEMIN,,,3000tonnes/annum,,,,,,,,,,Mining to Smelting,"For tonnes per year, see Southwest Securities chinese report, page 6/16 table (PE527=CDM licence)",,,Yes
+transaction::268ARTMINSMEMIN,268ARTMINSMEMIN,,,,,,,,,,,,,Artisanal processing to Smelting,,,,Yes
+transaction::269SMEMINTRAHUA,269SMEMINTRAHUA,,,,,,,,,,,,,Smelting to Trading,,p.1.1.41 parr.3,,
+transaction::26BATCATBATSTE,26BATCATBATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::270SMEMINREFHUA,270SMEMINREFHUA,,,,,,,,,,,,,Smelting to Refining,,p.1-1-104,,Yes
+transaction::271SMEMINTRATRA,271SMEMINTRATRA,,,,,,,,,,,,,Smelting to Trading,,p.1-1-191,,
+transaction::272SMEMINBATSK,272SMEMINBATSK,,,,,,,,,,,,,Smelting to Battery cell manufacturing,,p.9 parr.1,,
+transaction::273ARTMIRARTRUB,273ARTMIRARTRUB,,,,,,,,,,,,,Artisanal mining to Artisanal mining,,,,
+transaction::274ARTRUBSMERUB,274ARTRUBSMERUB,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::275ARTMIRARTHUA,275ARTMIRARTHUA,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::276ARTMIRARTOM,276ARTMIRARTOM,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::277ARTMIRARTCON,277ARTMIRARTCON,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::278ARTMIRARTGOL,278ARTMIRARTGOL,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::279ARTMIRARTMIN,279ARTMIRARTMIN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::27BATCATBATMER,27BATCATBATMER,,,,,,,,,,,"2020 (EQS 2021, EQS SUV 2022)",,Battery cell manufacturing to Battery pack manufacturing,"CATL cell to pack design (no modules). Daimler currently has 2 sites in Kamenz, 1 in Beijing (with BAIC), 1 in Thailand and plans other battery pack factories in Jawor (Poland), Tuscaloosa (Alabama), Sindelfilgen, Bruhl and Hedelfingen",,,Yes
+transaction::280ARTMIRARTMET,280ARTMIRARTMET,,,,,,,,,,,,,Artisanal processing to Artisanal processing,,,,
+transaction::281ARTMIRARTSHI,281ARTMIRARTSHI,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::282SMEMMGPRECHI,282SMEMMGPRECHI,,,,,,,,,,,,,Smelting to Precursor manufacturing,,p.55,,
+transaction::283SMEMMGTRATRA,283SMEMMGTRATRA,,,,,,,,,,,,,Smelting to Trading,,p.55,,
+transaction::284MINMMGSMEMMG,284MINMMGSMEMMG,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::285MINMOPTRAGLE,285MINMOPTRAGLE,,,see notes,,,,1 USD plus 1.5 billion,,,,2021,2021,Mining to Trading,Glencore will retain offtake rights over Mopani's production (whose interest Glencore sold to ZCCM) until the $1.5 billion debt will be repaid,p.208; Glencore will retain offtake rights over Mopani's production (whose interest Glencore sold to ZCCM) until the $1.5 billion debt will be repaid. Glencore will retain offtake rights over Mopani's production (whose interest Glencore sold to ZCCM) until the $1.5 billion debt will be repaid,,
+transaction::286MINMUTSMEMUT,286MINMUTSMEMUT,,,,,,,,,,,,2022-,Mining to Smelting,"Mutanda mining temporarily under care and maintenance since November 2019, expected to reopen in 2022.",,,No
+transaction::287MINMUTSMEMUT,287MINMUTSMEMUT,,,,,,,,,,,,2022-,Mining to Smelting,"Mutanda mining temporarily under care and maintenance since November 2019, expected to reopen in 2022.",,,No
+transaction::288MINMUTSMEMUT,288MINMUTSMEMUT,,,,,,,,,,,,2022-,Mining to Smelting,"Mutanda mining temporarily under care and maintenance since November 2019, expected to reopen in 2022.",,,No
+transaction::289MINMUTSMEMUT,289MINMUTSMEMUT,,,,,,,,,,,,2022-,Mining to Smelting,"Mutanda mining temporarily under care and maintenance since November 2019, expected to reopen in 2022.",,,No
+transaction::28BATCATBATMER,28BATCATBATMER,,,,,,,,,,,,2022,Battery cell manufacturing to Battery pack manufacturing,"CATL cell to pack design (no modules). Daimler currently has 2 sites in Kamenz, 1 in Beijing (with BAIC), 1 in Thailand and plans other battery pack factories in Jawor (Poland), Tuscaloosa (Alabama), Sindelfilgen, Bruhl and Hedelfingen",,,No
+transaction::290SMEMUTTRAGLE,290SMEMUTTRAGLE,,,,,,,,,,,,,Smelting to Trading,,p. 85,,Yes
+transaction::291SMEMUTTRAGLE,291SMEMUTTRAGLE,,,,,,,,,,,,,Smelting to Trading,,p. 85,,Yes
+transaction::292SMENANREFGAN,292SMENANREFGAN,,,,,,,,,,,,,Smelting to Refining,,p. 1-1-748,,
+transaction::293ARTMETSMENAN,293ARTMETSMENAN,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::294CATNICBATLG,294CATNICBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery pack manufacturing,,,,
+transaction::295REFNINBATLG,295REFNINBATLG,,,,,,,,,,,,,Refining to Battery pack manufacturing,,,,
+transaction::296REFNORBATTES,296REFNORBATTES,,,,,,,,,,,,,Refining to Battery cell manufacturing,,p.49,,
+transaction::297MINNORSMENOR,297MINNORSMENOR,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::298SMENORREFNOR,298SMENORREFNOR,,,,,,,,,,,,,Smelting to Refining,,,,
+transaction::299BATNORBATVOL,299BATNORBATVOL,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::29BATCATBATVOL,29BATCATBATVOL,,,,,,,,,,,2019-,,Battery cell manufacturing to Battery pack manufacturing,"VW has picked LG Chem, Samsung and SK Innovation as battery suppliers for Europe along with Contemporary Amperex Technology for China.",,,Yes
+transaction::2BATALLELEALL,2BATALLELEALL,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::300BATNORBATNOR,300BATNORBATNOR,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::301BATNORBATHYD,301BATNORBATHYD,,,,,,,,,,,,,Battery cell manufacturing to Battery cell manufacturing,Joint venture,,,
+transaction::302BATNORELEBMW,302BATNORELEBMW,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,Long-term supply contract,,,
+transaction::303BATNORELEVOL,303BATNORELEVOL,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,Joint venture,,,
+transaction::304BATPANBATTOY,304BATPANBATTOY,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,"Developping JV called Prime Planet Solutions, but not properly up and running yet.",,,Yes
+transaction::305BATPANBATTOY,305BATPANBATTOY,,,,,,,,,,,2020-,,Battery cell manufacturing to Battery pack manufacturing,Production site for Chinese Toyota Corolla,,,Yes
+transaction::306BATPANBATTOY,306BATPANBATTOY,,,,,,,,,,,2020-,,Battery cell manufacturing to Battery pack manufacturing,Production site for Chinese Toyota Levin,,,Yes
+transaction::307BATPANBATTES,307BATPANBATTES,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,Tesla purchases entirety of Panasonic battery cells produced in Nevada. Partnsership since 2009 and keeps evolving. Prices and amounts are not disclosed,,"Renewed for 3 years, since 2014",Yes
+transaction::308BATPANELEOKA,308BATPANELEOKA,,,,,,,,,,,,,Battery cell manufacturing to Electric scooter manufacturing,"No date of transaction, they use Panasonic 3200 in ES 400 model",,Though can't find deals so no date,Yes
+transaction::309BATPANELEYAD,309BATPANELEYAD,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::30BATCATBATREN,30BATCATBATREN,,,,,,,,,,,2018-,,Battery cell manufacturing to Battery pack manufacturing,"Cells for Kangoo cars. No indication where packs are made, so assume in same factory",,Since 2018,Yes
+transaction::310BATPANELENIU,310BATPANELENIU,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::311BATPANBAT,311BATPANBAT,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::312BATPHYELEYAD,312BATPHYELEYAD,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::313CATPOSBATLG,313CATPOSBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.7 table 5,,
+transaction::314CATPOSCATULT,314CATPOSCATULT,,,,,,,,,,,,,Cathode manufacturing to Cathode manufacturing,,,,
+transaction::315CATPOSBATLG,315CATPOSBATLG,,,125 000 Tonnes,,,,1.7B$,,,,2020-2023,,Cathode manufacturing to Battery cell manufacturing,1.85T Won converted to dollars. Supply increase after 2022 as POSCO factory expands,,,Yes
+transaction::316BATPOWBATVOL,316BATPOWBATVOL,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::317BATRENELEREN,317BATRENELEREN,,,,,64 061 cars produced (2018),,,,,,2013-,,Battery pack manufacturing to Electric car manufacturing,For Renault Zoe Car; NCM 712. Car produced in Flins with part sent from Cleon,,,Yes
+transaction::318BATRENELEREN,318BATRENELEREN,,,,,20 000 (2018),,,,,,2013-,,Battery pack manufacturing to Electric car manufacturing,"20 000 Leaf's produced in 2018, wiki. This summer produced 500 000th Leaf after 10 year anniversary",,,Yes
+transaction::319BATRENELEREN,319BATRENELEREN,,,,,,,,,,,2013-,,Battery pack manufacturing to Electric car manufacturing,"20 000 Leaf's produced in 2018, wiki. This summer produced 500 000th Leaf after 10 year anniversary",,,Yes
+transaction::31BATCATBATTOY,31BATCATBATTOY,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::320BATRENELEREN,320BATRENELEREN,,,,,,,,,,,2010-,,Battery pack manufacturing to Electric car manufacturing,"20 000 Leaf's produced in 2018, wiki. This summer produced 500 000th Leaf after 10 year anniversary",,,Yes
+transaction::321BATRENELEREN,321BATRENELEREN,,,,,,,,,,,2018-,,Battery pack manufacturing to Electric car manufacturing,"For Nissan Sylphy (China); unclear where battery pack made, so assume same factory",,,Yes
+transaction::322CATRONBATCAT,322CATRONBATCAT,,,,,,,,,222 674 300,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NMC 811. The two parties began cooperation in 2016. Purchases were RMB 141,900 (2016), 14,167,800 (2017) and 208 364 600 (2018). Large quantities only starting 2018 since passed audit test to have large batches going to CATL, expect continued large amounts.",p.221-225,,Yes
+transaction::323CATRONBATFAR,323CATRONBATFAR,,,,,,,,,633 334 400,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM 523. The two parties began cooperation in 2014. Purchases were RMB 90,526,400 (2016), 363,446,800 (2017)and 179,361,200 (2018).",p.221-225,,Yes
+transaction::324CATRONBATCHA,324CATRONBATCHA,,,,,,,,,110 877 900,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM 333. The two parties started cooperation in 2016. Purchases were RMB 88,076,900 (2016), 22,667,900 (2017) and 133,100 (2018).",p.221-225,,Yes
+transaction::325BATCHAELEYAD,325BATCHAELEYAD,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::326CATRONBATCOS,326CATRONBATCOS,,,,,,,,,118 217 200,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM 333; NCM 523; NCM 622. The two parties started cooperation in 2016. Purchases were RMB 67,203,400 (2016), 16,916,100 (2017)and 34,097,700(2018).",p.221-225,,Yes
+transaction::327CATRONBATCHI,327CATRONBATCHI,,,,,,,,,1 176 623 600,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM523;NCM622;NCM811. The two parties began cooperation in 2014. Purchases were RMB 167,509,400(2016), 368,665,200 (2017), and 640 449 000 (2018). Lishen also has production bases in Beijing, Qingdao, Suzhou, Wuhan, Shenzhen and Mianyang.",p.221-225,,Yes
+transaction::328CATRONBATBAK,328CATRONBATBAK,,,,,,,,,583 635 500,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM811;NCM523. The two parties began cooperation in 2016. Purchases were RMB 10,327,800 (2016), 206,153,100 (2017) RMB 367,154,600 (2018). BAK also has site in Zhengzhou",p.221-225,,Yes
+transaction::329CATRONBATBYD,329CATRONBATBYD,,,,,,,,,222 619 100,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM811;NCM523. The two parties began cooperation in 2016. Purchases were RMB 18,056,300 (2016) 3,595,900 (2017) and 200,966,900 (2018). First two years were trial and 2018 bulk start, so expect huge amounts for coming years",p.221-225,,Yes
+transaction::32BATCATBATVOL,32BATCATBATVOL,,,,,,,,,,,Spring 2020-2028,,Battery cell manufacturing to Battery pack manufacturing,Ghent battery line just opened. Actually sourcing modules rather than cells. For now this is only main battery assembly line for Volvo,,,Yes
+transaction::330CATRONBATNET,330CATRONBATNET,,,,,,,,,349 757 900,,2016-2018,,Cathode manufacturing to Battery cell manufacturing,"NCM523. The two parties began cooperation in 2015. Purchases were RMB 31,646,500 (2016), 121,436,500 (2017) and 188,674,900 (2018).",p.221-225,,Yes
+transaction::331MINRUASMERUA,331MINRUASMERUA,,,,,,,,,,,,,Mining to Smelting,,p. 14,,Yes
+transaction::332SMERUAPREJIN,332SMERUAPREJIN,,,,,,,,,,,2015-,,Smelting to Precursor manufacturing,100% sold to Jinchuan Group and/or its affiliates through a LoM off-take agreement,p. 15,,Yes
+transaction::333SMERUABATLG,333SMERUABATLG,,,,,,,,,,,,,Smelting to Battery pack manufacturing,,,,
+transaction::334BATSAIELESAI,334BATSAIELESAI,,,,,,,,,,,,2017-,Battery pack manufacturing to Electric car manufacturing,"Joint venture establishing 2 companies (one for selling+producing lithium baterries, other for battery systems). Assume packs made in same factory",,,Yes
+transaction::335BATSAMBATBMW,335BATSAMBATBMW,,,,,,,$3.209 billion,,,,2021-2031,,Battery cell manufacturing to Battery pack manufacturing,Currency converter Nov 2019 €-$. SDI looking in future to manufacture modules and packs themselves. 2nd factory under construction in God. Assumed batteries went to the 3 BMW continental centres,,,Yes
+transaction::336BATSAMBATBMW,336BATSAMBATBMW,,,,,,,,,,,2021-2032,,Battery cell manufacturing to Battery pack manufacturing,Currency converter Nov 2019 €-$. SDI looking in future to manufacture modules and packs themselves. 2nd factory under construction in God. Assumed batteries went to the 3 BMW continental centres,,,Yes
+transaction::337BATSAMBATBMW,337BATSAMBATBMW,,,,,,,,,,,2021-2033,,Battery cell manufacturing to Battery pack manufacturing,Currency converter Nov 2019 €-$. SDI looking in future to manufacture modules and packs themselves. 2nd factory under construction in God. Assumed batteries went to the 3 BMW continental centres,,,Yes
+transaction::338BATSAMBATSTE,338BATSAMBATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::339BATSAMBATVOL,339BATSAMBATVOL,,,,,,,,,,,2019-,,Battery cell manufacturing to Battery pack manufacturing,"VW has picked LG Chem, Samsung and SK Innovation as battery suppliers for Europe along with Contemporary Amperex Technology for China.",,,Yes
+transaction::33BATCATBATREN,33BATCATBATREN,,,,,,,,,,,2018-,,Battery cell manufacturing to Battery pack manufacturing,"For Nissan Sylphy (China); unclear where battery pack made, so assume same factory",,,Yes
+transaction::340BATSAMELEOKA,340BATSAMELEOKA,,,,,,,,,,,,,Battery cell manufacturing to Electric scooter manufacturing,"No date of transaction, just know that they use SDI 21700 in ES 400B model",,Though can't find deals so no date,Yes
+transaction::341BATSAMBATSTE,341BATSAMBATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,p. 49,,
+transaction::342REFALLBATSTE,342REFALLBATSTE,,,12000 tons,,,,,,,,,,Refining to Battery pack manufacturing,This agremeent is for 5 years.,,,
+transaction::343REFKUNBATSTE,343REFKUNBATSTE,,,,,,,,,,,,,Refining to Battery pack manufacturing,This agremeent is for 9 years.,,,
+transaction::344BATSAMELEHYU,344BATSAMELEHYU,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::345BATSAMELEBMW,345BATSAMELEBMW,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::346ELESEGELEBIR,346ELESEGELEBIR,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,p.19,,
+transaction::347ELESEGELELIM,347ELESEGELELIM,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,p.8-1-92,,
+transaction::348BATSHIELEKTM,348BATSHIELEKTM,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::349MINSICSMESIC,349MINSICSMESIC,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::34BATCATBATBAI,34BATCATBATBAI,,,,,,,,,,,2023,,Battery cell manufacturing to Battery pack manufacturing,,,,Yes
+transaction::350MINSICSMESIC,350MINSICSMESIC,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::351SMESICTRACHI,351SMESICTRACHI,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::352SMESICTRAHUA,352SMESICTRAHUA,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::353SMEPOWBATXTC,353SMEPOWBATXTC,,,,,,,,,,,,,Smelting to Battery cell manufacturing,,p. 8-1-3-11 (table),,
+transaction::354BATHYUELEHYU,354BATHYUELEHYU,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::355BATSK BATHYU,355BATSK BATHYU,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,This is a joint venture agreement,,
+transaction::356BATSK BATHYU,356BATSK BATHYU,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,Hyundai Ulsan Plant is biggest car plant in world,,First quarter 2021,No
+transaction::357BATSK BATMER,357BATSK BATMER,,,,,,,,,,,2016-,,Battery cell manufacturing to Battery pack manufacturing,"For general mercedes cars; so packs likely go to Bremen, like shown below",,,Yes
+transaction::358BATSK BATVOL,358BATSK BATVOL,,,,,,,,,,,,2022,Battery cell manufacturing to Battery pack manufacturing,"SK gigafactory still in construction, no detail on which cathodes go to Georgia but L&F rumoured",,,No
+transaction::359BATSK BATVOL,359BATSK BATVOL,,,,,,,,,,,2019-,,Battery cell manufacturing to Battery pack manufacturing,Zwickau most important electric vehicle base for VW,,,Yes
+transaction::35BATCATBATSAI,35BATCATBATSAI,,,,,,,,,,,,2017-,Battery cell manufacturing to Battery pack manufacturing,"Joint venture establishing 2 companies (one for selling+producing lithium baterries, other for battery systems). Assume packs made in same factory",,,Yes
+transaction::360BATSK ELEBAI,360BATSK ELEBAI,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,The packs for the MARK 5 only contain SK cells.,,,Yes
+transaction::361BATSK ELEGEE,361BATSK ELEGEE,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::362MINSOCSMELUA,362MINSOCSMELUA,,,,,,,,,,,2020,,Mining to Smelting,,,,
+transaction::363CATSUMBATPAN,363CATSUMBATPAN,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::364PRESUMCATSUM,364PRESUMCATSUM,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,,,
+transaction::365PRESUMBATTES,365PRESUMBATTES,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p.49,,
+transaction::366MINCORREFHAR,366MINCORREFHAR,,,,,,,,,,,,,Mining to Refining,,,,
+transaction::367MINCORREFNII,367MINCORREFNII,,,,,,,,,,,,,Mining to Refining,,,,
+transaction::368MINTAGREFHAR,368MINTAGREFHAR,,,,,,,,,,,,,Mining to Refining,,,,
+transaction::369MINTAGREFNII,369MINTAGREFNII,,,,,,,,,,,,,Mining to Refining,,,,
+transaction::36BATCATBATJV,36BATCATBATJV,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,A joint company between the two companies owned 51% by CATL,,"Agreed (2018), not yet completed",Yes
+transaction::370REFHARPRESUM,370REFHARPRESUM,,,,,,,,,,,,,Refining to Precursor manufacturing,,,,
+transaction::371REFNIIPRESUM,371REFNIIPRESUM,,,,,,,,,,,,,Refining to Precursor manufacturing,,,,
+transaction::372BATSUNELETER,372BATSUNELETER,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::373RECSUNBATLG,373RECSUNBATLG,,,,,,,,,,,,,Recycling to Battery pack manufacturing,,,,
+transaction::374BATSUNELEGEE,374BATSUNELEGEE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::375BATSUNELEDON,375BATSUNELEDON,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::376BATSUNELEZHE,376BATSUNELEZHE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::377BATSUNELENIS,377BATSUNELENIS,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::378TRATELREFGAN,378TRATELREFGAN,,,,,,,,,,,,,Trading to Refining,,p. 1-1-748,,
+transaction::379TRATELBATCAT,379TRATELBATCAT,,,,,,,,,,,,2021,Trading to Battery cell manufacturing,Telf will sell Metalkol's cobalt hydroxide to CATL,,,
+transaction::37CATCATBATCAT,37CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::380TRATELREFGEM,380TRATELREFGEM,,,3000,3000.0,,,,,,,,2021,Trading to Refining,GEM will buy ERG's cobalt from Telf,,,
+transaction::381REFGEMPREGEM,381REFGEMPREGEM,,,,,,,,,,,,,Refining to Precursor manufacturing,,,,
+transaction::382ARTTENTRAVIC,382ARTTENTRAVIC,,,,,,,,,,,,,Artisanal processing to Trading,,,,
+transaction::383ARTTENSMECHE,383ARTTENSMECHE,,,,,,,,,,,,,Artisanal processing to Smelting,,https://www.leinumber.com/leicert/2138005M1SGWWCYGWU80/,,
+transaction::384ARTTENSMETEN,384ARTTENSMETEN,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::385SMETENBATLG,385SMETENBATLG,,,,,,,,,,,,,Smelting to Battery pack manufacturing,,,,
+transaction::386SMETENREFGAN,386SMETENREFGAN,,,,,,,,,,,,,Smelting to Refining,,,,
+transaction::387MINTENSMETEN,387MINTENSMETEN,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::388MINTENSMETEN,388MINTENSMETEN,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::389MINTENSMETEN,389MINTENSMETEN,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::38CATCATBATCAT,38CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::390MINTENSMETEN,390MINTENSMETEN,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::391MINTENSMETEN,391MINTENSMETEN,,,,,,,,,,,,,Mining to Smelting,,,,Yes
+transaction::392SMETENTRATRA,392SMETENTRATRA,,,,,,,,,,,,,Smelting to Trading,,p.58,,Yes
+transaction::393SMETENTRAIXM,393SMETENTRAIXM,,,,,,,,,,,,,Smelting to Trading,,p. 19,,
+transaction::394MINTENTRAIXM,394MINTENTRAIXM,,,,,,,,,,,,,Mining to Trading,The agreement is exclusive,,,
+transaction::395SMETENSMEUMI,395SMETENSMEUMI,,,,,,,,,,,,,Smelting to Smelting,,p.58,,Yes
+transaction::396BATTESELETES,396BATTESELETES,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p. 8,,
+transaction::397BATTESBAT,397BATTESBAT,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::398BATTESELETES,398BATTESELETES,,,,,,,,,,,2020,,Battery pack manufacturing to Electric car manufacturing,"From 2021, will start producing Model Y",,,Yes
+transaction::399BATTESELETES,399BATTESELETES,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p. 8,,
+transaction::39CATCATBATCAT,39CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::3MINARTSMECHE,3MINARTSMECHE,,,,,,,,,,,,,Mining to Smelting,,p. 32,,
+transaction::400BATTESELETES,400BATTESELETES,,,,,590 000 (2020),,,,,,2015-,,Battery pack manufacturing to Electric car manufacturing,"Supply network started properly in 2015, Tesla to open up Gigafactories in USA, China and Germany to meet the environmental challenges",,,Yes
+transaction::401ARTTHOSMEESS,401ARTTHOSMEESS,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::402ELETINELEMOT,402ELETINELEMOT,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,,,
+transaction::403BATTOYELETOY,403BATTOYELETOY,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,Yes
+transaction::404TRATRAREFGAN,404TRATRAREFGAN,,,,,,,,,,,,,Trading to Refining,,p. 1-1-748,,
+transaction::405ARTTSHARTCHE,405ARTTSHARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::406ARTTSHARTTEN,406ARTTSHARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::407CATULTELEGEN,407CATULTELEGEN,,,,,,,,,,,,,Cathode manufacturing to Electric car manufacturing,,,,
+transaction::408CATULTBATULT,408CATULTBATULT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::409CATULTBATULT,409CATULTBATULT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::40CATCATBATCAT,40CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::410REFUMIPREUMI,410REFUMIPREUMI,,,,,,,,,,,,,Refining to Precursor manufacturing,Umicore's internal supply chain (seen in consultancy file and on Umicore website for main locations).,,,Yes
+transaction::411PREUMICATUMI,411PREUMICATUMI,,,,,,,,,,,,21-Jul,Precursor manufacturing to Cathode manufacturing,Nysa factory still under construction; refinery recently bought from Freeport; they refine and make precurors,,,No
+transaction::412CATUMIBATLG,412CATUMIBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::413CATUMIBATLG,413CATUMIBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::414CATUMIBATLG,414CATUMIBATLG,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::415CATUMIBATSAM,415CATUMIBATSAM,,,80 000 Tonnes,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,Yes
+transaction::416REFUMIBATLG,416REFUMIBATLG,,,,,,,,,,,,,Refining to Battery cell manufacturing,,,,
+transaction::417CATUMIBATSAM,417CATUMIBATSAM,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::418REFUMIBATBMW,418REFUMIBATBMW,,,,,,,,,,,,,Refining to Battery pack manufacturing,,,,
+transaction::419REFUMIBATTES,419REFUMIBATTES,,,,,,,,,,,,,Refining to Battery cell manufacturing,,p.49,,
+transaction::41CATCATBATCAT,41CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::420BATUMIBATVOL,420BATUMIBATVOL,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::421PREUMIBATPOW,421PREUMIBATPOW,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,,,
+transaction::422CATUMIBATAUT,422CATUMIBATAUT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::423BATAUTBATSTE,423BATAUTBATSTE,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::424BATAUTBATMER,424BATAUTBATMER,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::425REFUNITRAGLE,425REFUNITRAGLE,,,,,,,,,,,2022,,Refining to Trading,,p. 41,,
+transaction::426ARTUSIARTTEN,426ARTUSIARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::427REFVALBATLG,427REFVALBATLG,,,,,,,,,,,,,Refining to Battery pack manufacturing,,,,
+transaction::428MINVALREFVAL,428MINVALREFVAL,,,,,,,,,,,,,Mining to Refining,,,,
+transaction::429BATVERELEREN,429BATVERELEREN,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::42CATCATBATCAT,42CATCATBATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,p.60-67,,
+transaction::430BATVERBATVER,430BATVERBATVER,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::431TRAVINREFGAN,431TRAVINREFGAN,,,,,,,,,,,,,Trading to Refining,,p. 1-1-748,,
+transaction::432TRAVINTRATRA,432TRAVINTRATRA,,,,,,,,,,,,,Trading to Trading,,,,
+transaction::433TRAVINTRATRA,433TRAVINTRATRA,,,,,,,,,,,,,Trading to Trading,,,,
+transaction::434MINSOCTRAVIN,434MINSOCTRAVIN,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::435ELEJIAELEMOT,435ELEJIAELEMOT,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,Motorino is the brand name of Greenwit Technologies,,,
+transaction::436ELEJIAELEVMO,436ELEJIAELEVMO,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,Vmoto and Super Soco partnership,,,
+transaction::437BATVOLELEVOL,437BATVOLELEVOL,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,"Not detailed in which cars, and from which companies cells, so left blank and left in Zwickau even though likely some are produced elsewhere",,,Yes
+transaction::438BATVOLELEVOL,438BATVOLELEVOL,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,"Not detailed in which cars, and from which companies cells, so left blank and left in Zwickau even though likely some are produced elsewhere",,,Yes
+transaction::439BATVOLELEVOL,439BATVOLELEVOL,,,,,,,,,,,Autumn 2020,,Battery pack manufacturing to Electric car manufacturing,"Pack and cars built in same facility, from autumn 2020. Same thing will happen in South Carolina from 2022",,,Yes
+transaction::43BATCATELETES,43BATCATELETES,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,p. 16,,
+transaction::440SMEWANREFGAN,440SMEWANREFGAN,,,,,,,,,,,,,Smelting to Refining,,p. 1-1-748,,
+transaction::441MINWANSMEWAN,441MINWANSMEWAN,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::442CATXIABATCAT,442CATXIABATCAT,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,Also has factory in Sanming,p. 17,,Yes
+transaction::443ELEXIAELEBIR,443ELEXIAELEBIR,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,p.19,,
+transaction::444TRAXINBATXTC,444TRAXINBATXTC,,,,,,,,,,,,,Trading to Battery cell manufacturing,,p.8-1-12,,
+transaction::445TRAXINREFGAN,445TRAXINREFGAN,,,,,,,,,,,,,Trading to Refining,,p. 1-1-748,,
+transaction::446BATXTCBATAMP,446BATXTCBATAMP,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,p.8-1-3-4,,
+transaction::447BATXTCBATCAT,447BATXTCBATCAT,,,,,,,,,,,,,Battery cell manufacturing to Battery cell manufacturing,,p. 8-1-3-13,,
+transaction::448BATXTCBATBYD,448BATXTCBATBYD,,,,,,,,,,,,,Battery cell manufacturing to Battery cell manufacturing,,p.8-1-3-5,,
+transaction::449BATXTCBATCAL,449BATXTCBATCAL,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,p.1-3-13,,
+transaction::44BATCATBATHYU,44BATCATBATHYU,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::450BATXTCBATHUI,450BATXTCBATHUI,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,p.1-3-13,,
+transaction::451BATXTCBATGOT,451BATXTCBATGOT,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,p.1-3-13,,
+transaction::452BATZHEELEJIA,452BATZHEELEJIA,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p. 31,,
+transaction::453BATZHUELEXIA,453BATZHUELEXIA,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p.37,,
+transaction::454SMEMETTRAACC,454SMEMETTRAACC,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::455SMEMETTRAGRI,455SMEMETTRAGRI,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::456SMEMETTRAREL,456SMEMETTRAREL,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::457SMEMETTRAPGS,457SMEMETTRAPGS,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::458SMETENTRABRI,458SMETENTRABRI,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::459SMETENTRAVS,459SMETENTRAVS,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::45BATCATBATLG,45BATCATBATLG,,,,,,,,,,,,,Battery cell manufacturing to Battery pack manufacturing,,,,
+transaction::460SMETENTRACMO,460SMETENTRACMO,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::461SMETENTRASMA,461SMETENTRASMA,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::462SMECHETRAPRO,462SMECHETRAPRO,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::463ARTCHESMECHE,463ARTCHESMECHE,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::464SMESOCTRAHUA,464SMESOCTRAHUA,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::465MINSOCTRANEW,465MINSOCTRANEW,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::466MINCOMTRANOR,466MINCOMTRANOR,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::467MINCOMTRASHA,467MINCOMTRASHA,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::468MINCOMTRAGRA,468MINCOMTRAGRA,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::469MINCOMTRASYL,469MINCOMTRASYL,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::46BATCATELEFOR,46BATCATELEFOR,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::470MINCOMTRAHEB,470MINCOMTRAHEB,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::471MINCOMTRACHA,471MINCOMTRACHA,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::472SMERUATRARAF,472SMERUATRARAF,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::473MINLA TRANOR,473MINLA TRANOR,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::474MINLA TRAGRA,474MINLA TRAGRA,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::475SMECHETRASHA,475SMECHETRASHA,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::476MINKIMTRAVIN,476MINKIMTRAVIN,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::477MINLA TRAGOL,477MINLA TRAGOL,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::478MINMINARTHUA,478MINMINARTHUA,,,,,,,,,,,,,Mining to Artisanal processing,,,,
+transaction::479ARTSHITRAHK,479ARTSHITRAHK,,,,,,,,,,,,,Artisanal processing to Trading,,,,
+transaction::47BATCATELEBMW,47BATCATELEBMW,,,,,,,,,,,,,Battery cell manufacturing to Electric car manufacturing,,,,
+transaction::480MINKAITRAMAU,480MINKAITRAMAU,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::481MINCOMTRACHI,481MINCOMTRACHI,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::482SMERUBTRAVUL,482SMERUBTRAVUL,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::483MINKAMTRANEW,483MINKAMTRANEW,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::484MINLA TRACHI,484MINLA TRACHI,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::485MINCNMTRANEW,485MINCNMTRANEW,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::486ARTKAMSMECON,486ARTKAMSMECON,,,,,,,,,,,,,Artisanal mining to Smelting,,,,
+transaction::487ARTDINARTTEN,487ARTDINARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::488ARTCARARTLUI,488ARTCARARTLUI,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::489ARTDRAARTTEN,489ARTDRAARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::48ARTCENARTCHE,48ARTCENARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::490ARTMENARTCHE,490ARTMENARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::491ARTBRIARTCHE,491ARTBRIARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::492ARTKASSMECON,492ARTKASSMECON,,,,,,,,,,,,,Artisanal mining to Smelting,,,,
+transaction::493ARTMUTARTCHE,493ARTMUTARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::494ARTTULARTCHE,494ARTTULARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::495ARTSHIARTTEN,495ARTSHIARTTEN,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::496ARTKAYARTCHE,496ARTKAYARTCHE,,,,,,,,,,,,,Artisanal mining to Artisanal processing,,,,
+transaction::497ARTGOMSMECON,497ARTGOMSMECON,,,,,,,,,,,,,Artisanal mining to Smelting,,,,
+transaction::498MINKAMTRAGLE,498MINKAMTRAGLE,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::499MINKISTRAVIC,499MINKISTRAVIC,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::49SMECHETRATRA,49SMECHETRATRA,,,,,,,,,,,,,Smelting to Trading,,,,Yes
+transaction::4RECASCELEHON,4RECASCELEHON,,,,,,,,,,,,,Recycling to Electric car manufacturing,Former name: Battery Resourcers,,,
+transaction::500MINLA TRAGOL,500MINLA TRAGOL,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::501MINLA TRAOCT,501MINLA TRAOCT,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::502MINLA TRAGLE,502MINLA TRAGLE,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::503MINLA TRACHA,503MINLA TRACHA,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::504SMEMETTRACHI,504SMEMETTRACHI,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::505MINMINTRANIN,505MINMINTRANIN,,,,,,,,,,,,,Mining to Trading,,,,
+transaction::506SMEMUTTRAZIJ,506SMEMUTTRAZIJ,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::507SMESICTRACHA,507SMESICTRACHA,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::508ARTENTTRATRA,508ARTENTTRATRA,,,,,,,,,,,,,Artisanal processing to Trading,,This is part of the offtake agreement between EGC and Trafigura in 2020.,,
+transaction::509ARTENTTRAMER,509ARTENTTRAMER,,,,,,,,,,,,,Artisanal processing to Trading,,This is part of the joint venture agreement between Gécamines SA and Mercuria in 2025.,,
+transaction::50MINCHESMECHE,50MINCHESMECHE,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::51ARTCHESMECHE,51ARTCHESMECHE,,,,,,,,,,,,,Artisanal processing to Smelting,,,,
+transaction::52PRECHIBATCAT,52PRECHIBATCAT,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p. 12 parr. 5,,
+transaction::53PRECHIBATHUI,53PRECHIBATHUI,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p. 12 parr. 5,,
+transaction::54PRECHIBATBYD,54PRECHIBATBYD,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p. 12 parr. 5,,
+transaction::55PRECHIBATCAT,55PRECHIBATCAT,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p. 12 parr. 5,,
+transaction::56PRECHIBATCAT,56PRECHIBATCAT,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p. 12 parr. 5,,Yes
+transaction::57PRECHIBATSUN,57PRECHIBATSUN,,,,,,,,,,,,,Precursor manufacturing to Battery pack manufacturing,,p. 12 parr. 5,,
+transaction::58REFCHIBATCAT,58REFCHIBATCAT,,,,,,,,,,,2023,2023,Refining to Battery pack manufacturing,"In 2022, CATL bought a minority stake in CMOC",,,
+transaction::59SMECHIBATXTC,59SMECHIBATXTC,,,,,,,,,,,,,Smelting to Battery cell manufacturing,,p. 8-1-3-11 (table),,
+transaction::5BATBAIELEMER,5BATBAIELEMER,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,"Plug-in hybrid, but no detail of which type",p. 9,,Yes
+transaction::60SMECHIREFGAN,60SMECHIREFGAN,,,,,,,,,,,,,Smelting to Refining,,p. 1-1-748,,
+transaction::61MINCONSMECON,61MINCONSMECON,,,3100 tonnes/annum,,,,,,,,,,Mining to Smelting,"They used to have more mines and have artisanal sources in a partnership with Gecamines (in Kasulo, Kolwezi), but this terminated when Amnesty International piblished a report about child labour and Huayou suspended dealings with this part of CDM. Now only Luiswishi mine",,,Yes
+transaction::62SMECONTRAHUA,62SMECONTRAHUA,,,,,,,,,,,,,Smelting to Trading,,p.1.1.41 parr.3,,
+transaction::63SMECONREFHUA,63SMECONREFHUA,,,,,,,,,,,,,Smelting to Refining,"No data about how much cobalt hydroxide, but since these are entierly owned subsidaries of Huayou Cobalt, it is likely all of their output from the smelters go to Huayou Cobalt",p.1-1-97,,Yes
+transaction::64SMECONTRATRA,64SMECONTRATRA,,,,,,,,,,,,,Smelting to Trading,,p.1-1-191,,
+transaction::65SMECONBATSK,65SMECONBATSK,,,,,,,,,,,,,Smelting to Battery cell manufacturing,,p.9 parr.1,,
+transaction::66REFELEBATLG,66REFELEBATLG,,,"7,000 from 2023 to 2025",,,,,,,,2022,2023,Refining to Battery cell manufacturing,,This agreement is expected to last for 3 years,,
+transaction::67REFELETRASTR,67REFELETRASTR,,,"5,000 per year",,,,,,,,2021,,Refining to Trading,,This agreement is expected to last for 5 years,,
+transaction::68RECELETRAGLE,68RECELETRAGLE,,,,,,,,,,,2022,2023,Recycling to Trading,,This agreement is expected to last for 5 years,,
+transaction::69TRAMARREFELE,69TRAMARREFELE,,,,,,,,,,,2022,,Trading to Refining,,,,
+transaction::6CATBASBATPAN,6CATBASBATPAN,,,,,,,,,,,,,Cathode manufacturing to Battery cell manufacturing,,,,
+transaction::70BATENVELEREN,70BATENVELEREN,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::71CATUMIBATENV,71CATUMIBATENV,,,,,,,,,,,,,Cathode manufacturing to Battery pack manufacturing,,,,
+transaction::72MINMETSMEMET,72MINMETSMEMET,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::73MINMETSMEMET,73MINMETSMEMET,,,,,,,,,,,,,Mining to Smelting,,,,
+transaction::74SMEMETREFGAN,74SMEMETREFGAN,,,,,,,,,,,,,Smelting to Refining,,p. 1-1-748,,
+transaction::75SMEMETREFEVE,75SMEMETREFEVE,,,,,,,,,,,2023,2026,Smelting to Refining,,,,
+transaction::76TRAGLEREFEVE,76TRAGLEREFEVE,,,,,,,,,,,2023,2026,Trading to Refining,,,,
+transaction::77SMEMETTRAMAR,77SMEMETTRAMAR,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::78SMEMETTRAMEC,78SMEMETTRAMEC,,,,,,,,,,,,,Smelting to Trading,,,,
+transaction::79SMEMETBATLG,79SMEMETBATLG,,,,,,,,,,,,,Smelting to Battery pack manufacturing,,,,
+transaction::7BATBEIBATFAR,7BATBEIBATFAR,,,,,,,,,,,,,Battery pack manufacturing to Battery pack manufacturing,,,,
+transaction::80SMEMETTRATEL,80SMEMETTRATEL,,,18000,18000.0,,,,,,,,2021,Smelting to Trading,,,,
+transaction::81SMEMETPREHUA,81SMEMETPREHUA,,,,,,,,,,,,,Smelting to Precursor manufacturing,,p. 1-1-41 parr. 4,,
+transaction::82ELEEVOELEMOT,82ELEEVOELEMOT,,,,,,,,,,,,,Electric scooter manufacturing to Electric car manufacturing,,,,
+transaction::83BATFARBATMER,83BATFARBATMER,,,,,,,,,,,2020,,Battery cell manufacturing to Battery pack manufacturing,Factory Farasis germany still under construction; for Mercedes EQ series,,,Yes
+transaction::84BATFARBATMER,84BATFARBATMER,,,,,,,,,,,2020,,Battery cell manufacturing to Battery pack manufacturing,For Mercedes EQ series,,,Yes
+transaction::85BATFARBATBAI,85BATFARBATBAI,,,,,1M batteries,,,,,,2017-2022,,Battery cell manufacturing to Battery pack manufacturing,"BAIC Blue location here is not exact, thus cars most likely not manufactured here",,,Yes
+transaction::86BATFARBATHEL,86BATFARBATHEL,,,,,,,,,,,,,Battery pack manufacturing to Battery pack manufacturing,,,,
+transaction::87BATBEIBATHEL,87BATBEIBATHEL,,,,,,,,,,,,,Battery pack manufacturing to Battery pack manufacturing,,,,
+transaction::88BATFARELEGEE,88BATFARELEGEE,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::89BATFUJELESEG,89BATFUJELESEG,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,p.190,,
+transaction::8BATBMWELEBMW,8BATBMWELEBMW,,,,,,,,,,,2020-2031,,Battery pack manufacturing to Electric car manufacturing,,p. 31,,Yes
+transaction::90BATFUJELELIM,90BATFUJELELIM,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::91BATFUJELEBIR,91BATFUJELEBIR,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::92BATFUJELELYF,92BATFUJELELYF,,,,,,,,,,,,,Battery pack manufacturing to Electric car manufacturing,,,,
+transaction::93PREGANCATHUN,93PREGANCATHUN,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-721,,
+transaction::94PREGANCATNIN,94PREGANCATNIN,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-721,,
+transaction::95PREGANCATXTC,95PREGANCATXTC,,,,,,,,,,,,,Precursor manufacturing to Cathode manufacturing,,p. 1-1-721,,
+transaction::96REFGANPREGAN,96REFGANPREGAN,,,,,,,,,,,,,Refining to Precursor manufacturing,,p. 1-1-720 (table section 1),,
+transaction::97PREGANBATXIA,97PREGANBATXIA,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p. 1-1-720 (table section 1),,
+transaction::98PREGANBATJIN,98PREGANBATJIN,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p. 1-1-720 (table section 1),,
+transaction::99PREGANBATHUN,99PREGANBATHUN,,,,,,,,,,,,,Precursor manufacturing to Battery cell manufacturing,,p. 1-1-720 (table section 1),,
+transaction::9BATBMWELEBMW,9BATBMWELEBMW,,,,,,,,,,,,2022,Battery pack manufacturing to Electric car manufacturing,Factory in Tiexi will only open in 2022,p. 31,,No

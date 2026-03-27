@@ -1,0 +1,39 @@
+node_id,name,centroid_name,lat,lon
+country::australia,Australia,Australia,-25.73496849,134.4895626
+country::austria,Austria,,,
+country::belgium,Belgium,Belgium,50.438696,4.633575
+country::canada,Canada,Canada,55.58590129,-105.7505959
+country::china,China,China,35.48670298,101.9018751
+country::democratic-republic-of-the-congo,Democratic Republic of the Congo,,,
+country::finland,Finland,Finland,62.77775397,26.19953901
+country::france,France,France,47.82490462,2.618786953
+country::germany,Germany,Germany,51.13348134,10.01834329
+country::hong-kong,Hong Kong,,,
+country::hungary,Hungary,Hungary,47.06026675,19.49934901
+country::india,India,India,22.19916608,78.47668103
+country::indonesia,Indonesia,Indonesia,-2.352,116.348
+country::italy,Italy,,,
+country::japan,Japan,Japan,36.38649282,138.5922295
+country::morocco,Morocco,Morocco,32.35075131,-6.017072727
+country::new-caledonia,New Caledonia,,,
+country::norway,Norway,,,
+country::philippines,Philippines,Philippines,11.5363,122.7613
+country::poland,Poland,Poland,52.12460991,19.30063631
+country::russia,Russia,Russia,61.99457341,96.66970546
+country::singapore,Singapore,,,
+country::south-africa,South Africa,,,
+country::south-korea,South Korea,South Korea,36.53623647,128.1689443
+country::sweden,Sweden,Sweden,64.96487516,17.67540943
+country::switzerland,Switzerland,,,
+country::taiwan,Taiwan,,,
+country::tanzania,Tanzania,,,
+country::the-netherlands,The Netherlands,,,
+country::uae,UAE,,,
+country::uk,UK,,,
+country::united-arab-emirates,United Arab Emirates,,,
+country::united-kingdom,United Kingdom,United Kingdom,54.23793336,-2.36966957
+country::united-states,United States,United States,39.38126613,-97.92221121
+country::usa,USA,,,
+country::vietnam,Vietnam,,,
+country::zambia,Zambia,,,
+country::zimbabwe,Zimbabwe,,,

@@ -1,0 +1,351 @@
+node_id,name,bhrrc_id,bhrrc_link,company_type_tags,country_name,lat,location_precision,lon,role_tags
+company::access-world,Access World,,,,Switzerland,47.1804801787744,exact,8.518586169823491,buyer
+company::ace-green-recycling,ACE Green Recycling,,,,Singapore,1.300454951,exact,103.8576764,supplier
+company::allcell-technologies-llc,AllCell Technologies LLC,,,Battery producer;Electric car producer,USA,41.81921293,exact,-87.68318087,buyer;supplier
+company::alliance-nickel-ltd-gme-resources,Alliance Nickel Ltd. (GME Resources),,,,Australia,-31.97780293062293,exact,115.8093874612926,supplier
+company::amperex-technology-limited-atl,Amperex Technology Limited (ATL),763897,https://www.business-humanrights.org/en/companies/contemporary-amperex-technology-catl/,Battery producer,Hong Kong,22.373,exact,114.1074,buyer
+company::artisanal-producers,Artisanal producers,,,,Democratic Republic of the Congo,-11.597883475837904,exact,27.349457081826205,supplier
+company::ascend-elements,Ascend Elements,764900,https://www.business-humanrights.org/en/companies/ascend/,Battery producer,USA,42.2753406,exact,-71.57140623,supplier
+company::automotive-cells-company-acc,Automotive Cells Company (ACC),,,,France,48.86815195634901,exact,2.3464289820186175,buyer;supplier
+company::b-m-science-and-technology-co,B&M Science and Technology co.,913036,https://www.business-humanrights.org/en/companies/tianjin-bm-science-technology/,Cathode producer,China,39.0738,exact,117.0842,buyer
+company::baic-bjev,BAIC BJEV,,,,,,,,subsidiary
+company::baic-bluepark-energy-technology-co,BAIC BluePark Energy Technology Co,,,,,,,,subsidiary
+company::baic-group,BAIC Group,765767,https://www.business-humanrights.org/en/companies/baic-motor-corporation/,Battery producer;Electric car producer,China,39.6549187,exact,116.6654736,buyer;supplier
+company::bak-power-battery,BAK Power Battery,,,Battery producer,China,22.6231372,exact,114.43455,buyer
+company::basf,BASF,755901,https://www.business-humanrights.org/en/companies/basf/,Cathode producer,China,27.381365,exact,111.5260551,buyer;supplier
+company::basf-shanshan,BASF Shanshan,,,,,,,,subsidiary
+company::basf-toda-battery-materials-llc-btbm,BASF TODA Battery Materials LLC. (BTBM),,,,,,,,joint_venture
+company::beam-global,Beam Global,,,,,,,,parent
+company::beijing-benz-automotive-co-ltd,Beijing Benz Automotive Co. Ltd,,,,,,,,joint_venture
+company::beijing-dangsheng-materials-technology-co-ltd,Beijing Dangsheng Materials Technology Co. Ltd.,,,,,,,,subsidiary
+company::beijing-easpring-material-technology-co-ltd,"Beijing Easpring Material Technology Co., Ltd.",,,Precursor producer,China,39.81900741,exact,116.28581089,buyer
+company::beijing-hainachuan-automotive-parts-co-ltd-bhap,"Beijing Hainachuan Automotive Parts Co., Ltd. (BHAP)",,,,China,39.876548,exact,116.46679,supplier
+company::bird-global-inc,Bird Global Inc.,,,Electric car producer,USA,25.95017,exact,-80.193167,buyer
+company::bird-rides-inc,"Bird Rides, Inc.",,,,,,,,subsidiary
+company::bmw-brilliance-automotive-ltd,BMW Brilliance Automotive Ltd.,,,,,,,,joint_venture
+company::bmw-group,BMW Group,755904,https://www.business-humanrights.org/en/companies/bmw/,Battery producer;Electric car producer,Germany,48.17698824046014,exact,11.560157959702845,buyer;supplier
+company::bosch-ltd-bosch,Bosch Ltd. (BOSCH),756095,https://www.business-humanrights.org/en/companies/bosch/,Battery producer,Germany,48.78612105,exact,9.06340681,buyer;supplier
+company::bridge-shipping,Bridge Shipping,,,,China,24.523944122016243,exact,118.1047607534157,buyer
+company::bridon,Bridon,,,,Democratic Republic of the Congo,-10.691162649772282,exact,25.451694368070577,supplier
+company::brunp-cycle-technology,Brunp Cycle Technology,,,,,,,,subsidiary
+company::bs-battery,BS Battery,,,Battery producer,France,48.8619051,exact,2.22350966,supplier
+company::byd-co-ltd,BYD Co. Ltd.,756034,https://www.business-humanrights.org/en/companies/byd/,Battery producer,China,22.6792536,exact,114.3588666,buyer;supplier
+company::calb-tech,CALB Tech,,,Battery producer,China,31.687592562991952,exact,119.61262218242528,buyer
+company::carriere-52,Carriere 52,,,,Democratic Republic of the Congo,-10.648348356683998,exact,25.44155346954925,supplier
+company::catl-contemporary-amperex-technology-co,CATL (Contemporary Amperex Technology Co.),763897,https://www.business-humanrights.org/en/companies/contemporary-amperex-technology-catl/,Battery producer;Cathode producer,China,26.7332864,exact,119.5645726,buyer;supplier
+company::cents-sacs,Cents Sacs,,,,Democratic Republic of the Congo,-10.6855426,exact,25.5313308,supplier
+company::chalco-trading,Chalco Trading,,,,Hong Kong,22.28003447460711,exact,114.16403310916446,buyer
+company::changan-ford-automobile-co-ltd,Changan Ford Automobile Co. Ltd.,,,,,,,,joint_venture
+company::chaowei-power-group-co-ltd,Chaowei Power Group Co. Ltd.,,,Battery producer,China,30.9783286,exact,119.9070595,buyer;supplier
+company::chemaf,Chemaf,756480,https://www.business-humanrights.org/en/companies/chemaf-part-of-shalina-group/,,Democratic Republic of the Congo,-11.634101153963103,exact,27.586012395421733,buyer;supplier
+company::chengtun-copper-resources,Chengtun Copper Resources,,,,Democratic Republic of the Congo,-10.621930548847367,exact,25.47330655228977,buyer;supplier
+company::chengtun-global-resources,Chengtun Global Resources,,,,Hong Kong,22.27862957370601,exact,114.17765016351262,buyer
+company::chevrolet,Chevrolet,,,,,,,,subsidiary
+company::china-electronics-technology-group-co-ltd,China Electronics Technology Group Co. Ltd.,,,Battery producer,China,39.0741601,exact,117.0722502,buyer
+company::china-huayou-hong-kong,China Huayou Hong Kong,,,,,,,,subsidiary
+company::china-minmetals,China Minmetals,756351,https://www.business-humanrights.org/en/companies/china-minmetals/,Precursor producer,China,28.2215,exact,112.9007,buyer;parent;supplier
+company::china-molybdenum-co,China Molybdenum Co.,765799,https://www.business-humanrights.org/en/companies/china-molybdenum/,,China,33.78778779,exact,111.64033621,buyer;parent;supplier
+company::china-national-overseas-engineering-group-co-ltd-covec,China National Overseas Engineering Group Co. Ltd. (COVEC),,,,,,,,subsidiary
+company::china-nonferrous-mining-corporation-ltd,China Nonferrous Mining Corporation Ltd.,760582,https://www.business-humanrights.org/en/companies/china-nonferrous-metal-mining-cnmc/,,,,,,parent
+company::china-nonferrous-mining-corporation-ltd-51,China Nonferrous Mining Corporation Ltd. (51%),,,,,,,,parent
+company::china-railway-resources-group,China Railway Resources Group,764197,https://www.business-humanrights.org/en/companies/china-railway-group-crec-part-of-china-railway-engineering/,,China,39.91605836,exact,116.2763578,buyer;supplier
+company::cmoc-limited,CMOC Limited,,,,China,33.88276604093883,exact,111.61502880250374,buyer
+company::cngr-advanced-material-co-ltd,"CNGR Advanced Material Co., Ltd.",934151,https://www.business-humanrights.org/en/companies/cngr-advanced-material/,,China,27.33182908,exact,109.00798567,buyer;parent;supplier
+company::cnmc-huachin-mabende-mining-sprl,CNMC Huachin Mabende Mining SPRL,,,,Democratic Republic of the Congo,-11.443356939814306,exact,27.365350480072657,supplier
+company::compagnie-miniere-de-kambove-comika,Compagnie Minière de Kambove (COMIKA),,,,Democratic Republic of the Congo,-10.867660558760427,exact,26.563775719019002,supplier
+company::compagnie-miniere-de-luisha-comilu,Compagnie Minière de Luisha (COMILU),,,,Democratic Republic of the Congo,-11.165914297411945,exact,27.019027795418186,supplier
+company::congo-dongfang-mining-cdm,Congo Dongfang Mining (CDM),927036,https://www.business-humanrights.org/en/companies/congo-dongfang-international-mining-cdm/,Miner;Smelter,Democratic Republic of the Congo,-11.5855471,exact,27.4786431,buyer;supplier
+company::congo-jinjun-cheng-cjc,Congo Jinjun Cheng (CJC),,,,Democratic Republic Of The Congo,-10.99735961337547,exact,26.75672417231705,buyer
+company::coral-bay-nickel-corporation,Coral Bay Nickel Corporation,,,,Philippines,8.558385812772432,exact,117.42535576137354,supplier
+company::coslight-technology-international-group-co-ltd,Coslight Technology International Group Co. Ltd.,,,Battery producer,China,45.6911747,exact,126.5070161,buyer
+company::cosmo-chemical-co-ltd,Cosmo Chemical Co Ltd,,,Cathode producer,South Korea,35.4192,exact,129.3465,buyer
+company::dangsheng-technology,Dangsheng Technology,,,Cathode producer,China,39.81900741,exact,116.28581089,buyer;supplier
+company::deutsche-accumotive-gmbh-co-kg,Deutsche Accumotive GmbH & Co. KG,,,,,,,,subsidiary
+company::dinamitiere,Dinamitiere,,,,Democratic Republic of the Congo,-10.747184453575294,exact,25.38027515289383,supplier
+company::divine-land-mining-sarl-dlm,Divine Land Mining SARL (DLM),,,,Democratic Republic of the Congo,-11.004704917152141,exact,26.74992026496991,buyer
+company::dongfeng-motor-corporation,Dongfeng Motor Corporation,756774,https://www.business-humanrights.org/en/companies/dongfeng-motor/,,China,30.50535598,exact,114.15953261,buyer
+company::drain-uck,Drain UCK,,,,Democratic Republic of the Congo,-10.67690872167073,exact,25.45401179648052,supplier
+company::ecopro-bm,ECOPRO BM,,,,,,,,subsidiary
+company::ecopro-em,ECOPRO EM,,,,,,,,joint_venture
+company::electra-battery-materials-corp,Electra Battery Materials Corp,,,Refiner,Canada,47.40851311,exact,-79.65961339,buyer;supplier
+company::entreprise-generale-du-cobalt-egc,Entreprise Generale du Cobalt (EGC),,,,Democratic Republic of the Congo,-10.723110809505823,exact,25.485278762483812,supplier
+company::envision-aesc,Envision AESC,764496,https://www.business-humanrights.org/en/companies/envision/,,France,50.35370520946489,exact,3.0265385264671956,buyer;supplier
+company::essence-resources-limited,Essence Resources Limited,,,,UK,51.724733999944284,exact,-0.031635606172405295,buyer
+company::eurasian-resources-group-s-a-r-l,Eurasian Resources Group S.A.R.L.,,,,,,,,parent
+company::evelution-energy,EVelution Energy,,,,United States,32.71853599403322,exact,-114.6499548040451,buyer
+company::evoke-electric-motorcycles-hk-ltd,Evoke Electric Motorcycles (HK) Ltd.,,,Electric car producer,China,39.78514809,exact,116.5110926,supplier
+company::farasis-energy,Farasis Energy,,,Battery producer,China,25.8402513,exact,114.8478945,buyer;supplier
+company::farasis-energy-ganzhou-co-ltd,"Farasis Energy (Ganzhou) Co., Ltd.",,,,,,,,subsidiary
+company::ford-motor-company,Ford Motor Company,757030,https://www.business-humanrights.org/en/companies/ford/,Electric car producer,China,29.6807517,exact,106.5886871,buyer
+company::fujian-scud-power-technology-co-ltd,"Fujian Scud Power Technology Co., Ltd. / 福建飞毛腿动力科技有限公司",,,Battery producer,China,26.00836640344795,exact,119.42637137201473,supplier
+company::funeng-technology-ganzhou-co-ltd,Funeng Technology (Ganzhou) Co. Ltd.,,,,,,,,joint_venture
+company::gac-toyota-motor-co-ltd-gtmc,GAC Toyota Motor Co. Ltd. (GTMC),,,,,,,,joint_venture
+company::ganzhou-tengyuan-cobalt-industrial-co-ltd,Ganzhou Tengyuan Cobalt Industrial Co Ltd,,,Refiner,China,25.91215359,exact,115.06922686,buyer;joint_venture;supplier
+company::gecamines,Gecamines,,,,,,,,parent;subsidiary
+company::gecamines-30-and-wanbao-mining-co-ltd,"Gécamines (30%) and Wanbao Mining Co., Ltd.",,,,,,,,parent
+company::gecamines-49,Gécamines (49%),,,,,,,,parent
+company::geely-group,Geely group,764877,https://www.business-humanrights.org/en/companies/geely/,Battery producer;Electric car producer,China,30.3290199,exact,121.2571769,buyer;parent;supplier
+company::gem-green-eco-manufacture-hi-tech,GEM (Green Eco-manufacture Hi-tech),763896,https://www.business-humanrights.org/en/companies/gem/,Cathode producer;Precursor producer;Refiner,China,32.1672565,exact,120.0802892,buyer;supplier
+company::gem-wuxi-energy-materials-co-ltd,GEM (Wuxi) Energy Materials Co. Ltd.,,,,,,,,subsidiary
+company::general-motors-co,General Motors Co.,757198,https://www.business-humanrights.org/en/companies/general-motors/,Electric car producer,United States,42.7156246,exact,-83.2609317,buyer;supplier
+company::glencore,Glencore,757200,https://www.business-humanrights.org/en/companies/glencore/,Commodity trader,Switzerland,47.181319694497084,exact,8.527232666311876,buyer;parent;supplier
+company::glencore-ag,Glencore AG,,,,,,,,subsidiary
+company::glencore-international-ag,Glencore International AG,,,,,,,,subsidiary
+company::glencore-plc,Glencore plc,,,,,,,,parent
+company::gogoro-inc,"Gogoro, Inc.",,,Electric car producer,Taiwan,25.04630717,exact,121.3618927,buyer
+company::gold-mountains-h-k-international-mining-co-ltd,"Gold Mountains (H.K.) International Mining Co., Ltd.",,,,Hong Kong,22.303645882954445,exact,114.16002126127455,buyer
+company::golden-harbour,Golden Harbour,,,,China,39.91112376347696,exact,116.36020061626218,buyer
+company::golden-mining,Golden Mining,,,,Democratic Republic Of The Congo,-11.703864611642874,exact,27.473591398799908,buyer
+company::goma2,Goma2,,,,Democratic Republic of the Congo,-10.625469379242672,exact,25.800668485254477,supplier
+company::gotion-high-tech-co-ltd,Gotion High tech Co Ltd,,,Battery producer,China,31.909302362058813,exact,117.36879987740124,buyer;supplier
+company::grand-future,Grand Future,,,,Hong Kong,22.279415148462633,exact,114.16343232635883,buyer
+company::grindrod-intermodal,Grindrod Intermodal,,,,South Africa,-29.861292763447047,exact,31.023401461284262,buyer
+company::guangdong-fangyuan-new-materials-group-co-ltd,"Guangdong Fangyuan New Materials Group Co., Ltd.",,,,China,22.28110072,exact,113.09761933,buyer;parent;supplier
+company::guangdong-foshan-sanshui-bangpu-recycling-technology-co-ltd,Guangdong & Foshan Sanshui Bangpu Recycling Technology Co. Ltd.,,,,,,,,subsidiary
+company::guangdong-ruiqing-contemporary-amperex-technology-limited,Guangdong Ruiqing Contemporary Amperex Technology Limited,,,,,,,,subsidiary
+company::guizhou-cngr-resource-recycling-industry-development-co-ltd,"Guizhou CNGR Resource Recycling Industry Development Co., Ltd.",934151,https://www.business-humanrights.org/en/companies/cngr-advanced-material/,,China,27.33182908,exact,109.00798567,supplier
+company::hangzhou-nandu-narada-power-supply-co-ltd,"Hangzhou Nandu / Narada Power Supply Co., Ltd.",,,,,,,,subsidiary
+company::hangzhou-tromox-technology-co-ltd,Hangzhou Tromox Technology Co Ltd,,,Electric car producer,China,30.27208655,exact,119.9619394,supplier
+company::hanrui-cobalt,Hanrui Cobalt,,,,,,,,subsidiary
+company::hanrui-international-singapore-pte-ltd,Hanrui International (Singapore) Pte.Ltd.,,,,Singapore,1.322258556158653,exact,103.8634478637708,buyer
+company::hanrui-metal-congo,Hanrui Metal Congo,,,,Democratic Republic of the Congo,-10.646626332179055,exact,25.465890312328685,buyer;supplier
+company::harbin-coslight-power-co-ltd,Harbin Coslight Power Co. Ltd.,,,,,,,,subsidiary
+company::harima-refinery,Harima Refinery,,,,Japan,34.718117385230805,exact,134.84908893847876,buyer;supplier
+company::hauchin-internationel-trading-limited,Hauchin Internationel Trading/Limited,,,,Hong Kong,22.28810734492507,exact,114.21186331257269,buyer
+company::hebei-jiwu,Hebei Jiwu,,,,China,38.03781122395211,exact,114.48420275398092,buyer
+company::hella,HELLA,903290,https://www.business-humanrights.org/en/companies/hella-gmbh-co-kgaa/,,China,31.18230908,exact,121.59889073,buyer
+company::hk-penghe,HK Penghe,,,,Hong Kong,22.285541234614367,exact,114.15515342453538,buyer
+company::honda-motor-china-investment-co-ltd,Honda Motor China Investment Co. Ltd.,,,Electric car producer,China,39.95249083537722,exact,116.46101801292001,buyer
+company::honda-motor-co-ltd,Honda Motor Co. Ltd.,757429,https://www.business-humanrights.org/en/companies/honda/,Electric car producer,Japan,35.67238779274758,exact,139.72379411176493,buyer;joint_venture;parent
+company::hongkong-excellen-mining-investment-co,Hongkong Excellen Mining Investment Co,,,,Hong Kong,22.28710831752307,exact,114.15176057092351,buyer
+company::horwin-global,HORWIN Global,,,Electric car producer,China,31.80703436,exact,120.0111712,supplier
+company::huachin-metal-leach-sprl,Huachin Metal Leach SPRL,,,,Democratic Republic of the Congo,-11.000451266614633,exact,26.708272675580716,buyer;supplier
+company::huahai-new-energy,Huahai New Energy,,,,,,,,subsidiary
+company::huajin-new-energy-material-co-ltd,Huajin New Energy Material Co.Ltd,,,,,,,,joint_venture
+company::huaqing-nickel-cobalt,Huaqing Nickel Cobalt,,,,,,,,subsidiary
+company::huayou-cobalt,Huayou Cobalt,911167,https://www.business-humanrights.org/en/companies/zhejiang-huayou-cobalt-co-ltd/,Cathode producer;Commodity trader;Precursor producer;Refiner;Smelter,China,30.6160952,exact,120.562971,buyer;parent;supplier
+company::huayou-cobalt-new-material-co-ltd,"Huayou Cobalt New Material Co., Ltd.",,,,,,,,subsidiary
+company::huayou-puye,Huayou Puye,,,,,,,,joint_venture
+company::huizhou-yiwei-lithium-energy-co-ltd-eve-energy-co-ltd,"Huizhou Yiwei Lithium Energy Co., Ltd. / EVE Energy Co., Ltd / 惠州亿纬锂能股份有限公司",,,Battery producer,China,23.043559479651645,exact,114.34275448271744,buyer;supplier
+company::hunan-brunp-recycling-technology,Hunan Brunp Recycling Technology,,,,,,,,subsidiary
+company::hunan-changyuan-lico-co,Hunan Changyuan Lico Co,,,,China,28.21640599,exact,112.88909506,buyer
+company::hunan-changyuan-lico-co-ltd,Hunan Changyuan Lico Co Ltd,,,,,,,,subsidiary
+company::hunan-shanshan-energy-technology-ltd,Hunan Shanshan Energy Technology Ltd,913039,https://www.business-humanrights.org/en/companies/hunan-shanshan-energy-technology-co/,Cathode producer,China,28.2215,exact,112.9007,buyer
+company::hunan-yacheng-new-materials-co-ltd,"Hunan Yacheng New Materials Co.,Ltd.",,,,China,28.31949658,exact,112.58602808,buyer
+company::hydro-volt-as,Hydro Volt AS,,,Battery producer,Norway,59.91509907080439,exact,10.65096463827351,buyer
+company::hyundai-mobis,Hyundai Mobis,,,,,,,,subsidiary
+company::hyundai-motor-group,Hyundai Motor Group,757560,https://www.business-humanrights.org/en/companies/hyundai-motor-part-of-hyundai-kia-motor/,Electric car producer,South Korea,35.5357624,exact,129.3822086,buyer;supplier
+company::impala-terminals,Impala Terminals,,,,,,,,subsidiary
+company::ionway,Ionway,,,,,,,,joint_venture
+company::ixm-sa,IXM SA,,,Commodity trader,South Africa,-26.11136287,exact,28.05368551,buyer;supplier
+company::jiangmen-fangyuan-metal-material-technology-co-ltd,"Jiangmen Fangyuan Metal Material Technology Co., Ltd.",,,,China,22.452620545799984,exact,113.08801497589273,buyer;supplier
+company::jiangmen-umicore-changxin-new-materials-juc,Jiangmen Umicore Changxin New Materials (JUC),,,,,,,,subsidiary
+company::jiangsu-tenpower-lithium-co-ltd,"Jiangsu Tenpower Lithium Co., Ltd",,,Cathode producer,China,31.8225912,exact,120.5684743,buyer
+company::jiangsu-xinri-electric-vehicle-co-ltd,"Jiangsu Xinri Electric Vehicle Co., Ltd.",,,Electric car producer,China,31.57915278,exact,120.4907629,buyer;supplier
+company::jinchuan-group-international-resources,Jinchuan Group International Resources,,,,,,,,subsidiary
+company::jinchuan-group-ltd,Jinchuan Group Ltd,760817,https://www.business-humanrights.org/en/companies/jinchuan-group/,Precursor producer,China,38.5075159,exact,102.205662,buyer;supplier
+company::jinchuan-technology,Jinchuan Technology,760817,https://www.business-humanrights.org/en/companies/jinchuan-group/,,China,38.5048127,exact,102.18045599,buyer
+company::jingmen-gelinmei-new-materials-co-ltd,Jingmen Gelinmei New Materials Co Ltd,,,,,,,,subsidiary
+company::jv-company,JV Company,,,Battery producer;Electric car producer,China,30.3290199,exact,121.2571769,buyer;supplier
+company::kai-peng-mining-sarl,Kai Peng Mining SARL,,,,Democratic Republic of the Congo,-10.964300751534802,exact,26.65943598110802,supplier
+company::kambove-mining-sas,Kambove Mining SAS,,,,Democratic Republic of the Congo,-10.865596278960652,exact,26.61486215264135,supplier
+company::kamilombe,Kamilombe,,,,Democratic Republic of the Congo,-10.7393158,exact,25.4077483,supplier
+company::kamilombe2,Kamilombe2,,,,Democratic Republic of the Congo,-10.749680544257853,exact,25.378621131321474,supplier
+company::kamoa-copper-s-a,Kamoa Copper S.A.,,,,Democratic Republic of the Congo,-10.886631446284182,exact,25.19748296657409,supplier
+company::kamoto-copper-company,Kamoto Copper Company,,,,,,,,subsidiary
+company::kamoto-copper-company-kcc,Kamoto Copper Company (KCC),927073,https://www.business-humanrights.org/en/companies/kamoto-copper-company/,Miner;Smelter,Democratic Republic of the Congo,-10.683129,exact,25.388308,buyer;supplier
+company::karajipopo,Karajipopo,,,,Democratic Republic of the Congo,-10.941505980670097,exact,26.693161178615377,supplier
+company::kasulo-cdm,Kasulo CDM,,,,Democratic Republic of the Congo,-10.701556077842246,exact,25.48891532688314,supplier
+company::kawama-shabara,Kawama Shabara,,,,Democratic Republic of the Congo,-10.7408537,exact,25.8663187,supplier
+company::kayebela,Kayebela,,,,Democratic Republic of the Congo,-10.64824976094095,exact,25.77559407968046,supplier
+company::kimin-sas-kisanfu-mining-sas,KIMIN SAS (Kisanfu Mining SAS),,,Miner,Democratic Republic of the Congo,-10.77961725,exact,25.92813727,supplier
+company::kisanfu-mine-kfm,Kisanfu mine (KFM),,,Miner,Democratic Republic of the Congo,-10.77961725,exact,25.92813727,supplier
+company::ktm-ag,KTM AG,,,Electric car producer,Austria,48.09753585,exact,13.15890523,buyer
+company::kuniko-ltd,Kuniko Ltd.,,,,Norway,60.070332389679855,exact,10.046645052040352,supplier
+company::l-f,L&F,,,Cathode producer,South Korea,35.826254,exact,128.5156295,buyer;supplier
+company::l-f-materials-co,L&F Materials Co.,,,,,,,,subsidiary
+company::l-h-battery-company-inc,"L-H Battery Company, Inc.",,,,United States,39.653005,exact,-83.557792,buyer
+company::la-compagnie-miniere-de-musonoie-global-sas-commus,La Compagnie Minière de Musonoie Global SAS (COMMUS),,,,Democratic Republic of the Congo,-10.72742607526749,exact,25.45651555007419,supplier
+company::la-miniere-de-kalukundi-s-a-lamikal,La Minière de Kalukundi S.A. (LAMIKAL),,,,Democratic Republic of the Congo,-10.639793270322704,exact,25.986683209602017,supplier
+company::la-miniere-de-kalumbwe-myunga-mkm-sas,La Minière de Kalumbwe Myunga (MKM SAS),,,,Democratic Republic of the Congo,-10.77765131,exact,25.9188068,supplier
+company::la-societe-de-luilu-ressources-lcs,La Société de Luilu Ressources (LCS),,,,Democratic Republic of the Congo,-10.671023292373581,exact,25.35486904048847,buyer;supplier
+company::lanzhou-jinchuan,Lanzhou Jinchuan,,,,,,,,subsidiary
+company::leyou-new-energy-material-co-ltd,Leyou New Energy Material Co.Ltd,,,,,,,,joint_venture
+company::lg-chem,LG Chem,761127,https://www.business-humanrights.org/en/companies/lg-chem/,Battery producer,South Korea,37.52797935,exact,126.9292863,buyer;parent;supplier
+company::lg-chem-michigan,LG Chem Michigan,,,,,,,,subsidiary
+company::lg-chem-wroclaw-energy-sp-z-o-o,LG Chem Wroclaw Energy Sp. z o.o,,,,,,,,subsidiary
+company::lg-chemical-nanjing-information-electronic-materials-co-ltd,"LG Chemical (Nanjing) Information Electronic Materials Co., Ltd. / 乐金化学（南京）信息电子材料有限公",761127,https://www.business-humanrights.org/en/companies/lg-chem/,,,,,,subsidiary
+company::lg-energy-solution-lges,LG Energy Solution (LGES),761127,https://www.business-humanrights.org/en/companies/lg-chem/,Battery producer;Cathode producer,South Korea,37.52675793172897,exact,126.92713998639883,buyer;supplier
+company::lg-energy-solution-lges-wrocaw,LG Energy Solution (LGES) Wrocław,,,,,,,,subsidiary
+company::li-cycle-holdings-corp,Li-Cycle Holdings Corp,,,,Canada,43.63978652,exact,-79.38039353,buyer;supplier
+company::lime-neutron-holdings-inc,"Lime / Neutron Holdings, Inc.",764344,https://www.business-humanrights.org/en/companies/lime-neutron-holdings/,Electric car producer,USA,37.78834228,exact,-122.3996909,buyer
+company::lohum-cleantech,Lohum Cleantech,,,Battery producer,India,28.42943513,exact,77.54947048,supplier
+company::lualaba-copper-smelter,Lualaba Copper Smelter,,,Smelter,Democratic Republic of the Congo,-10.76589,exact,25.50571,buyer;supplier
+company::luilu-ressources-sas-lr-sas,Luilu Ressources SAS (LR SAS),,,,Democratic Republic of the Congo,-10.668757242100611,exact,25.354874823569123,buyer
+company::lyft-inc,Lyft Inc.,,,Electric car producer,USA,37.776583232247404,exact,-122.3920724318401,buyer
+company::mahindra-electric,Mahindra Electric,,,,,,,,subsidiary
+company::mahindra-electric-and-ssangyong,Mahindra Electric and SsangYong,,,,,,,,subsidiary
+company::mahindra-genze,Mahindra GenZe,,,,,,,,subsidiary
+company::mahindra-group,Mahindra Group,758261,https://www.business-humanrights.org/en/companies/mahindra-mahindra/,Battery producer;Electric car producer,India,12.8097361,exact,77.6615031,buyer;supplier
+company::managem,Managem,943404,https://www.business-humanrights.org/en/companies/managem/,Miner,Morocco,30.517251742650846,exact,-6.9081247252920095,buyer;supplier
+company::marubeni,Marubeni,758160,https://www.business-humanrights.org/en/companies/marubeni/,,Japan,35.904485342544625,exact,139.7761896444493,buyer;supplier
+company::maubeuge-construction-automobile-mca,Maubeuge Construction Automobile (MCA),,,,,,,,subsidiary
+company::maurituis-nankai,Maurituis Nankai,,,,Vietnam,21.024872340995415,exact,105.83571241472949,buyer
+company::mechema,Mechema,,,,Taiwan,25.053936810116323,exact,121.1270916380903,buyer
+company::menuiserie,Menuiserie,,,,Democratic Republic of the Congo,-10.68702992290802,exact,25.45238101333541,supplier
+company::mercedes-benz,Mercedes-Benz,,,Battery producer;Electric car producer,Germany,51.2978657,exact,14.0965624,buyer;subsidiary;supplier
+company::mercuria-energy-trading-sa,Mercuria Energy Trading SA,,,,Switzerland,46.204012719736,exact,6.1473702974334214,buyer
+company::metal-mines-sarl,Metal Mines Sarl,,,,Democratic Republic of the Congo,-10.996090043210724,exact,26.787896608904003,buyer;supplier
+company::metalkol-roan-tailings-reclamation-rtr,Metalkol Roan Tailings Reclamation (RTR),,,,Democratic Republic of the Congo,-10.63903978950147,exact,25.42522931074961,buyer;supplier
+company::milele,Milele,,,,Democratic Republic of the Congo,-10.9017236,exact,26.1811976,supplier
+company::miniere-de-kasombo-mikas,Minière de Kasombo (MIKAS),927047,https://www.business-humanrights.org/en/companies/mini%C3%A8re-de-kasombo-mikas/,Miner;Smelter,Democratic Republic of the Congo,-10.8899014,exact,26.6234379,buyer;supplier
+company::mining-progress-company,Mining Progress Company,,,,Democratic Republic of the Congo,-11.66640919,exact,27.48685556,supplier
+company::mining-promotion-company-mpc,Mining Promotion Company (MPC),,,,Zimbabwe,-17.832873288639544,exact,31.085582404891024,supplier
+company::miringi,Miringi,,,,Democratic Republic of the Congo,-11.0956079,exact,26.1759781,supplier
+company::mmg,MMG,760200,https://www.business-humanrights.org/en/companies/minerals-and-metals-group-mmg-part-of-china-minmetals/,Miner;Smelter,Democratic Republic of the Congo,-11.3692,exact,27.5666,buyer;supplier
+company::mopani-copper-mines-plc,Mopani Copper Mines plc,894571,https://www.business-humanrights.org/en/companies/mopani-copper-mines-plc/,,Zambia,-12.830031611955206,exact,28.205176924549285,supplier
+company::motorino-greenwit-technologies-inc,Motorino / Greenwit Technologies Inc.,,,Electric car producer,Canada,49.25856051,exact,-122.9850167,buyer
+company::mutanda-mining-mumi,Mutanda Mining (MUMI),927049,https://www.business-humanrights.org/en/companies/mutanda-mining/,Miner;Smelter,Democratic Republic of the Congo,-10.796966,exact,25.798821,buyer;supplier
+company::mutoshi-mining,Mutoshi Mining,,,,Democratic Republic of the Congo,-10.68542607371872,exact,25.527545673021617,supplier
+company::nanjing-hanrui-cobalt-co-ltd,"Nanjing Hanrui Cobalt Co., Ltd",,,,,,,,subsidiary
+company::nanjing-hanrui-cobalt-industry-hong-kong-co-ltd,"Nanjing Hanrui Cobalt Industry (Hong Kong) Co., Ltd.",,,Commodity trader,China,31.931970323208553,exact,118.79963299631972,buyer;supplier
+company::nanjing-lg-chem-new-energy-battery-co-ltd,Nanjing LG Chem New Energy Battery Co. Ltd.,,,,,,,,subsidiary
+company::netc-new-energy-technology-co-ltd,NETC (New Energy Technology Co. Ltd.),,,Battery producer,China,41.8809,exact,123.9572,buyer
+company::new-spread-trading-limited,New Spread Trading Limited,,,,Hong Kong,22.278590879702186,exact,114.16910536683622,buyer
+company::nextstar-energy,NextStar Energy,,,,,,,,joint_venture
+company::nichia-corporation,Nichia Corporation,,,,Japan,33.92894591934175,exact,134.61620887569183,supplier
+company::niihama-nickel-refinery,Niihama Nickel Refinery,,,,Japan,33.96002571151914,exact,133.2591925471241,buyer;supplier
+company::ningbo-brunp-catl-new-energy,Ningbo Brunp CATL New Energy,,,,,,,,joint_venture
+company::ningbo-coboto,Ningbo Coboto,,,,China,30.277674251356807,exact,121.0795407851383,supplier
+company::ningbo-ronbay-new-energy,Ningbo Ronbay New Energy,,,,China,30.0243527,exact,121.1664679,buyer
+company::ningbo-ronbay-new-energy-divison-technology-co,Ningbo Ronbay New Energy Divison Technology Co.,,,,,,,,subsidiary
+company::ningbo-ronbay-new-energy-divison-technology-co-ltd,Ningbo Ronbay New Energy Divison Technology Co. Ltd.,,,,,,,,subsidiary
+company::ningbo-shanshan-co-ltd,Ningbo Shanshan Co Ltd,,,,China,29.83487428,exact,121.4588077,buyer
+company::ningbo-yinnyi-mining-co-ltd,Ningbo Yinnyi Mining Co. Ltd.,,,,China,29.881957882439508,exact,121.54971780943427,buyer
+company::nissan-motor-co,Nissan Motor Co.,758507,https://www.business-humanrights.org/en/companies/nissan/,,Japan,35.46373142176942,exact,139.62606707352904,buyer;subsidiary
+company::nissan-motor-manufacturing-uk-ltd,Nissan Motor Manufacturing (UK) Ltd.,,,,,,,,subsidiary
+company::nissan-north-america-inc,Nissan North America Inc.,,,,,,,,subsidiary
+company::niu-technologies,NIU Technologies,,,Electric car producer,China,40.0812969357836,exact,116.363193546049,buyer
+company::norilsk-nickel-harjavalta-oy,Norilsk Nickel Harjavalta Oy,758565,https://www.business-humanrights.org/en/companies/norilsk-nickel/,,Finland,61.325588524753776,exact,22.1072719904641,buyer;supplier
+company::norin-mining-limited,Norin Mining Limited,,,,China,39.910681084300556,exact,116.37482588067824,buyer
+company::northvolt,Northvolt,765065,https://www.business-humanrights.org/en/companies/northvolt/,Battery producer,Sweden,64.73787459,exact,21.08760307,buyer;supplier
+company::octagon-commodites-sa,Octagon Commodites SA,,,,Switzerland,46.20400137536417,exact,6.146219767915185,buyer
+company::okai,Okai,,,Electric scooter producer,China,28.76028,exact,120.0915294,buyer
+company::om-metal,OM metal,,,,Democratic Republic of the Congo,-11.644298527683345,exact,27.4862703235649,buyer
+company::panasonic-automotive-energy-dalian-co-ltd,Panasonic Automotive Energy Dalian Co. Ltd.,,,,,,,,subsidiary
+company::panasonic-energy-co-ltd,"Panasonic Energy Co., Ltd.",907444,https://www.business-humanrights.org/en/companies/panasonic-energy-europe-nv/,,,,,,subsidiary
+company::panasonic-holdings-corporation,Panasonic Holdings Corporation,,,Battery producer,Japan,34.726770950555434,exact,135.56771331536504,buyer;supplier
+company::peugeot-scooters,Peugeot Scooters,899485,https://www.business-humanrights.org/en/companies/peugeot-motor-company-plc/,Electric car producer,France,47.44332409,exact,6.832127034,buyer
+company::pgs-ltd,PGS Ltd.,,,,South Africa,-30.553625374608952,exact,22.921518116912743,buyer
+company::phylion-battery-co-ltd-phylion-power-xingheng-power-phylion-power-co-ltd,"Phylion Battery Co., Ltd. / Phylion Power / Xingheng Power / Phylion Power Co., Ltd.",,,Battery producer,China,31.365958948547,exact,120.417301859874,supplier
+company::polestar,Polestar,,,,,,,,subsidiary
+company::posco,POSCO,758765,https://www.business-humanrights.org/en/companies/posco/,Cathode producer,South Korea,34.8972905,exact,127.6011592,buyer;supplier
+company::posco-chemical-co,Posco Chemical Co.,,,,,,,,subsidiary
+company::power-china-international,Power China International,765266,https://www.business-humanrights.org/en/companies/power-china-international/,,China,39.931893800036335,exact,116.322,supplier
+company::powerco,PowerCo,,,,Germany,52.18390033895979,exact,10.444951116351303,buyer;supplier
+company::prime-planet-energy-solutions,Prime Planet Energy & Solutions,,,,,,,,joint_venture
+company::project-huaye-nickel-cobalt,Project Huaye Nickel Cobalt,,,,,,,,joint_venture
+company::prologium-technology-co-ltd,"ProLogium Technology Co., Ltd.",,,Battery producer,Taiwan,24.96825383,exact,121.2423954,buyer;supplier
+company::prosperous-ascent,Prosperous Ascent,,,,China,39.91112376347696,exact,116.36020061626218,buyer
+company::pulead-technology-industry-co,Pulead Technology Industry Co,,,Cathode producer,China,40.2079,exact,116.299,buyer
+company::quzhou-huayou-cobalt-new-material-co-ltd,Quzhou Huayou Cobalt New Material Co Ltd,911167,https://www.business-humanrights.org/en/companies/zhejiang-huayou-cobalt-co-ltd/,,,,,,subsidiary
+company::raffemet-pte,Raffemet PTE,,,,Singapore,1.2844490228093792,exact,103.85244529981156,buyer
+company::reload-logistics-and-trading,Reload Logistics and Trading,,,,Zambia,-12.965692844965298,exact,28.65044403777295,buyer
+company::renault-group,Renault Group,759032,https://www.business-humanrights.org/en/companies/renault/,Battery producer;Electric car producer,France,48.83153099455228,exact,2.228313535397365,buyer;supplier
+company::renaultnissanmitsubishi-alliance,Renault–Nissan–Mitsubishi Alliance,,,Battery producer;Electric car producer,United Kingdom,54.9189908,exact,-1.466399,buyer;supplier
+company::risesun-mgl-new-energy-technology-co-ltd,RiseSun MGL New Energy Technology Co Ltd,,,Cathode producer,China,40.19869992,exact,116.23710014,buyer
+company::robert-bosch-stiftung-gmbh,Robert Bosch Stiftung GmbH,907136,https://www.business-humanrights.org/en/companies/robert-bosch-limited/,,,,,,parent
+company::ronbay-technology-battery,Ronbay Technology Battery,,,Cathode producer,China,30.0243527,exact,121.1664679,buyer;supplier
+company::ruashi-mining,Ruashi Mining,911179,https://www.business-humanrights.org/en/companies/ruashi-mines-jv-between-jinchuan-international-and-gecamines/,Miner;Smelter,Democratic Republic of the Congo,-11.6112453,exact,27.5539531,buyer;supplier
+company::rubamin-sarl,Rubamin SARL,,,,Democratic Republic of the Congo,-10.953065795960349,exact,26.65482656755261,buyer;supplier
+company::saic-motor,SAIC Motor,765772,https://www.business-humanrights.org/en/companies/saic-motor/,Battery producer;Electric car producer,China,31.2785122,exact,121.1896882,buyer;supplier
+company::saic-pv,SAIC PV,,,,,,,,subsidiary
+company::samsung-sdi,Samsung SDI,762128,https://www.business-humanrights.org/en/companies/samsung-sdi-part-of-samsung/,Battery producer,Hungary,47.6793553,exact,19.1675469,buyer;supplier
+company::samsung-sdi-hungary-rt-sdihu,Samsung SDI Hungary Rt. (SDIHU),,,,,,,,subsidiary
+company::segway-ninebot-nine-robot-co-ltd,"Segway-Ninebot / Nine Robot Co., Ltd.",,,Electric car producer,China,40.048102083696,exact,116.355665585649,buyer;supplier
+company::shalina-resources,Shalina Resources,,,,UAE,25.068982598848006,exact,55.14122145656182,buyer
+company::shandong-geely-sunwoda-power-battery-co-ltd,"Shandong Geely Sunwoda Power Battery Co., Ltd.",,,,,,,,joint_venture
+company::shandong-hi-speed,Shandong Hi-Speed,,,,Hong Kong,22.284688399806743,exact,114.15469708032876,buyer
+company::shanshan-co-ltd,"Shanshan Co., Ltd.",,,,China,29.83487428,exact,121.4588077,buyer
+company::shido-battery,SHIDO Battery,,,Battery producer,Japan,35.68332643307531,exact,139.7547063508118,supplier
+company::shikiya-bintu,Shikiya Bintu,,,,Democratic Republic of the Congo,-10.762902550664462,exact,25.708239182744894,supplier
+company::shituru-mining-corporation-smco,Shituru Mining Corporation (SMCO),,,,Democratic Republic of the Congo,-11.00904175286218,exact,26.776138161160645,buyer;supplier
+company::sicomines,Sicomines,951587,https://www.business-humanrights.org/en/companies/ssicomines-jv-between-china-railways-and-sinohydro/,Miner;Smelter,Democratic Republic of the Congo,-10.7211014,exact,25.3673565,buyer;supplier
+company::sino-metal-leach-zambia-60-and-huachin-sprl-40,Sino Metal leach Zambia (60%) and Huachin sprl (40%),,,,,,,,parent
+company::sk-battery-america,SK Battery America,762739,https://www.business-humanrights.org/en/companies/sk-innovation/,,,,,,subsidiary
+company::sk-battery-hungary-kft,SK Battery Hungary kft.,,,,,,,,subsidiary
+company::sk-innovation,SK Innovation,762739,https://www.business-humanrights.org/en/companies/sk-innovation/,Battery producer,South Korea,36.8536475,exact,126.452808,buyer;supplier
+company::smart-logistics,Smart Logistics,,,,China,39.91112376347696,exact,116.36020061626218,buyer
+company::societe-congolaise-pour-le-traitement-du-terril-de-lubumbashi-stl,Société congolaise pour le traitement du terril de Lubumbashi (STL),,,,Democratic Republic of the Congo,-11.679935807968986,exact,27.46785770526664,supplier
+company::societe-miniere-de-deziwa-somidez,Société Minière de Deziwa (SOMIDEZ),,,Miner,Democratic Republic of the Congo,-10.7891,exact,25.763,supplier
+company::societe-miniere-du-katanga-somika,Société Minière du Katanga (SOMIKA),,,,Democratic Republic of the Congo,-11.593110621235864,exact,27.28488834991965,supplier
+company::stellantis,Stellantis,923359,https://www.business-humanrights.org/en/companies/stellantis/,Electric car producer,The Netherlands,52.295169674535714,exact,4.698316952095328,buyer
+company::stratton-metals-resources,Stratton Metals Resources,,,,United Kingdom,51.51674104144608,exact,-0.13882351809486845,buyer
+company::sumitomo-metal-mining,Sumitomo Metal Mining,759348,https://www.business-humanrights.org/en/companies/sumitomo-metal-mining-part-of-sumitomo-group/,Cathode producer;Precursor producer,Japan,33.9489975,exact,133.2377222,buyer;parent;subsidiary;supplier
+company::sun-mobility,SUN Mobility,,,Battery producer,India,12.97716745,exact,77.70679675,buyer;supplier
+company::sungeel-hitech,Sungeel Hitech,,,,South Korea,35.95798428002969,exact,126.5392419490745,supplier
+company::sunwoda-electronic-co-ltd,Sunwoda Electronic Co Ltd,938391,https://www.business-humanrights.org/en/companies/sunwoda/,Precursor producer,China,34.82680418,exact,117.40992504,buyer;supplier
+company::super-soco,Super Soco,,,,,,,,subsidiary
+company::sylverkey-development,Sylverkey Development,,,,China,39.91112376347696,exact,116.36020061626218,buyer
+company::taganito-hpal-nickel-corporation,Taganito HPAL Nickel Corporation,,,,Philippines,9.539653271011916,exact,125.8122742088831,supplier
+company::telf-ag,Telf AG,,,Commodity trader,Switzerland,46.00527976979652,exact,8.944473200000001,buyer;supplier
+company::tengyuan-cobalt-copper-resources-tcc,Tengyuan Cobalt & Copper Resources (TCC),,,,Democratic Republic of the Congo,-10.635985096857205,exact,25.481988308692276,buyer;supplier
+company::tengyuan-cobalt-industrial-co,Tengyuan Cobalt Industrial Co.,,,,China,25.91215359,exact,115.06922686,buyer;supplier
+company::tenke-fungurume-mining-tfm,Tenke Fungurume Mining (TFM),759738,https://www.business-humanrights.org/en/companies/tenke-fungurume-joint-venture-china-molybdenum-bhr-partners-g%C3%A9camines/,Miner;Smelter,Democratic Republic of the Congo,-10.569381,exact,26.1978433,buyer;supplier
+company::terra-motors-corporation,Terra Motors Corporation,,,Electric car producer,Japan,35.66633845,exact,139.7573895,buyer
+company::tesla-inc,Tesla Inc.,762127,https://www.business-humanrights.org/en/companies/tesla-motors/,Battery producer;Electric car producer,USA,30.22288157452379,exact,-97.6189469789886,buyer;supplier
+company::tesla-shanghai,Tesla Shanghai,,,,,,,,subsidiary
+company::thomas-mining,Thomas Mining,,,,Democratic Republic of the Congo,-10.666475750433753,exact,25.479508435842813,buyer;supplier
+company::tianjin-faw-toyota-motor-co-ltd-tftm,Tianjin FAW Toyota Motor Co. Ltd. (TFTM),,,,,,,,joint_venture
+company::tianjin-lishen-battery-co-ltd,Tianjin Lishen Battery Co. Ltd.,,,,,,,,subsidiary
+company::tinbot-technology-gmbh-kollter,Tinbot Technology GmbH / KOLLTER,,,Electric car producer,Germany,50.13565664,exact,8.571431493,supplier
+company::toyota-motor-corporation,Toyota Motor Corporation,759603,https://www.business-humanrights.org/en/companies/toyota/,Battery producer;Electric car producer,Japan,33.756775,exact,130.6373098,buyer;supplier
+company::toyota-motor-kyushu-inc,TOYOTA MOTOR KYUSHU INC.,,,,,,,,subsidiary
+company::trafigura-group-pte-ltd,Trafigura Group Pte. Ltd.,,,Commodity trader,Democratic Republic of the Congo,-11.5404554,exact,27.4616912,buyer
+company::traxys,TRAXYS,759788,https://www.business-humanrights.org/en/companies/traxys/,Commodity trader,China,39.93872426,exact,116.42619886,buyer;supplier
+company::tshipuki,Tshipuki,,,,Democratic Republic of the Congo,-10.7325816,exact,25.4395261,supplier
+company::tulizembe-tilwezembe,Tulizembe/Tilwezembe,,,,Democratic Republic of the Congo,-10.798861765900535,exact,25.69245425653701,supplier
+company::ultium-cam,Ultium CAM,,,,Canada,45.50235134018691,exact,-73.5750383,buyer;supplier
+company::ultium-cells-llc,Ultium Cells LLC,947848,https://www.business-humanrights.org/en/companies/ultium-cells/,,USA,41.43658078495286,exact,-80.85049939587446,buyer
+company::umicore-cobalt-and-speciality-minerals-csm,Umicore Cobalt and Speciality Minerals (CSM),,,,,,,,subsidiary
+company::umicore-finland-oy,Umicore Finland Oy,,,,,,,,subsidiary
+company::umicore-poland-sp-z-o-o,Umicore Poland Sp. z o.o.,,,,,,,,subsidiary
+company::umicore-rechargeable-battery-materials-korea,Umicore Rechargeable Battery Materials Korea,,,,,,,,subsidiary
+company::umicore-s-a,Umicore S.A.,759834,https://www.business-humanrights.org/en/companies/umicore/,Battery producer;Cathode producer;Precursor producer;Refiner;Smelter,Finland,63.861931,exact,23.0511864,buyer;supplier
+company::united-states-strategic-metals,United States Strategic Metals,,,,United States,38.00968947270487,exact,-90.40103428272784,parent;supplier
+company::usine-a-cuivre-de-kolwezi-usine-a-cuivre-de-kolwezi-uck,Usine à Cuivre de Kolwezi (Usine à Cuivre de Kolwezi (UCK)),,,,Democratic Republic of the Congo,-10.6884417,exact,25.4499343,supplier
+company::vale-canada-limited,Vale Canada Limited,,,,,,,,subsidiary
+company::vale-s-a,Vale S.A.,759964,https://www.business-humanrights.org/en/companies/vale/,,Canada,42.883132555600234,exact,-79.24214218994453,buyer;supplier
+company::verkor,Verkor,,,,France,50.96607797429998,exact,2.1901815089873016,buyer;supplier
+company::victor-international-trade-co-ltd,Victor International Trade Co .Ltd.,,,,China,31.862912499722917,exact,120.51564576767127,buyer
+company::vin-metal-synergies-fzco,Vin Metal Synergies Fzco,,,Commodity trader,United Arab Emirates,24.983602749562074,exact,55.09387916138412,buyer;supplier
+company::vmoto-limited,Vmoto Limited,,,Electric car producer,Australia,-31.95374148,exact,115.8556087,buyer
+company::volkswagen-group,Volkswagen Group,759890,https://www.business-humanrights.org/en/companies/volkswagen/,Battery producer;Electric car producer,Germany,50.7910949,exact,12.4883772,buyer;parent;supplier
+company::volkswagen-group-china,Volkswagen Group China,,,,,,,,subsidiary
+company::volkswagen-group-of-america,Volkswagen Group of America,,,,,,,,subsidiary
+company::volvo-car-group,Volvo Car Group,759898,https://www.business-humanrights.org/en/companies/volvo-car-part-of-geely/,Battery producer;Electric car producer,Belgium,51.1022173,exact,3.7521812,buyer;supplier
+company::volvo-cars-gent,Volvo Cars Gent,,,,,,,,subsidiary
+company::vs-cargo,VS Cargo,,,,Zambia,-13.018721403586916,exact,28.659743437773873,buyer
+company::vulcanis-llp,Vulcanis LLP,,,,UAE,25.331217846813196,exact,55.48401072602927,buyer
+company::wanbao-kingco-ltd-70,Wanbao Kingco Ltd. (70%),,,,,,,,parent
+company::wanbao-mining,Wanbao Mining,760219,https://www.business-humanrights.org/en/companies/wanbao-mining/,Commodity trader;Miner;Smelter,China,39.8858429014947,exact,116.35221999640311,buyer;supplier
+company::woyuan-holdings,Woyuan Holdings,,,,,,,,subsidiary
+company::xiamen-tungsten,Xiamen Tungsten,,,Cathode producer,China,24.4666849,exact,117.9795194,buyer;supplier
+company::xiamen-tungsten-new-energy,Xiamen Tungsten New Energy,,,,,,,,subsidiary
+company::xiamen-tungsten-new-energy-materials,Xiamen Tungsten New Energy Materials,,,,,,,,subsidiary
+company::xiaomi,Xiaomi,764233,https://www.business-humanrights.org/en/companies/xiaomi/,Electric car producer,China,40.048975680237234,exact,116.32085997774227,buyer;supplier
+company::xinyang-trading-company,Xinyang Trading/Company,,,Commodity trader,Hong Kong,22.278537399849885,exact,114.16921628827086,buyer;supplier
+company::xtc-new-energy-materials,XTC New Energy Materials,,,Battery producer,China,24.46943782,exact,117.97488556,buyer;supplier
+company::yadea-group-holdings-ltd,Yadea Group Holdings Ltd.,,,Electric car producer,China,31.5973106868079,exact,120.492520640005,buyer
+company::yadea-technology-group-co-ltd,"Yadea Technology Group Co., Ltd.",,,,,,,,subsidiary
+company::zccm-investments-holdings-plc,ZCCM Investments Holdings plc,765798,https://www.business-humanrights.org/en/companies/zccm-investments/,,,,,,parent
+company::zhejiang-chaowei-chuangyuan-industrial-co-ltd,Zhejiang Chaowei Chuangyuan Industrial Co. Ltd.,,,,,,,,subsidiary
+company::zhejiang-huayou-cobalt-co-ltd,Zhejiang Huayou Cobalt Co. Ltd.,,,,,,,,subsidiary
+company::zhejiang-jirun-automobile-co-ltd,"Zhejiang Jirun Automobile Co., Ltd",,,,China,29.913944310137662,exact,121.86091497958321,buyer
+company::zhejiang-like-cobalt-nickel-ltd,Zhejiang Like Cobalt Nickel Ltd,,,,,,,,subsidiary
+company::zhejiang-narada-nandu-power-source-co-ltd,"Zhejiang Narada / Nandu Power Source Co., Ltd.",,,Battery producer,China,30.28060029,exact,120.0614164,supplier
+company::zhejiang-puhua-new-energy-material-co-ltd,Zhejiang Puhua New Energy Material Co Ltd,,,,,,,,joint_venture
+company::zhuhai-guanyu,Zhuhai Guanyu,,,Battery producer,China,22.1531842177172,exact,113.23161900569902,supplier
+company::zijin-international-trading-co-ltd,Zijin International Trading/Co. Ltd.,,,,China,24.486777875177285,exact,118.13723715994253,buyer
+company::zijin-mining-group-co-ltd,"Zijin Mining Group Co., Ltd.",,,,,,,,subsidiary
+company::zijin-mining-group-ltd-72-and-gecamines-28,Zijin Mining Group Ltd. (72%) and Gecamines (28%),,,,,,,,joint_venture

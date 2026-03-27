@@ -1,0 +1,395 @@
+node_id,name,display_name,country_name,facility_type,lat,lon,place
+facility::0063ede5988c,Mine,Mine,Democratic Republic of the Congo,,-10.666475750433753,25.479508435842813,"Mutshatsha, Lualaba, Democratic Republic of the Congo"
+facility::00c33cc6ba80,Jiangmen,Cathode Plant,China,Cathode producer,22.5611128,113.1116191,Jianghai_-_Jiangmen_-_Guangdong_-_China
+facility::026688e81f7e,Headquarter,Battery Cell Plant,China,Battery producer,41.8809,123.9572,"Fushun , Liaoning, China"
+facility::029c05a77ae2,LGES Ohio,Battery cell plant,USA,Battery producer,39.65105542,-83.55182927,"Jeffersonville, Ohio, U.S.A."
+facility::029d0f590054,Kwatebala,Mine,Democratic Republic of the Congo,Miner,-10.580847,26.183915,Bayeke_-_Lualaba_-_DRC
+facility::03e826bdb572,Mine,Mine,Democratic Republic of the Congo,,-10.77765131,25.9188068,"18, Route Kafubu, Lubumbashi, Haut-Katanga"
+facility::0432ed97ddbb,Kwatebala Sx/Ew,Smelter,Democratic Republic of the Congo,Smelter,-10.569381,26.1978433,Bayeke_-_Lualaba_-_DRC
+facility::04b5f850668f,LGES Ontario Plant,Battery Pack Plant,Canada,,42.29264664315767,-82.90946877574265,"9655 Twin Oaks Dr, Windsor, ON N8N 5E8, Canada"
+facility::04cf063208c4,Hunan,Precursor plant,China,Precursor producer,28.56372577,112.3345402,"Heshan District, Yiyang, Yiyang, Hunan, China"
+facility::04fe76cbc6e7,Mashamba Est,Mine,Democratic Republic of the Congo,Miner,-10.7422261,25.3924083,Dilala_-_Kolwezi_-_Lualaba_-_DRC
+facility::0603cd95361a,Headquarter,Headquarter,Hong Kong,Battery producer,22.373,114.1074,"Tsuen Wan, Hong Kong"
+facility::06552c1da7b1,Headquarter,Headquarter,China,Miner,39.8858429014947,116.35221999640311,"56 Nanxianli Xicheng District Beijing, 100032 China"
+facility::06b52dffe3cc,LG Chem Electronic Matl Co Charging,China Facility,China,Battery producer,32.15624903056504,118.88759817188067,"Hengyi Rd, Qixia District, Nanjing, Jiangsu, China"
+facility::0a72127fe656,Minato-ku Headquarter,Headquarter,Japan,,35.663161946599736,139.75618369739237,"11-3, Shimbashi 5-chome Minato-ku, Tokyo 105-8716, Japan"
+facility::0b0e35e4677e,Sicomines Sx/Ew,Smelter,Democratic Republic of the Congo,Smelter,-10.7211014,25.3673565,Kolwezi_-_Lualaba_-_DRC
+facility::0c4094e30666,Headquarter,Headquarter,China,Electric car producer,40.0812969357836,116.363193546049,"3/F, Building 1, No. 195 Huilongguan East Street, Changping District, Beijing, China"
+facility::0d001261e6ef,Headquarter,Headquarter,Germany,Electric car producer,50.13565664,8.571431493,"Mergenthalerallee 77, 65760 Eschborn, Germany"
+facility::0e0b6d783d51,BMW Group Competence Centre e-drive production,Battery pack plant,Germany,Battery producer,48.6458413,12.458664,Dingolfing_-_Bavaria_-_Germany
+facility::0f7bec1be9fb,Headquarter,Headquarter,Taiwan,,25.053936810116323,121.1270916380903,"328 No.1, Datong 1st Rd., Guanyin Dist., Taoyuan City 32849, Taiwan"
+facility::1056b3abafb0,Headquarter,Headquarter,UAE,,25.331217846813196,55.48401072602927,"Z1-69, SAIF Suite Office, SAIF Zone Sharjah, U.A.E"
+facility::11929f531125,Headquarter,Headquarter,China,,39.931893800036335,116.322,China
+facility::1248527e4f77,Kyushu Plant,Electric Car Plant,Japan,Electric car producer,33.756775,130.6373098,Miyawaka_-_Fukuoka_-_Japan
+facility::133a67a0b038,LG Chem Wroclaw,Battery cell plant,Poland,Battery producer,51.0176471,16.8881878,"Kobierzyce, Wroclaw, Poland"
+facility::149afa7b0577,Headquarter,Headquarter,USA,Electric car producer,37.78834228,-122.3996909,"85, 2nd Street, San Francisco, California, USA"
+facility::157b86e0935b,Kinsevere,Mine,Democratic Republic of the Congo,Miner,-11.3692,27.5666,"Route Kinsever, Lubumbashi, Congo, Kinshasa"
+facility::15fd59875f27,Headquarter,Headquarter,South Korea,Battery producer,37.52797935,126.9292863,"LG Twin Towers,128, Yeoui-daero, Yeongdeungpo-gu, Seoul, South Korea"
+facility::16747080defd,LGES Seoul Headquarter,Headquarter,South Korea,Battery producer,37.52675793172897,126.92713998639883,"Yeouido-dong, Yeongdeungpo District, Seoul, South Korea"
+facility::169f406675ed,Mine,Mine,Democratic Republic of the Congo,,-10.9017236,26.1811976,"Kambove, Haut-Katanga, Democratic Republic of the Congo"
+facility::17a1e17d045e,Kokkola,Refinery Precursor Plant,Finland,Precursor producer,63.861931,23.0511864,Kokkola_-_Central Ostrobothnia_-_Finland
+facility::183f439af30a,Mahindra Reva Electric,Electric car plant,India,Battery producer,12.8097361,77.6615031,"Bommasandra, Bangalore, India"
+facility::1869bdc099a7,Kokkola,Refinery Precursor Plant,Finland,,63.861931,23.0511864,Kokkola_-_Central Ostrobothnia_-_Finland
+facility::18f10d13d86a,Headquarter,Headquarter,Hong Kong,,22.303645882954445,114.16002126127455,"West Kowloon, Hong Kong"
+facility::19a610b6f7c7,Headquarter,Headquarter,Japan,,33.92894591934175,134.61620887569183,"491 Oka, Kaminaka-Cho, Anan-Shi, Tokushima 774-8601"
+facility::19d34761a461,Headquarter,Headquarter,China,Commodity trader,31.931970323208553,118.79963299631972,"Nanjing, Jiangsu, China"
+facility::1bce859fdcac,Saxony,Battery Pack Plant,Germany,Electric car producer,50.7910949,12.4883772,Zwickau_-_Saxony_-_Germany
+facility::1ceff93c0d4d,Murrin Murrin Nickel Cobalt Plant,Mine,Australia,Commodity trader,-28.772050602525788,121.89427221385985,"Laverton WA 6440, Australie"
+facility::1d5ef57d06a8,Niihama Nickel Refinery,Production Plant,Japan,,33.96002571151914,133.2591925471241,"5-1 Sobirakicho, Niihama, Ehime 792-0001, Japan"
+facility::1dd06df38867,Minato-ku Headquarter,Headquarter,Japan,Battery producer,35.665887303691214,139.76193521170632,"Panasonic Tokyo Shiodome Bld. 1-5-1 Higashi Shimbashi, Minato-ku, Tokyo, Japan"
+facility::1dd5f802314d,Erfurt Kreuz,Battery cell plant,Germany,Battery producer,50.8619236,10.9475602,Erfurt_-_Thuringia_-_Germany
+facility::1e8ee2c7850a,Lualaba Copper Smelter,Smelter,Democratic Republic of the Congo,Smelter,-10.76589,25.50571,"Lualaba, Democratic Republic of the Congo"
+facility::1ef0b79899ea,Kasombo Main Site,Mine,Democratic Republic of the Congo,,-10.8899014,26.6234379,"Kasombo, Haut-Katanga, Democratic Republic of the Congo"
+facility::1f005db050a6,Shanghai Gigafactory 3,Automobile Plant,China,Battery producer,30.8745754,121.769127,Fengxian_-_Shanghai_-_China
+facility::1f1b3eba6950,Sheung Wan,Headquarter,China,,22.287664706855377,114.14824669605417,"17a, 235 Wing Lok St, Sheung Wan, Hong Kong"
+facility::1f75c6530c15,Kokkola,Refinery Precursor Plant,Finland,Smelter,63.861931,23.0511864,Kokkola_-_Central Ostrobothnia_-_Finland
+facility::1f991ba55a66,Salzgitter,Electric Car Plant,Germany,,52.181426265283044,10.444809708467561,38239 Salzgitter
+facility::20461232edcb,LGES Michigan,Battery cell plant,USA,Battery producer,42.756406,-86.069464,"Holland, Michigan, USA"
+facility::207dd92ef0c1,Headquarter,Headquarter,Zambia,,-13.018721403586916,28.659743437773873,"Ndola Copperbelt, Zambia"
+facility::20e2863d2aae,Flins Factory,Electric car plant,France,Electric car producer,48.9770711,1.8571189,Flins-sur-Seine_-_Yvelines_-_France
+facility::20fdb1caebf7,Smelter,Smelter,Democratic Republic of the Congo,Smelter,-11.5855471,27.4786431,Annexe_-_Lubumbashi_-_DRC
+facility::215290881013,Headquarter,Headquarter,China,Precursor producer,28.2215,112.9007,"Yuelu District, Changsha, Hunan, China"
+facility::2217f4d073fa,Headquarter,Headquarter,China,,28.31949658,112.58602808,"Xinkang Road, Ningxiang Economic and Technological Development Zone, Changsha City, Hunan Province"
+facility::2222c9653b27,Ruashi Mine,Smelter,Democratic Republic of the Congo,Smelter,-11.6112453,27.5539531,"Ruashi, Lubumbashi, Haut-Katanga, DRC"
+facility::22b67949e5fa,Headquarter,Headquarter,China,,39.81900741,116.28581089,"Building 21, Area 18, No.188, Western Road, South 4th Ring Road, Fengtai District, Beijing"
+facility::23ee18496ae1,Shanghai,Battery pack plant,China,Electric car producer,31.2785122,121.1896882,Jiading_-_Shanghai_-_China
+facility::2456e7c8e152,Prime Planet Energy & Solutions Tokyo Office,Headquarter,Japan,Battery producer,35.68688683852207,139.77310841547785,"13F Nihonbashi Mitsui Tower, 2-1-1, Nihonbashi-Muromachi, Chuo-ku, Tokyo, 103-0022, Japan"
+facility::24bcb8c19c7f,Headquarter,Headquarter,South Africa,,-30.553625374608952,22.921518116912743,South Africa
+facility::25afa39f5854,Anting,Automobile Plant,China,Electric car producer,31.2945845,121.1806224,Anting_-_Shanghai_-_China
+facility::264d9d33913d,Headquarter,Headquarter,China,Precursor producer,39.81900741,116.28581089,"Building 21, Area 18, No.188, Western Road, South 4th Ring Road, Fengtai District, Beijing"
+facility::27322dca5418,Headquarter,Headquarter,Taiwan,Battery producer,24.96825383,121.2423954,"No.6-1, Ziqiang 7th Rd. Zhongli District, Taoyuan, Taiwan"
+facility::27768204056b,Cheongju Plant,Cathode Plant,South Korea,Battery producer,36.706077,127.4100114,Ochang-eup_-_Cheongju_-_Chungcheongbuk-do_-_South Korea
+facility::28fb47283e7c,Headquarter,Headquarter,China,Smelter,39.8858429014947,116.35221999640311,"56 Nanxianli Xicheng District Beijing, 100032 China"
+facility::291fdd486543,Headquarter,Headquarter,USA,Battery producer,42.2753406,-71.57140623,"133 Flanders Road, Westborough, MA"
+facility::29250f2fe26a,Tongxiang,Tongxiang Huayou Cobalt Facility,China,Refiner,30.613538,120.5672,"018 Wuzhen E Rd, Tongxiang, Jiaxing, Zhejiang, China, 314599"
+facility::296b1b53d9d4,Mine,Mine,Democratic Republic of the Congo,,-10.72742607526749,25.45651555007419,"Kolwezi, Congo - Kinshasa"
+facility::29954cbe1f04,India Plant,Battery cell plant,India,Battery producer,28.42943513,77.54947048,"Greater Noida, Uttar Pradesh, India"
+facility::2a52035b2487,Ningde Headquarter,Battery cell plant,China,Battery producer,26.7332864,119.5645726,Ningde_-_Fujian China
+facility::2c0c33362e20,Isoura,Precursor plant,Japan,Precursor producer,33.9489975,133.2377222,Isoura Plant_-_Ehime_-_Japan
+facility::2c1a0406ef82,Tesla Freemont Factory,Automobile Plant,USA,Electric car producer,37.4934874,-121.9452636,Freemont_-_California_-_USA
+facility::2d30680e735a,Hunan Facility,Facility,China,Cathode producer,28.2215,112.9007,"Yuelu District, Changsha, Hunan, China"
+facility::2d3c62e3a2d1,Georgia Plant,Georgia Automobile Plant,United States,,32.16576592976759,-81.44710795119038,"1500 Genesis Dr, Ellabell, GA 31308, United States"
+facility::2e101111a04e,Ohio Facility,Battery cell plant,United States,,39.653005,-83.557792,"Jeffersonville, Ohio, U.S.A."
+facility::3044cb8803f1,Isoura,Precursor plant,Japan,Cathode producer,33.9489975,133.2377222,Isoura Plant_-_Ehime_-_Japan
+facility::30612c9229ed,Mine,Mine,Democratic Republic of the Congo,,-11.165914297411945,27.019027795418186,"Katanga Province, Democratic Republic of Congo"
+facility::30d15602b1ae,Bou-Azzer Mine,Mine,Morocco,,30.517251742650846,-6.9081247252920095,"Bou Azzer mining district, Drâa-Tafilalet Region, Morocco"
+facility::3116829a01e9,LG Chem Nanjing,Battery cell plant,China,Battery producer,32.155825,118.8845726,"Qixia, Nanjing, Jiangsu, China"
+facility::31952fe26525,Germany,Battery plant,Germany,Battery producer,51.6418991,12.2220516,Bitterfeld-Wolfen_-_Saxony-Anhalt_-_Germany
+facility::327e7c840537,KTC,Smelter,Democratic Republic of the Congo,Miner,-10.725887,25.386186,Dilala_-_Kolwezi_-_Lualaba_-_DRC
+facility::328842ceb2cf,Tongxiang,Tongxiang Huayou Cobalt Facility,China,Precursor producer,30.613538,120.5672,"018 Wuzhen E Rd, Tongxiang, Jiaxing, Zhejiang, China, 314599"
+facility::33b411feb891,Headquarter,Headquarter,China,,27.33182908,109.00798567,"Intersection of No.2 Trunk Road and No.1 Trunk Road, Dalong Economic Development Zone, Tongren City, Guizhou Province"
+facility::3484f6859a6e,Xiamen Plant,Battery Plant,China,Battery producer,24.46943782,117.97488556,"No. 300, Haicang District, Xiamen, Fujian Province"
+facility::357c3071b789,Mine,Mine,Democratic Republic of the Congo,,-11.443356939814306,27.365350480072657,"Route Likasi, Territoire de Kipushi, Lubumbashi"
+facility::35cd469f1d38,Alabama Plant,Alabama Automobile Plant,United States,,32.2798324464937,-86.33032381930174,"Hyundai Motor Manufacturing Alabama, LLC 700 Hyundai Blvd. Montgomery, Alabama 36105"
+facility::35fb245ccfb9,Ningbo,Cathode plant,China,Cathode producer,29.8683,121.544,Ningbo*_-_Zhejiang_-_China
+facility::365871931ea3,Shenyang Powertrain,Battery pack plant,China,Electric car producer,41.6850531,123.1571127,Shenyang_-_Lioning_-_China
+facility::36d999b275d3,Headquarter,Headquarter,USA,Electric car producer,37.776583232247404,-122.3920724318401,"Suite 400, 185 Berry Street, San Francisco, California, 94107, USA"
+facility::3712b9a6c1ef,Ochang,Cathode plant,South Korea,Cathode producer,36.7310404,127.4494071,"100, 2-sandan-ro, Ochang-eup, Cheongwon-gu, Cheongju-si, Chungcheongbuk-do (329 Songdae-ri), South Korea"
+facility::3797e132f8b1,Headquarter,Headquarter,Singapore,,1.2830126588848256,103.85201490429593,"10 Collyer Quay #29-01/05 Ocean Financial Centre Singapore, 049315 Singapore"
+facility::379968d93fe0,Headquarter,Headquarter,Democratic Republic of the Congo,,-11.66640919,27.48685556,"102, Avenue Kasaï, Lubumbashi, Haut-Katanga, Democratic Republic of Congo"
+facility::37e12e9739a0,Headquarter,Headquarter,China,,33.88276604093883,111.61502880250374,"North Yihe, Huamei Shan Road, Luanchuan, Luoyang City, Henan Province, China"
+facility::3868081a384c,Fungurume 1,Mine,Democratic Republic of the Congo,Miner,-10.613685,26.300623,Fungurume_-_Lualaba_-_DRC
+facility::38d47d90384d,Oppama,Battery pack plant,Japan,Battery producer,35.324035,139.643543,Yokosuka_-_Kanagawa_-_Japan
+facility::3a56acb78a24,Headquarter,Headquarter,Switzerland,Commodity trader,46.00527976979652,8.944473200000001,"Via Sorengo 1, 6900 Lugano, Switzerland"
+facility::3cecc6e5a762,BMW Group Plant Leipzig,Electric car plant,Germany,Electric car producer,51.4083094,12.4408943,Leipzig_-_Saxony_-_Gemany
+facility::3d1f76f2ddc6,Nevada Gigafactory 1,Automobile Plant,USA,Electric car producer,39.5374355,-119.4390571,Nevada Gigafactory 1_-_Clark_-_Nevada_-_USA
+facility::3d5fefcc6797,Headquarter,Headquarter,China,Electric car producer,39.8564076,116.4054037,Fengtai_-_Beijing_-_China
+facility::3e092d8548b9,LGES Michigan,Battery cell plant,USA,Cathode producer,42.756406,-86.069464,"Holland, Michigan, USA"
+facility::3f17040306dd,Headquarter,Headquarter,Belgium,,50.85623464438235,4.357148265461361,"Av. du Boulevard 21, 1210 Bruxelles"
+facility::3fa7407808fe,Tennessee Plant,Battery Plant,United States,,36.07799591097521,-87.13467908495588,"301 Donald F Ephlin Pkwy, Spring Hill, TN 37174, États-Unis"
+facility::4062bcfb1f2c,Norilsk Nickel Harjavalta,Refinery,Finland,,61.325588524753776,22.1072719904641,"Torttilantie 21, 29200 Harjavalta, Finland"
+facility::41bb17b0e646,Taixing,Precursor plant,China,Precursor producer,32.1672565,120.0802892,Taixing_-_Jiangsu_-_China
+facility::4257d95cd878,Shanghai,Electric car plant,China,Electric car producer,31.2785122,121.1896882,Jiading_-_Shanghai_-_China
+facility::43445faa344c,Orion Plant,Electric car plant,United States,Electric car producer,42.7156246,-83.2609317,Orion Township - Michigan - USA
+facility::43893947aff7,Kinsevere,Mine,Democratic Republic of the Congo,Smelter,-11.3692,27.5666,"Route Kinsever, Lubumbashi, Congo, Kinshasa"
+facility::4550be79b827,Headquarter,Headquarter,Japan,,35.904485342544625,139.7761896444493,"1 Chome-4-2 Ōtemachi, Chiyoda City, Tokyo 100-0004"
+facility::45fe091b63eb,Headquarter,Headquarter,China,Electric car producer,40.048102083696,116.355665585649,"A4, Dongsheng Science and Technology Park, Xixiaokou Rd., Haidian District, China"
+facility::46389e3cbeea,Hunan Brunp Recycling Technology,Cathode plant,China,Cathode producer,28.2694722,112.661043,Jinzhou_-_Changsha_-_Hunan_-_China
+facility::48606f6f6a6c,Zhejiang Plant,Cathode Plant,China,Cathode producer,30.0243527,121.1664679,Yuyao City_-_Ningbo_-_Zheijang_-_China
+facility::48bd77924a86,Dongfeng Nissan Huadu,Electric car plant,China,Battery producer,23.384984,113.1619352,Huadu_-_Guangzhou_-_Guangdong_-_China
+facility::4a0e170bb9fa,Ulsan Plant,Ulsan Automobile Plant,South Korea,Electric car producer,35.5357624,129.3822086,"Ulsan, South Korea"
+facility::4a90a83ef24c,Deziwa,Mine,Democratic Republic of the Congo,Miner,-10.7891,25.763,"Mutshatsha, Democratic Republic of the Congo"
+facility::4abc06704be7,Shandong Facility,Battery Pack Plant,China,Precursor producer,34.82680418,117.40992504,"88 Ningbo Road, Zhangfan Street, Zaozhuang High-tech Zone, Shandong Province"
+facility::4abdb7b53b38,Shanghai,Battery pack plant,China,Battery producer,31.2785122,121.1896882,Jiading_-_Shanghai_-_China
+facility::4ae6c599704f,Headquarter,Headquarter,Japan,,35.46373142176942,139.62606707352904,"1-1, Takashima 1-chome, Nishi-ku, Yokohama, Kanagawa, 220-8686"
+facility::4bb711f928f8,Headquarter,Headquarter,USA,Electric car producer,30.22288157452379,-97.6189469789886,"1 Tesla Road Austin, TX 78725, United States of America"
+facility::4c07094f2fe5,DRC Site,Main Site,Democratic Republic of the Congo,,-11.644298527683345,27.4862703235649,"Lubumbashi, Haut-Katanga"
+facility::4c36b7d27990,Quzhou Plant 2,Precursor plant,China,,28.87096715,118.86414496,"Kecheng District, Quzhou, Zhejiang, China"
+facility::4d7e3ae3a8c7,Shenyang Powertrain,Battery pack plant,China,Battery producer,41.6850531,123.1571127,Shenyang_-_Lioning_-_China
+facility::4fc1245b1ed1,Mine,Mine,Democratic Republic of the Congo,,-10.639793270322704,25.986683209602017,"Kisamfu, Congo, Kinshasa"
+facility::4fcfb8186ffd,Headquarter,Headquarter,France,Battery producer,48.83153099455228,2.228313535397365,"13 /15 Quai Alphonse le Gallo, 92100 Boulogne-Billancourt, France"
+facility::503d6431a604,Beijing Automobile Caiyu,Electric car plant,China,Electric car producer,39.6549187,116.6654736,Caiyu Town_-_Daxing District_-_Bejing_-_China
+facility::5059142db991,Headquarter,Headquarter,Australia,,-31.97780293062293,115.8093874612926,"45 Stirling Hwy, Nedlands WA 6009, Australia"
+facility::50a4949502a6,Kokomo Plant,Battery Cell Plant,USA,Battery producer,40.51522630895611,-86.1175954,"Kokomo, Indiana, USA"
+facility::50d0a386b239,Headquarter,Headquarter,Democratic Republic Of The Congo,,-10.99735961337547,26.75672417231705,"No. 2007, Chemin Public Commune De Shituru, Ville De Likasi Likasi, Haut-Katanga"
+facility::52be8041186f,Taixing,Refinery,China,Refiner,32.1672565,120.0802892,Taixing_-_Jiangsu_-_China
+facility::535f8791fafd,Headquarter,Headquarter,China,Cathode producer,39.81900741,116.28581089,"Building 21, Area 18, No.188, Western Road, South 4th Ring Road, Fengtai District, Beijing"
+facility::53de6b1e726b,Headquarter,Headquarter,China,Electric car producer,40.048975680237234,116.32085997774227,"Xiaomi Office Building, 68 Qinghe Middle Street, Beijing, 100085, China"
+facility::540c4a692f55,Headquarter,Headquarter,France,,48.83153099455228,2.228313535397365,"13 /15 Quai Alphonse le Gallo, 92100 Boulogne-Billancourt, France"
+facility::54291d79f766,Headquarter,Headquarter,China,Refiner,25.91215359,115.06922686,"No. 9, Xijin Avenue, Ganzhou Hi-Tech Industrial Development Zone, Jiangxi Province"
+facility::55eaae0893f5,Mine,Mine,Democratic Republic of the Congo,,-10.749680544257853,25.378621131321474,"Lualaba/Mutshatsha, Democratic Republic of the Congo"
+facility::55f7a8568782,Battery cell plant,Battery cell plant,Germany,,52.18390033895979,10.444951116351303,"Salzgitter, Germany"
+facility::565a72d13005,Headquarter,Headquarter,China,,38.03781122395211,114.48420275398092,"Qiaoxi District, Shijiazhuang, Shijiazhuang, Hebei, China"
+facility::587801b8f3b2,Headquarter,Headquarter,Zambia,,-12.830031611955206,28.205176924549285,"Kitwe, Zambia"
+facility::58e1bdd8f0ab,Headquarter,Headquarter,Democratic Republic of the Congo,,-10.723110809505823,25.485278762483812,"EMM Building, No. 412, Avenue Bota, Industrial Quarter, Manika Commune, Kolwezi City, Lualaba Province, DRC"
+facility::59a440b266b4,Headquarter,Headquarter,China,,24.486777875177285,118.13723715994253,"Xiamen City, Fujian Province, China"
+facility::59d27682fb58,Headquarter,Headquarter,Japan,Electric car producer,35.67238779274758,139.72379411176493,"Honda Aoyama Building, 2 Chome-1-1, Minamiaoyama, Minato City, Tokyo"
+facility::59e20d6081ea,Zhejiang,Battery cell plant,China,Battery producer,30.9783286,119.9070595,Zhicheng Town_-_Changxin_-_Zhejiang_-_China
+facility::5b4b6917aa42,Headquarter,Headquarter,India,Battery producer,12.97716745,77.70679675,"25, 1st Cross, 2nd Main Rd, Industrial Area 2, Phase 1, Doddanekkundi, Bengaluru, Karnataka 560048, India"
+facility::5c02b72848b2,Gwangyang,Cathode plant,South Korea,Cathode producer,34.8972905,127.6011592,Gwangyang-eup_-_Jeonnam_-_South Korea
+facility::5e22985935bc,Headquarter,Headquarter,China,,24.523944122016243,118.1047607534157,"No.270, Changhao Rd. Huli District, Xiamen, China"
+facility::5e2e550d9828,Guangdong Headquarter,Headquarter,China,,23.23469625,112.97125394,"Sanshui Industrial Park, Sanshui District, Foshan, Guangdong Province, China"
+facility::5ee09fc2e656,Tennessee,Battery cell plant,United States,,36.07799591097521,-87.13467908495588,"301 Donald F Ephlin Pkwy, Spring Hill, TN 37174, États-Unis"
+facility::5f394d710ec1,Ulsan Plant,Ulsan Automobile Plant,South Korea,,35.5357624,129.3822086,"Ulsan, South Korea"
+facility::5f88a46bcb21,Dalian,Battery cell plant,China,Battery producer,39.166277,121.7746833,"Jinzhou, Dalian, Liaoning, China"
+facility::6027f0fa13e7,Shanghai Gigafactory 3,Automobile Plant,China,Electric car producer,30.8745754,121.769127,Fengxian_-_Shanghai_-_China
+facility::607ace4f1e21,Tilwezembe,Mine,Democratic Republic of the Congo,Miner,-10.798995,25.6892455,Luilu_-_Lualaba_-_DRC
+facility::608174aa7287,Headquarter,Headquarter,China,Battery producer,23.043559479651645,114.34275448271744,"No. 38, Huifeng 7th Road, Zhongkai High-tech Zone, Huizhou City, Guangdong Province, China"
+facility::6142b99339d9,Rio Tuba Mine,Mine,Philippines,,8.558385812772432,117.42535576137354,"Rio Tuba Export Processing Zone, Brgy, Rio Tuba, Bataraza, Palawan, Philippines"
+facility::6177d0828079,Cleon Factory,Battery Pack Plant,France,Electric car producer,49.3154958,1.0479996,Cleon_-_Seine-Maritime_-_France
+facility::6425781807ab,Headquarter,Headquarter,China,,29.83487428,121.4588077,"Ningbo City, Zhejiang Ningbo, China"
+facility::64b351fdc37d,Lansing Plant,Battery Plant,United States,,42.729280229280555,-84.69859734180234,"Lansing, MI 48917, USA"
+facility::65bf869ca2f2,BMW Group Plant Spartanburg,Battery pack plant,United States,Battery producer,34.8954681,-82.1820138,Spartanburg_-_North Carolina_-_USA
+facility::65e8898de523,Nevada Gigafactory 1,Battery cell plant,United States,Battery producer,39.5374355,-119.4390571,"Nevada Gigafactory 1, Clark, Nevada, USA"
+facility::65ef1d7f6684,Luoyang,Headquarter,China,,33.78778779,111.64033621,"North Yihe, Huamei Shan Road, Luanchuan, Luoyang City, Henan Province"
+facility::65fa27095d03,Mine,Mine,Democratic Republic of the Congo,,-10.964300751534802,26.65943598110802,"Commune de panda, 33 Route Kambove, Likasi, Congo, Kinshasa"
+facility::65fe5dbd36fd,Headquarter,Headquarter,China,Electric car producer,39.95249083537722,116.46101801292001,"R301 Beijing Dvpt Bldg 5 Dongsanhuan N Road Chaoyang Dt Beijing, 100700 China"
+facility::6643265e1356,Headquarter,Headquarter,United States,,32.71853599403322,-114.6499548040451,"2454 W 5th St, Yuma, AZ 85364, USA"
+facility::66d7c4f174ab,Northvolt Labs AB,Laboratory,Sweden,Battery producer,59.64012856,16.59547283,"Västerås, Sweden"
+facility::673ddefe40d3,Beijing Automobile Caiyu,Battery pack plant,China,Electric car producer,39.6549187,116.6654736,Caiyu Town_-_Daxing District_-_Bejing_-_China
+facility::687174d1f25f,Göd Plant,Battery Cell Plant,Hungary,Battery producer,47.6793553,19.1675469,Göd_-_Hungary
+facility::6972f2638787,Tiexi,Electric car plant,China,Electric car producer,41.6725041,123.1543722,Tiexi_-_Shengyang_-_Lioning_-_China
+facility::69c337b0788c,Volvo Cars Ghent,Battery pack plant,Belgium,Battery producer,51.1022173,3.7521812,Ghent_-_Belgium
+facility::6ae02c1864d8,Ohio,Battery cell plant,United States,,41.43658078495286,-80.85049939587446,"7400 Tod Ave SW, Lordstown, OH 44481, États-Unis"
+facility::6bd4afc6fd0e,Facility,Facility,China,Cathode producer,40.2079,116.299,China
+facility::6cb55fa0ae19,Headquarter,Headquarter,France,,48.86815195634901,2.3464289820186175,21 Rue de Cléry 75002 Paris île de France
+facility::6ccd2fa6bdcd,Lubumbashi,Headquarter,Democratic Republic Of The Congo,,-11.703864611642874,27.473591398799908,"Lubumbashi, Haut-Katanga"
+facility::6d55091cac5b,Headquarter,Headquarter,Switzerland,,46.204012719736,6.1473702974334214,"Rue du Rhône 50, 1204 Geneva, Switzerland"
+facility::6e138e0db3ef,Mine,Mine,Democratic Republic of the Congo,Miner,-10.796966,25.798821,"Lualaba, Democratic Republic of the Congo"
+facility::6ea872428983,Haicang,Cathode Plant,China,Cathode producer,24.4666849,117.9795194,Haicang_-_Fujian_-_China
+facility::6ec1d39c9288,Headquarter,Headquarter,China,,30.277674251356807,121.0795407851383,"Haitu Industry Zone, Xiaocaoe Town,Yuyao City,Zhejiang,China Ningbo, Zhejiang"
+facility::6f001d3feb41,Jakarta,Headquarter,Indonesia,,-6.223369458815911,106.82305691558564,"Sopo Del Tower A Lantai 22 Unit A, Jalan Mega Kuningan Barat 3 Lot 10.1-6 Kawasan Mega Kuningan, Jakarta Selatan 12950"
+facility::6f5cd049a91e,Headquarter,Headquarter,Japan,Electric car producer,35.66633845,139.7573895,"802, New Shinbashi Bldg., 2-16-1, Shimbashi, Minato-ku, Tokyo 105-0004, Japan"
+facility::7066fc767599,Headquarter,Headquarter,Hong Kong,,22.285541234614367,114.15515342453538,"RM 1606, 16/F China Insurance, Group Bldg. No. 139-141 Des Voeux, Rd Central, Hong Kong"
+facility::70adf4a5b250,Headquarter,Headquarter,Hong Kong,,22.278590879702186,114.16910536683622,"12/F 3 Lockhart Rd. Wan Chai, Hong Kong"
+facility::70d8d1e8a50f,Headquarter,Headquarter,China,Electric car producer,31.5973106868079,120.492520640005,"Dacheng Gongyeyuan Dongsheng Road, Anzhen Sub-District, Xishan District Wuxi, Jiangsu, 214000 China"
+facility::71a8668f2796,Onoda,Cathode plant,Japan,Cathode producer,33.9685891,131.1693615,Sanyo Onoda_-_Japan
+facility::71bda8936542,Headquarter,Headquarter,China,Electric car producer,31.57915278,120.4907629,"No. 501 Xishan Road, Anzhen, Xishan District, Wuxi, Jiangsu Province, China"
+facility::72b5ebd4ab2e,Mine,Mine,Democratic Republic of the Congo,Miner,-10.77961725,25.92813727,Kolwezi_-_Lualaba_-_DRC
+facility::74623dd17ccc,Kentucky Plant,Electric Car Plant,USA,Electric car producer,38.25667714241094,-84.52936665557905,"1101 Cherry Blossom Way, Georgetown, KY 40324"
+facility::74a202cd60f4,Kasombo Main Site,Mine,Democratic Republic of the Congo,Smelter,-10.8899014,26.6234379,"Kasombo, Haut-Katanga, Democratic Republic of the Congo"
+facility::74ed20e68017,IXM Africa Pty. Ltd.,Headquarter,South Africa,Commodity trader,-26.11136287,28.05368551,Johannesburg_-_Gauteng_-_South Africa
+facility::775d2ad172f1,Pohang,Cathode plant,South Korea,Cathode producer,36.019,129.3435,Pohang*_-_Gyeongsangbuk-do_-_South Korea
+facility::7827c018450e,Zhejiang,Zhejiang Huayou Cobalt Facility,China,Precursor producer,30.6160952,120.562971,"Tongxiang Economic Development Zone, Zhejiang, China"
+facility::78df6abdeef8,Smyrna,Battery pack plant,United States,Battery producer,35.9662105,-86.4891278,Smyrna_-_Rutherford County_-_Tennessee_-_USA
+facility::7902e464708a,Headquarter,Headquarter,China,,39.876548,116.46679,"13/F, Beijing Automotive Building, No.25 Dongsanhuan South Road, Chaoyang District, Beijing, China"
+facility::7910df7ada19,Headquarter,Headquarter,Zambia,,-12.965692844965298,28.65044403777295,"Vitanda Street Ndola, Zambia"
+facility::795b96d60b78,Guangzhou Plant,Electric Car Plant,China,Electric car producer,22.8422525,113.5041991,Nansha_-_Guangshou_-_Guangdong_-_China
+facility::7994995a81ab,Headquarter,Headquarter,Norway,Battery producer,59.91509907080439,10.65096463827351,"Drammensveien 264, 0283 Oslo, Norway"
+facility::7b1ba89986dc,Headquarter,Headquarter,Singapore,,1.300454951,103.8576764,Parkview Square
+facility::7bae6b80f9d5,Hangzhou Bay,Battery pack plant,China,Battery producer,30.3290199,121.2571769,Hangzhou Bay_-_Zhejiang_-_China
+facility::7c740786b030,Mine,Mine,Democratic Republic of the Congo,,-10.867660558760427,26.563775719019002,"Route Kakanda N.1, Quartier Mikuba, Kambove, Province du Haut-Katanga, Democratic Republic of the Congo"
+facility::7d6fb423d6a1,Zhejiang,Zhejiang Huayou Cobalt Facility,China,Cathode producer,30.6160952,120.562971,"Tongxiang Economic Development Zone, Zhejiang, China"
+facility::7e80672f3544,Headquarter,Headquarter,China,Electric car producer,39.78514809,116.5110926,"2 Dize North Rd. Yizhuang Development Zone, Daxing District, Beijing, China"
+facility::80e7b04db2d7,Headquarter,Headquarter,China,Battery producer,31.687592562991952,119.61262218242528,"No. 1 Jiangdong Avenue, Jintan District, Changzhou City, Jiangsu Province"
+facility::8109ca4d4adc,Headquarter,Headquarter,China,,27.381365,111.5260551,Hunan and Ningxia
+facility::81eeac3269e6,Xiamen Plant,Battery Plant,China,,24.46943782,117.97488556,"No. 300, Haicang District, Xiamen, Fujian Province"
+facility::81f07541ff4b,Headquarter,Headquarter,China,,39.91605836,116.2763578,"Haidian District, Beijing, China"
+facility::82a3194ac478,Nysa,Cathode Plant,Poland,Cathode producer,50.4987659,17.2763539,Nysa_-_Poland
+facility::8455939eaf35,NMUK,Electric car plant,United Kingdom,Electric car producer,54.9189908,-1.466399,Sunderland_-_Tyne and Wear_-_UK
+facility::85d8a7670d1a,Port Colborne Refinery,Refinery,Canada,,42.883132555600234,-79.24214218994453,"187 Davis St, Port Colborne, ON L3K 5W2, Canada"
+facility::86903c4b9704,Headquarter,Headquarter,Japan,,35.67238779274758,139.72379411176493,"Honda Aoyama Building, 2 Chome-1-1, Minamiaoyama, Minato City, Tokyo"
+facility::874aa78fb017,NMUK,Battery pack plant,United Kingdom,Electric car producer,54.9189908,-1.466399,Sunderland_-_Tyne and Wear_-_UK
+facility::87f7fb2dbb9d,Lupoto Mine,Mine,Democratic Republic of the Congo,,-11.593110621235864,27.28488834991965,"Inakiluba, Congo - Kinshasa"
+facility::8863c62b88d8,Tianjin,Battery cell plant,China,Battery producer,39.0741601,117.0722502,Xiqing_-_Tianjin_-_China
+facility::8a41322567e0,Ningbo Ronbay China,Precursor Plant,China,,30.0243527,121.1664679,"Yuyao City, Ningbo, Zheijang, China"
+facility::8ab7d2a79067,Berlin Gigafactory 4,Automobile Plant,Germany,Battery producer,52.39576059924014,13.790895196010307,Grünheide_-_Brandenburg_-_Germany
+facility::8ad7d3d300c1,KTC,Smelter,Democratic Republic of the Congo,Smelter,-10.725887,25.386186,Dilala_-_Kolwezi_-_Lualaba_-_DRC
+facility::8af09e6f7940,Himeji,Battery cell plant,Japan,Battery producer,34.7769156,134.6813548,"Himeji, Kansai, Japan"
+facility::8c15d3129801,Headquarter,Headquarter,China,,39.91112376347696,116.36020061626218,"Beijing, China"
+facility::8c515425f854,Mine,Mine,Democratic Republic of the Congo,,-11.597883475837904,27.349457081826205,"Lopoto, Congo-Kinshasa"
+facility::8c6eb8b81df6,Tianjin Plant,Electric Car Plant,China,Electric car producer,39.0579354,117.7268061,Binhai Xinqu_-_Tianjin_-_Tianjin_-_China
+facility::8cf38702545a,"Panasonic Energy Co., Ltd. Headquarter",Headquarter,Japan,Battery producer,34.726770950555434,135.56771331536504,"1-1 Matsushitacho, Moriguchi, Osaka 570-8511"
+facility::8d23b84c92c9,Shandong Facility,Battery Pack Plant,China,,34.82680418,117.40992504,"88 Ningbo Road, Zhangfan Street, Zaozhuang High-tech Zone, Shandong Province"
+facility::8d3ec73e616c,Mine,Mine,Democratic Republic of the Congo,Miner,-11.5156638,27.4409534,Luiswishi mine_-_Bukanda_-_DRC
+facility::8d778cea6611,Volkswagen Chatnooga,Battery Plant,USA,Electric car producer,35.0769316,-85.1306783,Chatnooga_-_Tennessee_-_USA
+facility::8d8971e61687,Recycling Facility,Battery cell plant,Canada,,43.63978652,-79.38039353,"207 Queens Quay W Suite 590, Toronto, ON M5J 1A7, Canada"
+facility::8da0c3543202,Kadoma Headquarter,Headquarter,Japan,,34.7378820052613,135.57579179615118,"1006, Kadoma, Kadoma City, Osaka 571-8501, Japan"
+facility::8db5e53af84d,Yongin Headquarter,Headquarter,South Korea,Battery producer,37.23684959008007,127.11304253436033,"150-20, Gongse-ro Giheung-gu, Yongin-si, Gyeonggi-do, South Korea"
+facility::8db80fc02590,Mine,Mine,Democratic Republic of the Congo,,-10.865596278960652,26.61486215264135,"Avenue De Bukamo, Plot No. 94, Lubumbashi, Democratic Republic of the Congo"
+facility::8e5e296c7f81,Wuxi,Precursor plant,China,Precursor producer,31.4734096,120.4675607,Xinwu_-_Wuxi_-_Jiangsu_-_China
+facility::8ec06b6bdfff,Hangzhou Bay,Battery Pack Plant,China,Electric car producer,30.3290199,121.2571769,Hangzhou Bay_-_Zhejiang_-_China
+facility::8fa91075bd4d,Headquarter,Headquarter,Canada,,45.50235134018691,-73.5750383,"Québec, Canada"
+facility::908bf38e23fb,Ruashi Mine,Mine,Democratic Republic of the Congo,Miner,-11.6112453,27.5539531,"Ruashi, Lubumbashi, Haut-Katanga, DRC"
+facility::90c90277fc9b,PT. Huayue Nickel Cobalt,Refinery,Indonesia,,-2.852295951852148,122.17964743906127,"Labota, Bahodopi, Morowali Regency, Central Sulawesi 94974, Indonesia"
+facility::9109d353f8d4,Headquarter,Headquarter,China,,39.910681084300556,116.37482588067824,"District de Xicheng, Beijing, China"
+facility::917cf5631eaa,Mine,Mine,Philippines,,9.539653271011916,125.8122742088831,"Claver, Surigao del Norte, Philippines"
+facility::925086bf7fe7,Northvolt Ett,Battery cell plant,Sweden,,64.73787459,21.08760307,"Torsgatan 122, 931 36 Skellefteå, Suède"
+facility::9252621c124c,Headquarter,Headquarter,UAE,,25.068982598848006,55.14122145656182,"30th Floor, Almas Tower, Jumeirah Lakes. Towers, Dubai, UAE"
+facility::9278f64378cb,Tianjian Plant,Battery Cell Plant,China,Battery producer,39.4077385,117.027322,Tianjin_-_China
+facility::92cfdda0ae39,Mine,Mine,Democratic Republic of the Congo,,-10.668757242100611,25.354874823569123,"No. 167, Avenue Bukama, Commune Manika - Kolwezi, Lualaba Democratic Republic of the Congo"
+facility::9386304a9df2,Japan Refinery,Refinery,Japan,,34.718117385230805,134.84908893847876,"346-4, Miyanishi, Harima-cho, Kako-gun, Hyogo 675-0145, Japan"
+facility::939776064d13,Daixing,Battery pack plant,China,Battery producer,39.7544464,116.5099363,Daixing_-_Beijing_-_China
+facility::968011cda862,Berlin Gigafactory 4,Automobile Plant,Germany,Electric car producer,52.39576059924014,13.790895196010307,Grünheide_-_Brandenburg_-_Germany
+facility::96d9dfa1fbe8,Mine,Mine,Democratic Republic of the Congo,,-10.7393158,25.4077483,"Dilala, Lualaba, Democratic Republic of the Congo"
+facility::97e9b7f0eaa5,Headquarter,Headquarter,China,Battery producer,22.1531842177172,113.23161900569902,"No. 209, Zhufeng Avenue, Jing'an Town, Doumen District, Zhuhai City, Guangdong Province Zhuhai, Guangdong, China"
+facility::9a8e588576a4,French Gigafactory,Gigafactory,France,,50.96607797429998,2.1901815089873016,"7264 Rte De Cap Horn, 59630 Bourbourg, France"
+facility::9a90576f6533,BMW Group Plant Leipzig,Battery pack plant,Germany,Electric car producer,51.4083094,12.4408943,Leipzig_-_Saxony_-_Gemany
+facility::9b32973837a0,Mine,Mine,Democratic Republic of the Congo,,-10.747184453575294,25.38027515289383,Lualaba/Mutshatsha
+facility::9b770eeee2ae,Luilu,Smelter,Democratic Republic of the Congo,Smelter,-10.683129,25.388308,Luilu_-_Lualaba_-_DRC
+facility::9e332163b9ea,Likasi,Headquarter,Democratic Republic of the Congo,,-11.004704917152141,26.74992026496991,"Likasi, Haut-Katanga"
+facility::9e4798731d75,Headquarter,Headquarter,USA,,32.171138241903556,-81.48048940581393,"10484 US-280, Ellabell, GA 31308, United States"
+facility::9e7627fe6f1a,Oppama,Electric car plant,Japan,Electric car producer,35.324035,139.643543,Yokosuka_-_Kanagawa_-_Japan
+facility::9ea9ed36949c,Headquarter,Headquarter,China,,22.28110072,113.09761933,"No.11, Area A, Lingang Industrial Park, Gujing Town, Xinhui District, Jiangmen City, Guangdong Province"
+facility::a1136c72ae11,Impala Mega Site,Warehouse,Democratic Republic of the Congo,Commodity trader,-11.5404554,27.4616912,Annexe_-_Lubumbashi_-_Haut-Katanga_-_DRC
+facility::a2b2d461ceda,Lambres-Lez-Douai,Battery pack plant,France,,50.35370520946489,3.0265385264671956,"567 Rue des Frères Renault, 62117 Lambres-Lez-Douai, France"
+facility::a3e41fe4a824,Headquarter,Headquarter,South Korea,,35.95798428002969,126.5392419490745,"143-12 Gunsansandan-ro, Gunsan-si, Jeollabuk-do"
+facility::a4357fa1548a,Headquarter,Headquarter,China,Electric car producer,31.80703436,120.0111712,"Building 1, No.5 Chuangzhi Road, Tianning District, Changzhou, Jiangsu, China"
+facility::a5a497920f2c,Olen,Refinery,Belgium,Refiner,51.180769,4.8919034,Olen_-_Antwerp_-_Belgium
+facility::a5efa61aa47f,Saxony,Electric Car Plant,Germany,Battery producer,50.7910949,12.4883772,Zwickau_-_Saxony_-_Germany
+facility::a63e1dc5bec8,Jiangsu,Cathode plant,China,Cathode producer,31.5407608,120.3553577,"Xinwu District, Wuxi, Wuxi, Jiangsu, China"
+facility::a6722971a377,Headquarter,Headquarter,USA,Electric car producer,41.81921293,-87.68318087,"2321 W. 41st St., Chicago, IL 60609, USA"
+facility::a728795d4f9d,Mine,Mine,Democratic Republic of the Congo,,-10.6855426,25.5313308,"Mutoshi, Lualaba"
+facility::a8232606278e,Headquarter,Headquarter,China,Battery producer,31.365958948547,120.417301859874,"No.181, Jinshajiang Road, Suzhou New District, Jiangsu, China"
+facility::a8e584cc1d2f,Kokkola,Refinery Precursor Plant,Finland,Cathode producer,63.861931,23.0511864,Kokkola_-_Central Ostrobothnia_-_Finland
+facility::a986254b38e4,Headquarter,Headquarter,USA,Battery producer,41.81921293,-87.68318087,"2321 W. 41st St., Chicago, IL 60609, USA"
+facility::aac05aa5a8ac,BMW Group Plant Spartanburg,Battery pack plant,United States,Electric car producer,34.8954681,-82.1820138,Spartanburg_-_North Carolina_-_USA
+facility::ab03d0c29fb9,Hong Kong Headquarter,Headquarter,Hong Kong,,22.278874700415038,114.16537135598537,"Unit 3101, 31/F, United Centre, 95 Queensway, Admiralty"
+facility::ab298d65c2c9,Zhejiang,Zhejiang Huayou Cobalt Facility,China,Smelter,30.6160952,120.562971,"Tongxiang Economic Development Zone, Zhejiang, China"
+facility::ace90a0b15a8,Northvolt Ett,Battery cell plant,Sweden,Battery producer,64.73787459,21.08760307,"Torsgatan 122, 931 36 Skellefteå, Suède"
+facility::ad07369db9a7,Headquarter,Headquarter,China,,39.91112376347696,116.36020061626218,"Xicheng District, Beijing, China"
+facility::ad263f54e075,Saxony,Electric Car Plant,Germany,Electric car producer,50.7910949,12.4883772,Zwickau_-_Saxony_-_Germany
+facility::ad5bccff5162,Headquarter,Headquarter,Hong Kong,,22.279415148462633,114.16343232635883,"Unit 2, 34/F Twr 2, Lippo Ctr 89 Queensway Admiralty, Hong Kong"
+facility::add8c966753e,Glencore Nikkelverk AS,Refinery,Norway,,58.13871607818302,7.971273284166996,"Vesterveien 31, 4613 Kristiansand"
+facility::ae5cbe410f16,Mine,Mine,Democratic Republic of the Congo,,-11.000451266614633,26.708272675580716,"Likasi, Haut-Katanga, Democratic Republic of the Congo"
+facility::aebc74995444,Durban,Warehouse,South Africa,Commodity trader,-29.91339429,30.9960828,Durban_-_KwaZulu-Natal_-_South Africa
+facility::aefa63d27d95,Mine,Mine,Democratic Republic of the Congo,,-10.886631446284182,25.19748296657409,"Mutshatsha Province of Lualaba, Democratic Republic of the Congo"
+facility::b0487885cecf,Headquarter,Headquarter,Germany,Electric car producer,48.17698824046014,11.560157959702845,"Petuelring 130, 80809 München, Germany"
+facility::b257f37d92b3,Headquarter,Headquarter,Germany,,48.788026815240435,9.236790575040501,"Mercedesstraße 120, 70372 Stuttgart-Untertürkheim, Germany"
+facility::b2ed5d9b1191,Mine,Mine,Democratic Republic of the Congo,,-10.621930548847367,25.47330655228977,"Mutshatsha, Lualaba"
+facility::b3515f462456,Cleon Factory,Battery Pack Plant,France,Battery producer,49.3154958,1.0479996,Cleon_-_Seine-Maritime_-_France
+facility::b3bdc96758e7,NMUK,Battery pack plant,United Kingdom,Battery producer,54.9189908,-1.466399,Sunderland_-_Tyne and Wear_-_UK
+facility::b3e6a1731bb7,Volvo Cars Ghent,Battery pack plant,Belgium,Electric car producer,51.1022173,3.7521812,Ghent_-_Belgium
+facility::b57e889f2e60,Headquarter,Headquarter,Switzerland,,46.20400137536417,6.146219767915185,"Place de la Fusterie 7 1204 Geneva, Switzerland"
+facility::b73b4f202111,Assembly Plant 1,Electric car plant,China,Electric car producer,29.6807517,106.5886871,Chongqing_-_China
+facility::b7474476e21a,Headquarter,Headquarter,USA,Electric car producer,25.95017,-80.193167,"392 NE 191st Street #20388 Miami, FL 33179, U.S."
+facility::b787240c9f8d,Italy,Recycling Plant,Italy,,39.21207421780786,8.407545886063616,"SP2, 09010 Portovesme SU"
+facility::b84930008b54,Zhejiang,Zhejiang Huayou Cobalt Facility,China,Refiner,30.6160952,120.562971,"Tongxiang Economic Development Zone, Zhejiang, China"
+facility::b88f70a2b2d6,Headquarter,Headquarter,China,,29.913944310137662,121.86091497958321,Hengshan Rd_-_Beilun District_-_Ningbo_-_Zhejiang_-_China
+facility::b894d88c28a2,Troy Plant,Electric car plant,United States,Electric car producer,42.2760905,-83.4175554,Wayne_-_Michigan_-_USA
+facility::b89a55e80862,Mine,Mine,Morocco,Miner,31.349953,-5.728094,"Imiter, Morocco"
+facility::b91093561ff3,Main Facility,Main Facility,Democratic Republic of the Congo,,-10.63903978950147,25.42522931074961,"Kolwezi, Lualaba, Democratic Republic of the Congo"
+facility::b9531a85b00a,Jiangsu Cathode Plant,Cathode Plant,China,Cathode producer,31.8225912,120.5684743,Zhangjiagang Tech Zone_-_Jiangsu_-_China
+facility::b9b7e13ca321,Quzhou Plant 1,Precursor plant,China,Precursor producer,28.943822,118.905869,"Kecheng District, Quzhou, Zhejiang, China"
+facility::badead53a8f5,Olen,Refinery,Belgium,Battery producer,51.180769,4.8919034,Olen_-_Antwerp_-_Belgium
+facility::bb69676912a2,Main Facility,Main Facility,Democratic Republic of the Congo,,-11.679935807968986,27.46785770526664,"4, Route Kipushi, Q/Mampala, c/Lubumbashi, Haut-Katanga, RD"
+facility::bbb0aa40d224,Bremen,Electric car plant,Germany,Electric car producer,53.0579121,8.9035404,Hemelingen_-_Bremen_-_Germany
+facility::bbba1711c2c4,Hangzhou Bay,Electric car plant,China,Electric car producer,30.3290199,121.2571769,Hangzhou Bay_-_Zhejiang_-_China
+facility::bc13191fd875,Cheonan,Cathode Plant,South Korea,Cathode producer,36.8376313,127.1137536,Cheonan_-_South Korea
+facility::bc9e12771be1,Mine,Mine,Democratic Republic of the Congo,,-10.941505980670097,26.693161178615377,"Likasi, Haut-Katanga"
+facility::bd0875293bf8,Headquarter,Headquarter,China,,38.5048127,102.18045599,"No 98 Jinchuan Road, Jinchuan district, Jinchang, Gansu province"
+facility::bd3e093100c3,Kasombo Main Site,Mine,Democratic Republic of the Congo,Miner,-10.8899014,26.6234379,"Kasombo, Haut-Katanga, Democratic Republic of the Congo"
+facility::be80b94bfefe,SK On Seosan Plant,Battery Cell Plant,South Korea,Battery producer,36.8536475,126.452808,Seosan_-_South Korea
+facility::bf356aa2d81c,Headquarter,Headquarter,China,,22.452620545799984,113.08801497589273,"Jiangmen City, Guangdong Province, China"
+facility::bfeef4a84573,Ertelier Project,Mine,Norway,,60.070332389679855,10.046645052040352,"Ringerike Municipality, Norway"
+facility::c0105dc4771a,Shenzen BAK industrial,Battery cell plant,China,Battery producer,22.6231372,114.43455,Kuiyong_-_Dapeng_-_Shenzen_-_Guangdong_-_China
+facility::c04aefe2a505,Musonoie Tailings,Tailings Site,Democratic Republic of the Congo,,-10.695263788376652,25.459792789198215,"Kolwezi, Lualaba, Democratic Republic of the Congo"
+facility::c05c0b4c7813,Headquarter,Headquarter,Singapore,,1.322258556158653,103.8634478637708,"987 Serangoon Road, Singapore 328147"
+facility::c14135a29aa9,Switzerland Headquarter,Headquarter,Switzerland,,47.181319694497084,8.527232666311876,"Baarermattstrasse 3, 6340 Baar, Switzerland"
+facility::c149b5bdb60b,LGES Seoul Headquarter,Headquarter,South Korea,,37.52675793172897,126.92713998639883,"Yeouido-dong, Yeongdeungpo District, Seoul, South Korea"
+facility::c29195570e8a,Dongfeng Nissan Huadu,Electric car plant,China,Electric car producer,23.384984,113.1619352,Huadu_-_Guangzhou_-_Guangdong_-_China
+facility::c54c1895d7e5,Ulsan,Headquarter,South Korea,Cathode producer,35.4192,129.3465,"Ulsan, South Korea"
+facility::c54e6726c320,Headquarter,Headquarter,USA,,30.22288157452379,-97.6189469789886,"1 Tesla Road Austin, TX 78725, United States of America"
+facility::c6dcb158e3a4,Headquarter,Headquarter,China,,29.881957882439508,121.54971780943427,"8 Lane 199 Yongfeng Road Haishu District Ningbo, 315010 China"
+facility::c83067b7c150,Headquarter,Headquarter,France,Electric car producer,47.44332409,6.832127034,"103 Rue Du 17 Novembre, Mandeure, Bourgogne Franche-Comte, 25350, France"
+facility::c8ae442b3556,Headquarter,Headquarter,United States,,42.31485684947311,-83.2102291518999,"1 American Rd, Dearborn, MI 48126"
+facility::c8dc542c2161,Headquarter,Headquarter,China,,25.91215359,115.06922686,"No. 9, Xijin Avenue, Ganzhou Hi-Tech Industrial Development Zone, Jiangxi Province"
+facility::cab804dfe636,Headquarter,Headquarter,USA,,41.43658078495286,-80.85049939587446,"7400 Tod Ave SW, Warren, OH 44481, USA"
+facility::cb33516e6c9c,Etoile Mine,Mine,Democratic Republic of the Congo,,-11.634101153963103,27.586012395421733,"Lubumbashi, Katanga, DRC"
+facility::cc0cf2723871,Headquarter,Headquarter,China,,31.18230908,121.59889073,"Hella (Shanghai) Management Co., Ltd. Étage 12, bâtiment 2, n° 58 Haiqi Road, Zhangjiang High-tech Park, Shanghai"
+facility::cc18248d85da,Ulsan Plant,Battery Cell Plant,South Korea,Battery producer,35.5152029,129.093662,Ulsan_-_South Korea
+facility::cc1d68a972b3,Headquarter,Headquarter,Sweden,Electric car producer,57.72612055610457,11.84964561423105,"Gunnar Engellaus väg 8, 418 78 Göteborg, Sweden"
+facility::cc6bf31699d7,Goro Project,Mine,New Caledonia,,-22.322053549518756,166.9143449901231,"Usine du Grand Sud, route de Kwa Neïe, Prony – 98810"
+facility::cc79da836b1f,Heilongjiang,Battery cell plant,China,Battery producer,45.6911747,126.5070161,Daoli_-_Harbin_-_Heilongjiang_-_China
+facility::cc7acfa01b15,Headquarter,Headquarter,China,Battery producer,31.909302362058813,117.36879987740124,"No. 599, Yuanwenzhong Road, Yaohai District, Hefei City, Anhui Province"
+facility::cd012fd45b80,Norilsk Nickel Russia,Nornickel’s Kola Division,Russia,,69.3434471161431,88.21065554246611,"Gvardeyskaya Ploshchad', 2, Norilsk, Krasnoyarsk Krai, Russia"
+facility::cd3cdc447eed,Headquarter,Headquarter,The Netherlands,,52.295169674535714,4.698316952095328,"Taurusavenue 1, 2132 LS Hoofddorp"
+facility::cd6bb5a73314,Headquarter,Headquarter,South Africa,,-29.861292763447047,31.023401461284262,"Durban, 5th Floor, Grindrod Mews, 106 Victoria Embankment, Durban Central, South Africa"
+facility::ce0c0a895691,Headquarter,Headquarter,China,,31.862912499722917,120.51564576767127,"No. 9 Yangjin Road, Yangshe Town, Zhangjiagang City, Jiangsu Prov., China"
+facility::ce1ead06fcee,Mahindra Reva Electric,Electric car plant,India,Electric car producer,12.8097361,77.6615031,"Bommasandra, Bangalore, India"
+facility::ce52f5301f3b,Bosch India,Bosch India,India,Battery producer,12.946575305213484,77.60685629070473,"No 3000 Hosur Road, Adugodi 560 030 Bengaluru, India"
+facility::d24086fc9154,Headquarter,Headquarter,Hong Kong,,22.28003447460711,114.16403310916446,"Unit 5, 45/F Far East Finance Ctr 16 Harcourt Rd Admiralty, Hong Kong"
+facility::d29daa0fd73e,Sicomines Sx/Ew,Smelter,Democratic Republic of the Congo,,-10.7211014,25.3673565,Kolwezi_-_Lualaba_-_DRC
+facility::d43072446dba,Jingmen,Precursor plant,China,Precursor producer,30.9485619,112.2007658,Jingmen_-_Hubei_-_China
+facility::d49204bf1e15,Guangdong & Foshan Sanshui Bangpu Recycling Technology Co. Ltd.,Cathode plant,China,Cathode producer,23.2557,113.0138,Sanshui*_-_Foshan_-_Guandong_-_China
+facility::d537b3aa98ba,Headquarter,Headquarter,China,Battery producer,30.28060029,120.0614164,"Building C No.822 Wen'er West Road, Hangzhou, Zhejiang Province, China"
+facility::d5525cc2ed6d,Kyushu Plant,Electric Car Plant,Japan,Battery producer,33.756775,130.6373098,Miyawaka_-_Fukuoka_-_Japan
+facility::d70ad6574758,Norilsk Nickel Russia,Nornickel’s Zapolyarny Concentrator,Russia,,69.3434471161431,88.21065554246611,"Gvardeyskaya Ploshchad', 2, Norilsk, Krasnoyarsk Krai, Russia"
+facility::d7b0f4eea525,Kamenz Accumotive,Battery pack plant,Germany,Battery producer,51.2978657,14.0965624,Kamenz_-_Germany
+facility::d7e406f7bb16,Headquarter,Headquarter,Switzerland,,47.1804801787744,8.518586169823491,"AG Baarerstrasse 125 6300 Zug, Switzerland"
+facility::d7e62d1d2f88,Headquarter,Headquarter,Japan,Battery producer,35.68332643307531,139.7547063508118,Japan
+facility::d85ef3daf0c5,Ganzhou,Battery plant,China,Battery producer,25.8402513,114.8478945,"Jinling West Road, Economic Development Zone, Ganzhou Jiangxi Province, China"
+facility::d8eec6407909,Headquarter,Headquarter,China,,28.21640599,112.88909506,"No. 820, Guyuan Road, Xiangjiang New District, Changsha"
+facility::dba09930ba6e,LGES Seoul Headquarter,Headquarter,South Korea,Cathode producer,37.52675793172897,126.92713998639883,"Yeouido-dong, Yeongdeungpo District, Seoul, South Korea"
+facility::dc5aa35c5d36,Dadong,Electric car plant,China,Electric car producer,41.8455888,123.5256685,Dadong_-_Shengyang_-_Lioning_-_China
+facility::dd9c43b80812,Mine,Mine,Democratic Republic of the Congo,,-11.0956079,26.1759781,"Kambove, Haut-Katanga"
+facility::de283113119a,LGES Wuxi,Cathode plant,China,Cathode producer,31.5407608,120.3553577,"Xinwu, Wuxi, Jiangsu, China"
+facility::df2503f9b04d,Headquarter,Headquarter,China,Electric car producer,30.27208655,119.9619394,"Room 606, Building A6, Cainiao Zhigu Industrial Park, No. 2-150 Yunlian Road, Yuhang Street, Yuhang District, Hangzhou"
+facility::df397c4c4b72,Headquarter,Headquarter,United Arab Emirates,Commodity trader,24.983602749562074,55.09387916138412,"Dubai, United Arab Emirates"
+facility::e0062fcb7ab1,Dar es Salaam,Warehouse,Tanzania,Commodity trader,-6.834756303,39.23761078,Dar es Salaam_-_Dar es Salaam_-_Tanzania
+facility::e094bb7d5c7e,China Headquarter,Headquarter,China,Precursor producer,28.93748873424916,118.88462569627421,Quzhou Green Industry Clustering District
+facility::e14208acc005,Headquarter,Headquarter,USA,Electric car producer,37.47071104,-121.9371853,"48016 Fremont Blvd, Fremont, CA 94538, United States"
+facility::e201153d9994,Headquarter,Headquarter,France,Electric car producer,48.83153099455228,2.228313535397365,"13 /15 Quai Alphonse le Gallo, 92100 Boulogne-Billancourt, France"
+facility::e2109571f3c5,Hong Kong Headquarter,Headquarter,Hong Kong,Commodity trader,22.28669,114.192,"Causeway Bay, Hong Kong"
+facility::e505f5cd30b8,Komárom,Battery Cell Plant,Hungary,Battery producer,47.7388648,8.0643392,Komárom_-_Komárom-Esztergom County_-_Hungary
+facility::e50a7a902592,SK Battery America,Battery Cell Plant,USA,Battery producer,34.239378,-83.483446,Jackson County_-_Georgia_-_USA
+facility::e659938bf277,Headquarter,Headquarter,Germany,Battery producer,48.78612105,9.06340681,"Robert-Bosch-Platz 1,70839 Gerlingen-Schillerhöhe, Germany"
+facility::e7b90f709345,Daegu,Cathode plant,South Korea,Cathode producer,35.826254,128.5156295,Dalseo-Gu_-_Daegu_-_South Korea
+facility::e8c12ea5567e,Rubamin Main Facility,Rubamin Main Facility,Democratic Republic of the Congo,,-10.953065795960349,26.65482656755261,"26-27, Route Kambove, Commune de Panda, Likasi, Haut-Katanga, DR Congo"
+facility::e989062c404a,Suwon Headquarter,Headquarter,South Korea,,37.257286788889395,127.05209108516446,"129 Samsung-ro, Yeongtong-gu, Suwon"
+facility::ea3ee8b44f18,LGES Seoul Headquarter,Battery cell plant,South Korea,Battery producer,37.52675793172897,126.92713998639883,"Yeouido-dong, Yeongdeungpo District, Seoul, South Korea"
+facility::ea92458b6145,Headquarter,Headquarter,Hong Kong,,22.27862957370601,114.17765016351262,"FLAT/RM A 12/F, ZJ 300, 300 Lockhart Rd, Wan Chai, Hong Kong"
+facility::eaa2f4141329,Headquarter,Headquarter,Zimbabwe,,-17.832873288639544,31.085582404891024,"MMCZ Building, 90 Mutare Road, MMCZ Building, Msasa, Harare, Zimbabwe"
+facility::eacba90aa737,Ningde Headquarter,Battery cell plant,China,,26.7332864,119.5645726,Ningde_-_Fujian China
+facility::ed22d9dd3a3f,Headquarter,Headquarter,United Kingdom,,51.51674104144608,-0.13882351809486845,"31-32 Eastcastle St, London W1W 8DN"
+facility::ed3197a805f7,Ningde Headquarter,Headquarter,China,Battery producer,26.7332864,119.5645726,Ningde_-_Fujian_-_China
+facility::ed356534fe9a,Headquarter,Headquarter,Canada,Electric car producer,49.25856051,-122.9850167,"5491 Regent St unit 303 Burnaby, BC V5C 6C8"
+facility::ee2d96164de1,Headquarter,Headquarter,UK,,51.724733999944284,-0.031635606172405295,"14 Ottawa Court, Broxbourne, Hertfordshire, EN10 6FL, UK"
+facility::ee48d6760eff,Headquarter,Headquarter,China,Commodity trader,39.93872426,116.42619886,"No 1, Dongzhimen South Street Raffles City Beijing Office Tower Dongcheng District Beijing , 100007"
+facility::ee70cb9c4db9,BYD Headquarter,Battery cell plant,China,Battery producer,22.6792536,114.3588666,Pingshan_-_Shenzen_-_Guangdong_-_China
+facility::ef440e784f26,Headquarter,Headquarter,Hong Kong,Commodity trader,22.278537399849885,114.16921628827086,"12th Floor, 3 Lockhart Road, Wan Chai, Hong Kong"
+facility::ef7a9d2f5985,Anting,Automobile Plant,China,Battery producer,31.2945845,121.1806224,Anting_-_Shanghai_-_China
+facility::f0ba7f071f30,Mine,Mine,Democratic Republic of the Congo,,-10.671023292373581,25.35486904048847,"Kolwezi, Lualaba"
+facility::f14dc3f87caa,Missouri Cobalt,Refinery,United States,,38.00968947270487,-90.40103428272784,"1050 Madison 263, Fredericktown, MO 63645"
+facility::f1c7d6cb53a3,Mine,Mine,Democratic Republic of the Congo,,-10.6628,25.5704,Luilu
+facility::f26aa83d21c3,LGES Ochang Energy Plant,Battery cell plant,South Korea,Battery producer,36.6957236,127.4152689,"29 Gwahaksaneop 3-ro, Oksan-myeon, Cheongwon-gun, Chungcheongbuk-do, South Korea"
+facility::f2ed5b9113db,Headquarter,Headquarter,Hong Kong,,22.28710831752307,114.15176057092351,"Toi Building, 137-139 Connaught Road Central, Sheung Wan, Hong Kong"
+facility::f40abe64dcaa,Electra,Refinery,Canada,Refiner,47.40851311,-79.65961339,Cobalt_-_Ontario_-_Canada
+facility::f411bb877c03,Ganzhou,Battery plant,China,,25.8402513,114.8478945,"Jinling West Road, Economic Development Zone, Ganzhou Jiangxi Province, China"
+facility::f468196e4a3d,Headquarter,Headquarter,Australia,Electric car producer,-31.95374148,115.8556087,"Level 48, 152-158 St Georges Terrace, Perth, Western Australia 6000, Australia"
+facility::f497cf65f904,Headquarter,Headquarter,China,,24.47751027,118.18424952,"21-22/F, Bldg A, Tefang Center, No.81, Zhanhong Road, Xiamen"
+facility::f5a24b24d715,Maubeuge Plant,Electric car plant,France,Electric car producer,50.2715466,3.9078265,Maubeuge_-_Nord_-_France
+facility::f5b822e9686f,SCUD Group Limited,Headquarter,China,Battery producer,26.00836640344795,119.42637137201473,"SCUD Industrial Park Fuzhou Pilot Free Trade Zone No. 98 Jiangbin East Avenue Mawei District, Fuzhou Fujian Province, China"
+facility::f63c3cac6a9c,Headquarter,Headquarter,China,,30.50535598,114.15953261,"No.1 Dongfeng Avenue, Caidian District, Wuhan City, Hubei Province"
+facility::f6e931a1efb9,Headquarter,Headquarter,Hong Kong,,22.28810734492507,114.21186331257269,"Suite 703, 7/F, Chinachem Exchange Square, 1 Hoi Wan Street, Qua, Hong Kong"
+facility::f7ab4aa3ee60,Kokomo,Electric car plant,USA,Electric car producer,40.51522630895611,-86.1175954,"2644 N. 50 East, Southeast of the Kokomo Engine Plant, USA"
+facility::f80398abebe5,Headquarter,Headquarter,China,Electric scooter producer,28.76028,120.0915294,"Jinyun County, Lishui, Zhejiang, China"
+facility::f87306d48356,Volvo Cars Ghent,Electric car plant,Belgium,Electric car producer,51.1022173,3.7521812,Ghent_-_Belgium
+facility::f88fd012a518,Precursor Plant,Precursor Plant,China,Precursor producer,38.5075159,102.205662,Jinchang_-_Gansu_-_China
+facility::f9746ab51a27,Smyrna,Electric car plant,United States,Electric car producer,35.9662105,-86.4891278,Smyrna_-_Rutherford County_-_Tennessee_-_USA
+facility::f9a5d91a7fc2,Headquarter,Headquarter,China,Cathode producer,39.0738,117.0842,"Xiqing District, Tianjin, China"
+facility::fb0bfbda3681,Kamoto,Mine,Democratic Republic of the Congo,Commodity trader,-10.714798,25.385542,Musonoi
+facility::fb5e1df42a0b,Headquarter,Headquarter,Austria,Electric car producer,48.09753585,13.15890523,"Betriebsgebiet Süd, Stallhofnerstraße 3, 5230 Mattighofen, Austria"
+facility::fb651e0c453a,Bremen,Electric car plant,Germany,Battery producer,53.0579121,8.9035404,Hemelingen_-_Bremen_-_Germany
+facility::fc5da2abaedd,Kokkola,Refinery Precursor Plant,Finland,Refiner,63.861931,23.0511864,Kokkola_-_Central Ostrobothnia_-_Finland
+facility::fc64d556429b,Headquarter,Headquarter,Taiwan,Electric car producer,25.04630717,121.3618927,"No. 33, Dinghu Rd, Guishan District, Taoyuan City, Taiwan 333"
+facility::fc99d4bd9269,Headquarter,Headquarter,France,Battery producer,48.8619051,2.22350966,"30 Rue Pasteur, 92150 Suresnes, France"
+facility::fcd389c3488d,Headquarter,Headquarter,China,Commodity trader,39.8858429014947,116.35221999640311,"56 Nanxianli Xicheng District Beijing, 100032 China"
+facility::fcdc9037b0d3,Headquarter,Headquarter,Vietnam,,21.024872340995415,105.83571241472949,"Đống Đa, Hanoi, Vietnam"
+facility::fd64912cb147,BMW Group Competence Centre e-drive production,Battery pack plant,Germany,Electric car producer,48.6458413,12.458664,Dingolfing_-_Bavaria_-_Germany
+facility::fd6a9e293482,Headquarter,Headquarter,China,Cathode producer,40.19869992,116.23710014,"No.18 Baifuquan Road, Changping District, Beijing, China"
+facility::fddd2b606ed3,Nevada Gigafactory 1,Automobile Plant,USA,Battery producer,39.5374355,-119.4390571,Nevada Gigafactory 1_-_Clark_-_Nevada_-_USA
+facility::fe876db4a1de,Headquarter,Headquarter,Hong Kong,,22.284688399806743,114.15469708032876,"38/F, The Center, 99 Queen's Road Central, Central, Hong Kong"
+facility::fee4282fbe76,Facility,Facility,Singapore,,1.2844490228093792,103.85244529981156,"16 Collyer Quay, #33-02, Singapore 049318"
+facility::ff15f670d6ce,Headquarter,Headquarter,South Korea,,35.998698091933726,129.38288899435915,"6261, Donghaean-ro, Nam-gu, Pohang-si, Gyeongsangbuk-do, the Republic of Korea"
+facility::ff822d12afc0,Murrin Murrin Nickel Cobalt Plant,Mine,Australia,,-28.772050602525788,121.89427221385985,"Laverton WA 6440, Australie"

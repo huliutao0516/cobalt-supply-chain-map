@@ -1,0 +1,51 @@
+node_id,name
+chain_link::artisanal-mining-to-artisanal-mining,Artisanal mining to Artisanal mining
+chain_link::artisanal-mining-to-artisanal-processing,Artisanal mining to Artisanal processing
+chain_link::artisanal-mining-to-smelting,Artisanal mining to Smelting
+chain_link::artisanal-processing-to-artisanal-processing,Artisanal processing to Artisanal processing
+chain_link::artisanal-processing-to-smelting,Artisanal processing to Smelting
+chain_link::artisanal-processing-to-trading,Artisanal processing to Trading
+chain_link::battery-cell-manufacturing-to-battery-cell-manufacturing,Battery cell manufacturing to Battery cell manufacturing
+chain_link::battery-cell-manufacturing-to-battery-pack-manufacturing,Battery cell manufacturing to Battery pack manufacturing
+chain_link::battery-cell-manufacturing-to-electric-car-manufacturing,Battery cell manufacturing to Electric car manufacturing
+chain_link::battery-cell-manufacturing-to-electric-scooter-manufacturing,Battery cell manufacturing to Electric scooter manufacturing
+chain_link::battery-pack-manufacturing-to-battery-cell-manufacturing,Battery pack manufacturing to Battery cell manufacturing
+chain_link::battery-pack-manufacturing-to-battery-pack-manufacturing,Battery pack manufacturing to Battery pack manufacturing
+chain_link::battery-pack-manufacturing-to-electric-car-manufacturing,Battery pack manufacturing to Electric car manufacturing
+chain_link::cathode-manufacturing-to-battery-cell-manufacturing,Cathode manufacturing to Battery cell manufacturing
+chain_link::cathode-manufacturing-to-battery-pack-manufacturing,Cathode manufacturing to Battery pack manufacturing
+chain_link::cathode-manufacturing-to-cathode-manufacturing,Cathode manufacturing to Cathode manufacturing
+chain_link::cathode-manufacturing-to-electric-car-manufacturing,Cathode manufacturing to Electric car manufacturing
+chain_link::electric-car-manufacturing-to-electric-car-manufacturing,Electric car manufacturing to Electric car manufacturing
+chain_link::electric-scooter-manufacturing-to-electric-car-manufacturing,Electric scooter manufacturing to Electric car manufacturing
+chain_link::mining-to-artisanal-processing,Mining to Artisanal processing
+chain_link::mining-to-battery-cell-manufacturing,Mining to Battery cell manufacturing
+chain_link::mining-to-precursor-manufacturing,Mining to Precursor manufacturing
+chain_link::mining-to-refining,Mining to Refining
+chain_link::mining-to-smelting,Mining to Smelting
+chain_link::mining-to-trading,Mining to Trading
+chain_link::precursor-manufacturing-to-battery-cell-manufacturing,Precursor manufacturing to Battery cell manufacturing
+chain_link::precursor-manufacturing-to-battery-pack-manufacturing,Precursor manufacturing to Battery pack manufacturing
+chain_link::precursor-manufacturing-to-cathode-manufacturing,Precursor manufacturing to Cathode manufacturing
+chain_link::recycling-to-battery-cell-manufacturing,Recycling to Battery cell manufacturing
+chain_link::recycling-to-battery-pack-manufacturing,Recycling to Battery pack manufacturing
+chain_link::recycling-to-electric-car-manufacturing,Recycling to Electric car manufacturing
+chain_link::recycling-to-recycling,Recycling to Recycling
+chain_link::recycling-to-trading,Recycling to Trading
+chain_link::refining-to-battery-cell-manufacturing,Refining to Battery cell manufacturing
+chain_link::refining-to-battery-pack-manufacturing,Refining to Battery pack manufacturing
+chain_link::refining-to-cathode-manufacturing,Refining to Cathode manufacturing
+chain_link::refining-to-precursor-manufacturing,Refining to Precursor manufacturing
+chain_link::refining-to-refining,Refining to Refining
+chain_link::refining-to-trading,Refining to Trading
+chain_link::smelting-to-battery-cell-manufacturing,Smelting to Battery cell manufacturing
+chain_link::smelting-to-battery-pack-manufacturing,Smelting to Battery pack manufacturing
+chain_link::smelting-to-cathode-manufacturing,Smelting to Cathode manufacturing
+chain_link::smelting-to-precursor-manufacturing,Smelting to Precursor manufacturing
+chain_link::smelting-to-refining,Smelting to Refining
+chain_link::smelting-to-smelting,Smelting to Smelting
+chain_link::smelting-to-trading,Smelting to Trading
+chain_link::trading-to-battery-cell-manufacturing,Trading to Battery cell manufacturing
+chain_link::trading-to-battery-pack-manufacturing,Trading to Battery pack manufacturing
+chain_link::trading-to-refining,Trading to Refining
+chain_link::trading-to-trading,Trading to Trading

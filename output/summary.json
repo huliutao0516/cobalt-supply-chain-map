@@ -1,0 +1,21 @@
+{
+  "companies": 350,
+  "facilities": 394,
+  "countries": 38,
+  "commodities": 53,
+  "chain_steps": 13,
+  "chain_links": 50,
+  "transactions": 509,
+  "sources": 222,
+  "relationships": 6537,
+  "path_matrix_rows": 63143,
+  "path_matrix_columns": 36,
+  "node_coordinates": 304,
+  "path_matrix_exact_coordinates": 479888,
+  "path_matrix_centroid_coordinates": 0,
+  "path_matrix_missing_coordinates": 0,
+  "preview_total_companies": 244,
+  "preview_total_transactions": 509,
+  "preview_default_depth": 3,
+  "site_files": 3
+}

@@ -1,0 +1,54 @@
+node_id,name,commodity_types,direction_tags
+commodity::battery-cells,Battery cells,Battery cells;Recycled batteries,input;output
+commodity::battery-packs,Battery packs,Battery packs;Recycled batteries,input;output
+commodity::bmw-ix3-bmw-5,BMW iX3 BMW 5,Car,output
+commodity::bmw-x5-bmw-x3-hybrid,BMW X5 BMW X3 hybrid,Car,output
+commodity::cam-cathode-active-materials,CAM (Cathode active materials),Cathodes,input
+commodity::car,Car,Battery packs;Car,input;output
+commodity::cathode-manufacturing,Cathode manufacturing,Cathodes,input;output
+commodity::cathodes,Cathodes,Cathodes,input;output
+commodity::cobalt,Cobalt,Cobalt,input
+commodity::cobalt-and-iron,Cobalt and iron,Cobalt and iron,input
+commodity::cobalt-hydroxide,Cobalt hydroxide,Cobalt hydroxide;Processed cobalt;Refined cobalt,input;output
+commodity::cobalt-hydroxide-from-reprocessed-copper-cobalt-tailings,Cobalt hydroxide from reprocessed copper-cobalt tailings,Processed cobalt,input;output
+commodity::cobalt-laterite,Cobalt laterite,Cobalt laterite;Deposit Co,input
+commodity::cobalt-mixed-sulfide,Cobalt mixed sulfide,Refined cobalt,input;output
+commodity::cobalt-precipitates,Cobalt precipitates,Cobalt precipitates,input
+commodity::cobalt-sulfate,Cobalt sulfate,Processed cobalt;Refined cobalt,input;output
+commodity::copper-and-cobalt,Copper and cobalt,Copper and cobalt,input
+commodity::copper-cobalt,Copper/Cobalt,Processed cobalt,input
+commodity::ctp-license,CTP license,Battery cells,input
+commodity::electric-scooter,Electric scooter,Electric scooter,output
+commodity::electric-scooters,Electric scooters,Electric scooters,input;output
+commodity::electro-cobalt,Electro-cobalt,Refined cobalt,input;output
+commodity::hev-s-es-rx-nx-ux,HEV's (ES-RX-NX-UX),Car,output
+commodity::hybrid-plug-in,Hybrid plug-in,Car,output
+commodity::i3-i3s-i8-coupe-i8-roadster,i3 i3s i8 Coupé i8 Roadster,Car,output
+commodity::lithium-batteries,Lithium batteries,Battery packs,input;output
+commodity::lithium-ion-batteries,Lithium-ion batteries,Recycled batteries,input
+commodity::model-3,Model 3,Car,output
+commodity::model-3-model-y,Model 3 Model Y,Car,output
+commodity::model-s-model-x-model-3-model-y,Model S Model X Model 3 Model Y,Car,output
+commodity::nca-battery-cells,NCA battery cells,Battery cells,input;output
+commodity::nca-battery-packs,NCA battery packs,Battery packs,input;output
+commodity::nca-cathodes,NCA cathodes,Cathodes,input;output
+commodity::nca-precursors,NCA precursors,Precursor,input;output
+commodity::nca87-and-nca91-battery-cells,NCA87 and NCA91 battery cells,Battery cells,output
+commodity::nickel-and-cobalt,Nickel and cobalt,,input
+commodity::nmc-batteries,NMC batteries,Battery packs,output
+commodity::nmc-battery-cells,NMC battery cells,Battery cells,input;output
+commodity::nmc-battery-cells-nca-battery-cells,NMC battery cells NCA battery cells,Battery cells,input;output
+commodity::nmc-battery-packs,NMC battery packs,Battery packs,input;output
+commodity::nmc-cathodes,NMC cathodes,Battery packs;Cathodes,input;output
+commodity::nmc-cathodes-nca-cathodes,NMC cathodes NCA cathodes,Cathodes,output
+commodity::nmc-precursors,NMC precursors,Precursor,input;output
+commodity::nmc-precursors-nca-precursors,NMC precursors NCA precursors,Precursor,input;output
+commodity::powder-briquette,Powder Briquette,Processed cobalt,output
+commodity::precursor,Precursor,Precursor,input;output
+commodity::processed-cobalt,Processed cobalt,Processed cobalt;Recycled batteries;Refined cobalt,input;output
+commodity::recycled-batteries,Recycled batteries,Recycled batteries,output
+commodity::recycled-battery-grade-lithium-nickel-and-cobalt,"Recycled battery grade lithium, nickel and cobalt",Recycled batteries,input
+commodity::recycled-cobalt,Recycled cobalt,Recycled batteries;Recycled cobalt,input;output
+commodity::refined-cobalt,Refined cobalt,Refined cobalt,output
+commodity::various-copper-products-e-g-blister-copper-anode-copper-cathode-copper,Various copper products (e.g. blister copper / anode copper / cathode copper),Processed cobalt,input;output
+commodity::volvo-xc40-others-to-follow,Volvo XC40 (others to follow),Car,output

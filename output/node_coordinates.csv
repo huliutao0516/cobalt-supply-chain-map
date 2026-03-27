@@ -1,0 +1,305 @@
+company,stage,country,longitude,latitude,precision
+Milele,source,Democratic Republic of the Congo,26.181198,-10.901724,exact_company
+Minière de Kasombo (MIKAS),Artisanal processing,Democratic Republic of the Congo,26.623438,-10.889901,exact_stage
+Minière de Kasombo (MIKAS),Smelting,Democratic Republic of the Congo,26.623438,-10.889901,exact_stage
+Huayou Cobalt,Trading,Hong Kong,114.192,22.28669,exact_stage
+Huayou Cobalt,Refining,China,120.5672,30.613538,exact_stage
+Huayou Cobalt,Precursor manufacturing,China,112.33454,28.563726,exact_stage
+BASF,Cathode manufacturing,China,111.526055,27.381365,exact_stage
+Panasonic Holdings Corporation,Battery cell manufacturing,China,121.774683,39.166277,exact_stage
+Panasonic Holdings Corporation,Battery pack manufacturing,Japan,135.567713,34.726771,exact_stage
+NIU Technologies,Electric car/scooter manufacturing,China,116.363194,40.081297,exact_stage
+Okai,Electric car/scooter manufacturing,China,120.091529,28.76028,exact_stage
+Yadea Group Holdings Ltd.,Electric car/scooter manufacturing,China,120.492521,31.597311,exact_stage
+Tesla Inc.,Battery pack manufacturing,China,121.769127,30.874575,exact_stage
+Tesla Inc.,Electric car/scooter manufacturing,China,121.769127,30.874575,exact_stage
+Toyota Motor Corporation,Battery pack manufacturing,Japan,130.63731,33.756775,exact_stage
+Toyota Motor Corporation,Electric car/scooter manufacturing,USA,-84.529367,38.256677,exact_stage
+CATL (Contemporary Amperex Technology Co.),Cathode manufacturing,China,112.661043,28.269472,exact_stage
+CATL (Contemporary Amperex Technology Co.),Battery cell manufacturing,China,119.564573,26.733286,exact_stage
+BAIC Group,Battery pack manufacturing,China,116.405404,39.856408,exact_stage
+Mercedes-Benz,Electric car/scooter manufacturing,Germany,8.90354,53.057912,exact_stage
+BMW Group,Battery pack manufacturing,United States,-82.182014,34.895468,exact_stage
+BMW Group,Electric car/scooter manufacturing,Germany,11.560158,48.176988,exact_stage
+Bosch Ltd. (BOSCH),Battery pack manufacturing,Germany,9.063407,48.786121,exact_stage
+Peugeot Scooters,Electric car/scooter manufacturing,France,6.832127,47.443324,exact_stage
+SUN Mobility,Battery pack manufacturing,India,77.706797,12.977167,exact_stage
+Terra Motors Corporation,Electric car/scooter manufacturing,Japan,139.757389,35.666338,exact_stage
+Geely group,Battery pack manufacturing,China,121.257177,30.32902,exact_stage
+Geely group,Electric car/scooter manufacturing,China,121.257177,30.32902,exact_stage
+Hyundai Motor Group,Battery pack manufacturing,South Korea,129.382209,35.535762,exact_stage
+Hyundai Motor Group,Electric car/scooter manufacturing,South Korea,129.382209,35.535762,exact_stage
+JV Company,Battery pack manufacturing,China,121.257177,30.32902,exact_stage
+LG Energy Solution (LGES),Battery pack manufacturing,South Korea,126.92714,37.526758,exact_stage
+Ford Motor Company,Electric car/scooter manufacturing,China,106.588687,29.680752,exact_stage
+General Motors Co.,Electric car/scooter manufacturing,United States,-83.260932,42.715625,exact_stage
+Honda Motor Co. Ltd.,Electric car/scooter manufacturing,Japan,139.723794,35.672388,exact_stage
+Mahindra Group,Battery pack manufacturing,India,77.661503,12.809736,exact_stage
+Mahindra Group,Electric car/scooter manufacturing,USA,-121.937185,37.470711,exact_stage
+Mercedes-Benz,Battery pack manufacturing,Germany,14.096562,51.297866,exact_stage
+Renault Group,Battery pack manufacturing,France,1.048,49.315496,exact_stage
+Renault Group,Electric car/scooter manufacturing,France,2.228314,48.831531,exact_stage
+Volkswagen Group,Battery pack manufacturing,Germany,12.488377,50.791095,exact_stage
+Volkswagen Group,Electric car/scooter manufacturing,Germany,12.488377,50.791095,exact_stage
+Volvo Car Group,Battery pack manufacturing,Belgium,3.752181,51.102217,exact_stage
+Volvo Car Group,Electric car/scooter manufacturing,Sweden,11.849646,57.726121,exact_stage
+Renault–Nissan–Mitsubishi Alliance,Battery pack manufacturing,United Kingdom,-1.466399,54.918991,exact_stage
+Renault–Nissan–Mitsubishi Alliance,Electric car/scooter manufacturing,United States,-86.489128,35.966211,exact_stage
+SAIC Motor,Battery pack manufacturing,China,121.189688,31.278512,exact_stage
+SAIC Motor,Electric car/scooter manufacturing,China,121.189688,31.278512,exact_stage
+Dangsheng Technology,Cathode manufacturing,China,116.285811,39.819007,exact_stage
+Samsung SDI,Battery cell manufacturing,Hungary,19.167547,47.679355,exact_stage
+Huayou Cobalt,Cathode manufacturing,China,120.355358,31.540761,exact_stage
+BYD Co. Ltd.,Battery cell manufacturing,China,114.358867,22.679254,exact_stage
+LG Energy Solution (LGES),Battery cell manufacturing,South Korea,126.92714,37.526758,exact_stage
+Tesla Inc.,Battery cell manufacturing,USA,-97.618947,30.222882,exact_stage
+L&F,Cathode manufacturing,South Korea,128.515629,35.826254,exact_stage
+LG Energy Solution (LGES),Cathode manufacturing,USA,-86.069464,42.756406,exact_stage
+POSCO,Cathode manufacturing,South Korea,127.601159,34.89729,exact_stage
+"ProLogium Technology Co., Ltd.",Battery cell manufacturing,Taiwan,121.242395,24.968254,exact_stage
+"ProLogium Technology Co., Ltd.",Battery pack manufacturing,Taiwan,121.242395,24.968254,exact_stage
+"Gogoro, Inc.",Electric car/scooter manufacturing,Taiwan,121.361893,25.046307,exact_stage
+Ronbay Technology Battery,Cathode manufacturing,China,121.166468,30.024353,exact_stage
+Farasis Energy,Battery cell manufacturing,China,114.847894,25.840251,exact_stage
+Miringi,source,Democratic Republic of the Congo,26.175978,-11.095608,exact_company
+Congo Dongfang Mining (CDM),source,Democratic Republic of the Congo,27.478643,-11.585547,exact_company
+Congo Dongfang Mining (CDM),Smelting,Democratic Republic of the Congo,27.478643,-11.585547,exact_stage
+Dinamitiere,source,Democratic Republic of the Congo,25.380275,-10.747184,exact_company
+Tengyuan Cobalt & Copper Resources (TCC),Artisanal processing,Democratic Republic of the Congo,25.481988,-10.635985,exact_stage
+Tengyuan Cobalt Industrial Co.,Smelting,China,115.069227,25.912154,exact_stage
+Ganzhou Tengyuan Cobalt Industrial Co Ltd,Refining,China,115.069227,25.912154,exact_stage
+Ganzhou Tengyuan Cobalt Industrial Co Ltd,Precursor manufacturing,China,115.069227,25.912154,exact_stage
+XTC New Energy Materials,Cathode manufacturing,China,117.974886,24.469438,exact_stage
+Drain UCK,source,Democratic Republic of the Congo,25.454012,-10.676909,exact_company
+Goma2,source,Democratic Republic of the Congo,25.800668,-10.625469,exact_company
+Kamilombe,source,Democratic Republic of the Congo,25.407748,-10.739316,exact_company
+Kamilombe2,source,Democratic Republic of the Congo,25.378621,-10.749681,exact_company
+Kamoto Copper Company (KCC),source,Democratic Republic of the Congo,25.388308,-10.683129,exact_company
+Kamoto Copper Company (KCC),Smelting,Democratic Republic of the Congo,25.388308,-10.683129,exact_stage
+Glencore,Trading,Switzerland,8.527233,47.18132,exact_stage
+GEM (Green Eco-manufacture Hi-tech),Refining,China,120.080289,32.167257,exact_stage
+GEM (Green Eco-manufacture Hi-tech),Precursor manufacturing,China,112.200766,30.948562,exact_stage
+GEM (Green Eco-manufacture Hi-tech),Cathode manufacturing,South Korea,127.449407,36.73104,exact_stage
+SK Innovation,Battery cell manufacturing,South Korea,126.452808,36.853648,exact_stage
+Xiamen Tungsten,Cathode manufacturing,China,117.979519,24.466685,exact_stage
+Umicore S.A.,Refining,Finland,23.051186,63.861931,exact_stage
+Umicore S.A.,Precursor manufacturing,Finland,23.051186,63.861931,exact_stage
+Umicore S.A.,Cathode manufacturing,South Korea,127.113754,36.837631,exact_stage
+Automotive Cells Company (ACC),Battery cell manufacturing,France,2.346429,48.868152,exact_stage
+PowerCo,Battery cell manufacturing,Germany,10.444951,52.1839,exact_stage
+Karajipopo,source,Democratic Republic of the Congo,26.693161,-10.941506,exact_company
+Metal Mines Sarl,Artisanal processing,Democratic Republic of the Congo,26.787897,-10.99609,exact_stage
+"Nanjing Hanrui Cobalt Industry (Hong Kong) Co., Ltd.",Smelting,China,118.799633,31.93197,exact_stage
+Kasulo CDM,source,Democratic Republic of the Congo,25.488915,-10.701556,exact_company
+Metalkol Roan Tailings Reclamation (RTR),source,Democratic Republic of the Congo,25.425229,-10.63904,exact_company
+Metalkol Roan Tailings Reclamation (RTR),Smelting,Democratic Republic of the Congo,25.425229,-10.63904,exact_stage
+China Railway Resources Group,Trading,China,116.276358,39.916058,exact_stage
+Telf AG,Trading,Switzerland,8.944473,46.00528,exact_stage
+Honda Motor China Investment Co. Ltd.,Electric car/scooter manufacturing,China,116.461018,39.952491,exact_stage
+Stellantis,Battery pack manufacturing,The Netherlands,4.698317,52.29517,exact_stage
+LG Chem,Battery pack manufacturing,South Korea,126.929286,37.527979,exact_stage
+"Segway-Ninebot / Nine Robot Co., Ltd.",Electric car/scooter manufacturing,China,116.355666,40.048102,exact_stage
+Chaowei Power Group Co. Ltd.,Battery cell manufacturing,China,119.90706,30.978329,exact_stage
+HELLA,Battery pack manufacturing,China,121.598891,31.182309,exact_stage
+Minière de Kasombo (MIKAS),source,Democratic Republic of the Congo,26.623438,-10.889901,exact_company
+Mutanda Mining (MUMI),source,Democratic Republic of the Congo,25.798821,-10.796966,exact_company
+Mutanda Mining (MUMI),Smelting,Democratic Republic of the Congo,25.798821,-10.796966,exact_stage
+Shikiya Bintu,source,Democratic Republic of the Congo,25.708239,-10.762903,exact_company
+Sicomines,source,Democratic Republic of the Congo,25.367356,-10.721101,exact_company
+Sicomines,Smelting,Democratic Republic of the Congo,25.367356,-10.721101,exact_stage
+Société Minière de Deziwa (SOMIDEZ),source,Democratic Republic of the Congo,25.763,-10.7891,exact_company
+Lualaba Copper Smelter,Smelting,Democratic Republic of the Congo,25.50571,-10.76589,exact_stage
+Xinyang Trading/Company,Trading,Hong Kong,114.169216,22.278537,exact_stage
+Tenke Fungurume Mining (TFM),source,Democratic Republic of the Congo,26.197843,-10.569381,exact_company
+Tenke Fungurume Mining (TFM),Smelting,Democratic Republic of the Congo,26.197843,-10.569381,exact_stage
+IXM SA,Trading,South Africa,28.053686,-26.111363,exact_stage
+Tshipuki,source,Democratic Republic of the Congo,25.439526,-10.732582,exact_company
+Usine à Cuivre de Kolwezi (Usine à Cuivre de Kolwezi (UCK)),source,Democratic Republic of the Congo,25.449934,-10.688442,exact_company
+ACE Green Recycling,source,Singapore,103.857676,1.300455,exact_company
+Compagnie Minière de Luisha (COMILU),source,Democratic Republic of the Congo,27.019028,-11.165914,exact_company
+Xiamen Tungsten,Battery cell manufacturing,China,118.18425,24.47751,exact_stage
+Gotion High tech Co Ltd,Battery pack manufacturing,China,117.3688,31.909302,exact_stage
+"Huizhou Yiwei Lithium Energy Co., Ltd. / EVE Energy Co., Ltd / 惠州亿纬锂能股份有限公司",Battery pack manufacturing,China,114.342754,23.043559,exact_stage
+Electra Battery Materials Corp,source,Canada,-79.659613,47.408513,exact_company
+KIMIN SAS (Kisanfu Mining SAS),source,Democratic Republic of the Congo,25.928137,-10.779617,exact_company
+Vin Metal Synergies Fzco,Trading,United Arab Emirates,55.093879,24.983603,exact_stage
+TRAXYS,Trading,China,116.426199,39.938724,exact_stage
+Kamoa Copper S.A.,source,Democratic Republic of the Congo,25.197483,-10.886631,exact_company
+BAIC Group,Electric car/scooter manufacturing,China,116.665474,39.654919,exact_stage
+"Jiangmen Fangyuan Metal Material Technology Co., Ltd.",Refining,China,113.088015,22.452621,exact_stage
+"Guangdong Fangyuan New Materials Group Co., Ltd.",Cathode manufacturing,China,113.097619,22.281101,exact_stage
+Envision AESC,Battery pack manufacturing,France,3.026539,50.353705,exact_stage
+La Compagnie Minière de Musonoie Global SAS (COMMUS),source,Democratic Republic of the Congo,25.456516,-10.727426,exact_company
+La Minière de Kalumbwe Myunga (MKM SAS),source,Democratic Republic of the Congo,25.918807,-10.777651,exact_company
+Li-Cycle Holdings Corp,source,Canada,-79.380394,43.639787,exact_company
+Lohum Cleantech,source,India,77.54947,28.429435,exact_company
+Managem,source,Morocco,-6.908125,30.517252,exact_company
+Glencore,Recycling,Switzerland,8.527233,47.18132,exact_stage
+Metal Mines Sarl,source,Democratic Republic of the Congo,26.787897,-10.99609,exact_company
+"L-H Battery Company, Inc.",Battery cell manufacturing,United States,-83.557792,39.653005,exact_stage
+Ultium Cells LLC,Battery cell manufacturing,USA,-80.850499,41.436581,exact_stage
+Ultium CAM,Cathode manufacturing,Canada,-73.575038,45.502351,exact_stage
+BAK Power Battery,Battery cell manufacturing,China,114.43455,22.623137,exact_stage
+China Electronics Technology Group Co. Ltd.,Battery cell manufacturing,China,117.07225,39.07416,exact_stage
+Coslight Technology International Group Co. Ltd.,Battery cell manufacturing,China,126.507016,45.691175,exact_stage
+NETC (New Energy Technology Co. Ltd.),Battery cell manufacturing,China,123.9572,41.8809,exact_stage
+Mopani Copper Mines plc,source,Zambia,28.205177,-12.830032,exact_company
+Société Minière du Katanga (SOMIKA),source,Democratic Republic of the Congo,27.284888,-11.593111,exact_company
+Société congolaise pour le traitement du terril de Lubumbashi (STL),source,Democratic Republic of the Congo,27.467858,-11.679936,exact_company
+Tengyuan Cobalt & Copper Resources (TCC),source,Democratic Republic of the Congo,25.481988,-10.635985,exact_company
+United States Strategic Metals,source,United States,-90.401034,38.009689,exact_company
+Wanbao Mining,source,China,116.35222,39.885843,exact_company
+Wanbao Mining,Smelting,China,116.35222,39.885843,exact_stage
+Coral Bay Nickel Corporation,source,Philippines,117.425356,8.558386,exact_company
+Harima Refinery,Refining,Japan,134.849089,34.718117,exact_stage
+Sumitomo Metal Mining,Precursor manufacturing,Japan,133.237722,33.948997,exact_stage
+Sumitomo Metal Mining,Cathode manufacturing,Japan,139.756184,35.663162,exact_stage
+Niihama Nickel Refinery,Refining,Japan,133.259193,33.960026,exact_stage
+Amperex Technology Limited (ATL),Battery pack manufacturing,Hong Kong,114.1074,22.373,exact_stage
+CALB Tech,Battery pack manufacturing,China,119.612622,31.687593,exact_stage
+Electra Battery Materials Corp,Refining,Canada,-79.659613,47.408513,exact_stage
+Marubeni,Trading,Japan,139.77619,35.904485,exact_stage
+China Molybdenum Co.,Refining,China,111.640336,33.787788,exact_stage
+CATL (Contemporary Amperex Technology Co.),Battery pack manufacturing,China,119.564573,26.733286,exact_stage
+B&M Science and Technology co.,Cathode manufacturing,China,117.0842,39.0738,exact_stage
+Cosmo Chemical Co Ltd,Cathode manufacturing,South Korea,129.3465,35.4192,exact_stage
+Hunan Shanshan Energy Technology Ltd,Cathode manufacturing,China,112.9007,28.2215,exact_stage
+Pulead Technology Industry Co,Cathode manufacturing,China,116.299,40.2079,exact_stage
+RiseSun MGL New Energy Technology Co Ltd,Cathode manufacturing,China,116.2371,40.1987,exact_stage
+Taganito HPAL Nickel Corporation,source,Philippines,125.812274,9.539653,exact_company
+Umicore S.A.,Smelting,Finland,23.051186,63.861931,exact_stage
+"Hunan Yacheng New Materials Co.,Ltd.",Battery cell manufacturing,China,112.586028,28.319497,exact_stage
+Jinchuan Technology,Battery cell manufacturing,China,102.180456,38.504813,exact_stage
+"Shanshan Co., Ltd.",Battery cell manufacturing,China,121.458808,29.834874,exact_stage
+Hunan Changyuan Lico Co,Cathode manufacturing,China,112.889095,28.216406,exact_stage
+Ningbo Ronbay New Energy,Cathode manufacturing,China,121.166468,30.024353,exact_stage
+"Jiangsu Tenpower Lithium Co., Ltd",Cathode manufacturing,China,120.568474,31.822591,exact_stage
+MMG,source,Democratic Republic of the Congo,27.5666,-11.3692,exact_company
+MMG,Smelting,Democratic Republic of the Congo,27.5666,-11.3692,exact_stage
+China Minmetals,Precursor manufacturing,China,112.9007,28.2215,exact_stage
+XTC New Energy Materials,Battery cell manufacturing,China,117.974886,24.469438,exact_stage
+"Beijing Easpring Material Technology Co., Ltd.",Precursor manufacturing,China,116.285811,39.819007,exact_stage
+Norilsk Nickel Harjavalta Oy,source,Finland,22.107272,61.325589,exact_company
+Norilsk Nickel Harjavalta Oy,Smelting,Russia,88.210656,69.343447,exact_stage
+Norilsk Nickel Harjavalta Oy,Refining,Finland,22.107272,61.325589,exact_stage
+Ruashi Mining,source,Democratic Republic of the Congo,27.553953,-11.611245,exact_company
+Ruashi Mining,Smelting,Democratic Republic of the Congo,27.553953,-11.611245,exact_stage
+Jinchuan Group Ltd,Precursor manufacturing,China,102.205662,38.507516,exact_stage
+BYD Co. Ltd.,Battery pack manufacturing,China,114.358867,22.679254,exact_stage
+Sunwoda Electronic Co Ltd,Battery pack manufacturing,China,117.409925,34.826804,exact_stage
+Dongfeng Motor Corporation,Electric car/scooter manufacturing,China,114.159533,30.505356,exact_stage
+Nissan Motor Co.,Electric car/scooter manufacturing,Japan,139.626067,35.463731,exact_stage
+"Zhejiang Jirun Automobile Co., Ltd",Electric car/scooter manufacturing,China,121.860915,29.913944,exact_stage
+Bridon,source,Democratic Republic of the Congo,25.451694,-10.691163,exact_company
+Chengtun Copper Resources,Artisanal processing,Democratic Republic of the Congo,25.473307,-10.621931,exact_stage
+Chengtun Copper Resources,Smelting,Democratic Republic of the Congo,25.473307,-10.621931,exact_stage
+Prosperous Ascent,Trading,China,116.360201,39.911124,exact_stage
+"Guizhou CNGR Resource Recycling Industry Development Co., Ltd.",source,China,109.007986,27.331829,exact_company
+EVelution Energy,Refining,United States,-114.649955,32.718536,exact_stage
+Kayebela,source,Democratic Republic of the Congo,25.775594,-10.64825,exact_company
+Managem,Precursor manufacturing,Morocco,-6.908125,30.517252,exact_stage
+Menuiserie,source,Democratic Republic of the Congo,25.452381,-10.68703,exact_company
+Trafigura Group Pte. Ltd.,Trading,Democratic Republic of the Congo,27.461691,-11.540455,exact_stage
+Rubamin SARL,Artisanal processing,Democratic Republic of the Congo,26.654827,-10.953066,exact_stage
+Rubamin SARL,Smelting,Democratic Republic of the Congo,26.654827,-10.953066,exact_stage
+Vulcanis LLP,Trading,UAE,55.484011,25.331218,exact_stage
+Rubamin SARL,Artisanal mining,Democratic Republic of the Congo,26.654827,-10.953066,exact_stage
+Mutoshi Mining,source,Democratic Republic of the Congo,25.527546,-10.685426,exact_company
+Power China International,source,China,116.322,39.931894,exact_company
+Ningbo Shanshan Co Ltd,Battery cell manufacturing,China,121.458808,29.834874,exact_stage
+Tulizembe/Tilwezembe,source,Democratic Republic of the Congo,25.692454,-10.798862,exact_company
+Vale S.A.,source,Canada,-79.242142,42.883133,exact_company
+Vale S.A.,Refining,Canada,-79.242142,42.883133,exact_stage
+Artisanal producers,source,Democratic Republic of the Congo,27.349457,-11.597883,exact_company
+Chemaf,Smelting,Democratic Republic of the Congo,27.586012,-11.634101,exact_stage
+Shalina Resources,Trading,UAE,55.141221,25.068983,exact_stage
+"Beijing Hainachuan Automotive Parts Co., Ltd. (BHAP)",source,China,116.46679,39.876548,exact_company
+Farasis Energy,Battery pack manufacturing,China,114.847894,25.840251,exact_stage
+Chengtun Global Resources,Smelting,Hong Kong,114.17765,22.27863,exact_stage
+Chemaf,source,Democratic Republic of the Congo,27.586012,-11.634101,exact_company
+Chengtun Copper Resources,source,Democratic Republic of the Congo,25.473307,-10.621931,exact_company
+Victor International Trade Co .Ltd.,Trading,China,120.515646,31.862912,exact_stage
+Hanrui Metal Congo,Artisanal processing,Democratic Republic of the Congo,25.46589,-10.646626,exact_stage
+Hanrui International (Singapore) Pte.Ltd.,Smelting,Singapore,103.863448,1.322259,exact_stage
+Hauchin Internationel Trading/Limited,Smelting,Hong Kong,114.211863,22.288107,exact_stage
+Kawama shabara,source,Democratic Republic of the Congo,25.866319,-10.740854,exact_company
+La Société de Luilu Ressources (LCS),Artisanal processing,Democratic Republic of the Congo,25.354869,-10.671023,exact_stage
+Hongkong Excellen Mining Investment Co,Smelting,Hong Kong,114.151761,22.287108,exact_stage
+Thomas Mining,Artisanal processing,Democratic Republic of the Congo,25.479508,-10.666476,exact_stage
+Essence Resources Limited,Smelting,UK,-0.031636,51.724734,exact_stage
+Access World,Trading,Switzerland,8.518586,47.18048,exact_stage
+Grindrod Intermodal,Trading,South Africa,31.023401,-29.861293,exact_stage
+Mechema,Trading,Taiwan,121.127092,25.053937,exact_stage
+PGS Ltd.,Trading,South Africa,22.921518,-30.553625,exact_stage
+Reload Logistics and Trading,Trading,Zambia,28.650444,-12.965693,exact_stage
+Huachin Metal Leach SPRL,Artisanal processing,Democratic Republic of the Congo,26.708273,-11.000451,exact_stage
+New Spread Trading Limited,Trading,Hong Kong,114.169105,22.278591,exact_stage
+Shituru Mining Corporation (SMCO),Artisanal processing,Democratic Republic of the Congo,26.776138,-11.009042,exact_stage
+HK Penghe,Trading,Hong Kong,114.155153,22.285541,exact_stage
+Mining Promotion Company (MPC),source,Zimbabwe,31.085582,-17.832873,exact_company
+Zijin International Trading/Co. Ltd.,Trading,China,118.137237,24.486778,exact_stage
+Nichia Corporation,source,Japan,134.616209,33.928946,exact_company
+Ningbo Coboto,source,China,121.079541,30.277674,exact_company
+Raffemet PTE,Trading,Singapore,103.852445,1.284449,exact_stage
+Rubamin SARL,source,Democratic Republic of the Congo,26.654827,-10.953066,exact_company
+Chalco Trading,Trading,Hong Kong,114.164033,22.280034,exact_stage
+Sungeel Hitech,source,South Korea,126.539242,35.957984,exact_company
+Bridge Shipping,Trading,China,118.104761,24.523944,exact_stage
+CMOC Limited,Trading,China,111.615029,33.882766,exact_stage
+Smart Logistics,Trading,China,116.360201,39.911124,exact_stage
+VS Cargo,Trading,Zambia,28.659743,-13.018721,exact_stage
+Alliance Nickel Ltd. (GME Resources),source,Australia,115.809387,-31.977803,exact_company
+Ascend Elements,source,USA,-71.571406,42.275341,exact_company
+BS Battery,source,France,2.22351,48.861905,exact_company
+CNMC Huachin Mabende Mining SPRL,source,Democratic Republic of the Congo,27.36535,-11.443357,exact_company
+Carriere 52,source,Democratic Republic of the Congo,25.441553,-10.648348,exact_company
+Luilu Ressources SAS (LR SAS),Artisanal processing,Democratic Republic of the Congo,25.354875,-10.668757,exact_stage
+Cents Sacs,source,Democratic Republic of the Congo,25.531331,-10.685543,exact_company
+Chengtun Global Resources,Artisanal processing,Hong Kong,114.17765,22.27863,exact_stage
+Compagnie Minière de Kambove (COMIKA),source,Democratic Republic of the Congo,26.563776,-10.867661,exact_company
+Grand Future,Trading,Hong Kong,114.163432,22.279415,exact_stage
+Hebei Jiwu,Trading,China,114.484203,38.037811,exact_stage
+Norin Mining Limited,Trading,China,116.374826,39.910681,exact_stage
+Shandong Hi-Speed,Trading,Hong Kong,114.154697,22.284688,exact_stage
+Sylverkey Development,Trading,China,116.360201,39.911124,exact_stage
+Entreprise Generale du Cobalt (EGC),source,Democratic Republic of the Congo,25.485279,-10.723111,exact_company
+Mercuria Energy Trading SA,Trading,Switzerland,6.14737,46.204013,exact_stage
+Evoke Electric Motorcycles (HK) Ltd.,source,China,116.511093,39.785148,exact_company
+Motorino / Greenwit Technologies Inc.,Electric car/scooter manufacturing,Canada,-122.985017,49.258561,exact_stage
+"Fujian Scud Power Technology Co., Ltd. / 福建飞毛腿动力科技有限公司",source,China,119.426371,26.008366,exact_company
+Bird Global Inc.,Electric car/scooter manufacturing,USA,-80.193167,25.95017,exact_stage
+"Lime / Neutron Holdings, Inc.",Electric car/scooter manufacturing,USA,-122.399691,37.788342,exact_stage
+Lyft Inc.,Electric car/scooter manufacturing,USA,-122.392072,37.776583,exact_stage
+Glencore,source,Switzerland,8.527233,47.18132,exact_company
+Li-Cycle Holdings Corp,Recycling,Canada,-79.380394,43.639787,exact_stage
+HORWIN Global,source,China,120.011171,31.807034,exact_company
+Hangzhou Tromox Technology Co Ltd,source,China,119.961939,30.272087,exact_company
+Hanrui Metal Congo,source,Democratic Republic of the Congo,25.46589,-10.646626,exact_company
+Huachin Metal Leach SPRL,source,Democratic Republic of the Congo,26.708273,-11.000451,exact_company
+Kai Peng Mining SARL,source,Democratic Republic of the Congo,26.659436,-10.964301,exact_company
+Maurituis Nankai,Trading,Vietnam,105.835712,21.024872,exact_stage
+Kambove Mining SAS,source,Democratic Republic of the Congo,26.614862,-10.865596,exact_company
+Kawama Shabara,source,Democratic Republic of the Congo,25.866319,-10.740854,exact_company
+Golden Mining,Artisanal processing,Democratic Republic Of The Congo,27.473591,-11.703865,exact_stage
+Kisanfu mine (KFM),source,Democratic Republic of the Congo,25.928137,-10.779617,exact_company
+Kuniko Ltd.,source,Norway,10.046645,60.070332,exact_company
+"Gold Mountains (H.K.) International Mining Co., Ltd.",Trading,Hong Kong,114.160021,22.303646,exact_stage
+Golden Harbour,Trading,China,116.360201,39.911124,exact_stage
+Octagon Commodites SA,Trading,Switzerland,6.14622,46.204001,exact_stage
+La Minière de Kalukundi S.A. (LAMIKAL),source,Democratic Republic of the Congo,25.986683,-10.639793,exact_company
+La Société de Luilu Ressources (LCS),source,Democratic Republic of the Congo,25.354869,-10.671023,exact_company
+Divine Land Mining SARL (DLM),Artisanal processing,Democratic Republic of the Congo,26.74992,-11.004705,exact_stage
+OM metal,Artisanal processing,Democratic Republic of the Congo,27.48627,-11.644299,exact_stage
+Mining Progress Company,source,Democratic Republic of the Congo,27.486856,-11.666409,exact_company
+Ningbo Yinnyi Mining Co. Ltd.,Trading,China,121.549718,29.881958,exact_stage
+Congo Jinjun Cheng (CJC),Artisanal processing,Democratic Republic Of The Congo,26.756724,-10.99736,exact_stage
+"Phylion Battery Co., Ltd. / Phylion Power / Xingheng Power / Phylion Power Co., Ltd.",source,China,120.417302,31.365959,exact_company
+SHIDO Battery,source,Japan,139.754706,35.683326,exact_company
+KTM AG,Electric car/scooter manufacturing,Austria,13.158905,48.097536,exact_stage
+Shituru Mining Corporation (SMCO),source,Democratic Republic of the Congo,26.776138,-11.009042,exact_company
+Thomas Mining,source,Democratic Republic of the Congo,25.479508,-10.666476,exact_company
+Tinbot Technology GmbH / KOLLTER,source,Germany,8.571431,50.135657,exact_company
+"Zhejiang Narada / Nandu Power Source Co., Ltd.",source,China,120.061416,30.2806,exact_company
+"Jiangsu Xinri Electric Vehicle Co., Ltd.",Electric car/scooter manufacturing,China,120.490763,31.579153,exact_stage
+Zhuhai Guanyu,source,China,113.231619,22.153184,exact_company
+Xiaomi,Electric car/scooter manufacturing,China,116.32086,40.048976,exact_stage

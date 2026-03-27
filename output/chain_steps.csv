@@ -1,0 +1,14 @@
+node_id,name
+chain_step::artisanal-mining,Artisanal mining
+chain_step::artisanal-processing,Artisanal processing
+chain_step::battery-cell-manufacturing,Battery cell manufacturing
+chain_step::battery-pack-manufacturing,Battery pack manufacturing
+chain_step::cathode-manufacturing,Cathode manufacturing
+chain_step::electric-car-manufacturing,Electric car manufacturing
+chain_step::electric-scooter-manufacturing,Electric scooter manufacturing
+chain_step::mining,Mining
+chain_step::precursor-manufacturing,Precursor manufacturing
+chain_step::recycling,Recycling
+chain_step::refining,Refining
+chain_step::smelting,Smelting
+chain_step::trading,Trading
