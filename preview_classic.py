@@ -3459,8 +3459,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return lines
           .filter((line) => line.isActive || line.isFocus)
           .map((line) => {
-            const progress = 0.86;
-            const previousProgress = 0.81;
+            const progress = 0.84;
+            const previousProgress = 0.79;
             const current = vectorToLatLon(arcVectorAt(line, progress));
             const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
             return {
@@ -3536,8 +3536,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .globeCurvatureResolution(2)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => {
-            if (d.renderKind === "glow") return d.isFocus ? 0.76 : 0.58;
-            return d.isFocus ? 0.54 : 0.38;
+            if (d.renderKind === "glow") return d.isFocus ? 0.58 : 0.44;
+            return d.isFocus ? 0.4 : 0.28;
           })
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
@@ -3574,14 +3574,14 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             if (item.type === "flow_arrowhead") {
               const arrow = document.createElement("div");
               arrow.className = "globe-country-label";
-              arrow.style.width = item.altitude > 0.028 ? "10px" : "9px";
-              arrow.style.height = item.altitude > 0.028 ? "10px" : "9px";
+              arrow.style.width = item.altitude > 0.028 ? "9px" : "8px";
+              arrow.style.height = item.altitude > 0.028 ? "9px" : "8px";
               arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               arrow.style.pointerEvents = "none";
-              arrow.style.filter = `drop-shadow(0 0 3px rgba(255,255,255,0.18))`;
+              arrow.style.filter = `drop-shadow(0 0 2px rgba(255,255,255,0.12))`;
               arrow.innerHTML = `
                 <svg viewBox="0 0 10 10" width="100%" height="100%" aria-hidden="true">
-                  <path d="M1.2 1.3L8.7 5L1.2 8.7Z" fill="${item.color}" opacity="0.98"></path>
+                  <path d="M1.8 1.8L7.4 5L1.8 8.2" fill="none" stroke="${item.color}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"></path>
                 </svg>`;
               return arrow;
             }
