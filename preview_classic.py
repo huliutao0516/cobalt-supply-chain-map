@@ -3593,15 +3593,15 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             if (item.type === "flow_arrow") {
               const arrow = document.createElement("div");
               arrow.className = "globe-country-label";
-              arrow.style.width = item.altitude > 0.03 ? "18px" : "16px";
-              arrow.style.height = item.altitude > 0.03 ? "18px" : "16px";
+              arrow.style.width = item.altitude > 0.03 ? "30px" : "26px";
+              arrow.style.height = item.altitude > 0.03 ? "10px" : "9px";
               arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               arrow.style.pointerEvents = "none";
-              arrow.style.filter = `drop-shadow(0 0 5px ${item.color}) drop-shadow(0 0 10px rgba(255,255,255,0.16))`;
+              arrow.style.filter = `drop-shadow(0 0 4px rgba(255,255,255,0.12))`;
               arrow.innerHTML = `
-                <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true">
-                  <path d="M3 12H15" stroke="${item.color}" stroke-width="2.2" stroke-linecap="round" opacity="0.92"></path>
-                  <path d="M11 7L18 12L11 17" fill="none" stroke="${item.color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                <svg viewBox="0 0 30 10" width="100%" height="100%" aria-hidden="true">
+                  <path d="M0.5 5H29.5" stroke="${item.color}" stroke-width="1.7" stroke-linecap="round" opacity="0.96"></path>
+                  <path d="M13.5 1.6L18.5 5L13.5 8.4" fill="none" stroke="${item.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>`;
               return arrow;
             }
