@@ -918,15 +918,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
     .globe-arc-arrow {
-      width: 18px;
-      height: 18px;
+      width: 12px;
+      height: 12px;
       display: block;
       filter:
-        drop-shadow(0 0 6px rgba(255,255,255,0.16))
-        drop-shadow(0 0 10px rgba(0,0,0,0.34));
+        drop-shadow(0 0 4px rgba(255,255,255,0.10))
+        drop-shadow(0 0 8px rgba(0,0,0,0.28));
       transform-origin: 50% 50%;
       pointer-events: none;
       user-select: none;
+      opacity: 0.98;
     }
     .globe-arc-arrow svg {
       width: 100%;
@@ -3404,15 +3405,15 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       function buildArcArrow(line) {
         const start = latLonToVector(line.sourceLat, line.sourceLon);
         const end = latLonToVector(line.targetLat, line.targetLon);
-        const previousPoint = slerpVectors(start, end, 0.88);
-        const anchorPoint = slerpVectors(start, end, 0.93);
+        const previousPoint = slerpVectors(start, end, 0.90);
+        const anchorPoint = slerpVectors(start, end, 0.945);
         const previousGeo = vectorToLatLon(previousPoint);
         const anchorGeo = vectorToLatLon(anchorPoint);
         return {
           type: "arrow",
           lat: anchorGeo.lat,
           lng: anchorGeo.lng,
-          altitude: Math.max(line.isFocus ? 0.05 : 0.036, arcPeakAltitude(line) * 0.58),
+          altitude: Math.max(line.isFocus ? 0.042 : 0.03, arcPeakAltitude(line) * 0.46),
           color: lineColor(line.stage, true),
           rotation: bearingDegrees(previousGeo.lat, previousGeo.lng, anchorGeo.lat, anchorGeo.lng),
         };
@@ -3549,7 +3550,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               const element = document.createElement("div");
               element.className = "globe-arc-arrow";
               element.style.color = item.color;
-              element.innerHTML = '<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9 H11 M8 5 L13 9 L8 13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+              element.innerHTML = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6 L10 3.2 L8.6 6 L10 8.8 Z" fill="currentColor"/></svg>';
               element.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               return element;
             }
