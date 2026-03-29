@@ -915,13 +915,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
     .globe-arc-arrow {
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-bottom: 14px solid currentColor;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.18));
-      transform-origin: 50% 55%;
+      font: 700 20px/1 "Segoe UI Symbol", "Segoe UI", "Arial Unicode MS", sans-serif;
+      letter-spacing: 0;
+      white-space: nowrap;
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.18),
+        0 0 14px rgba(0,0,0,0.38);
+      transform-origin: 50% 50%;
       pointer-events: none;
       user-select: none;
     }
@@ -3255,10 +3255,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
-      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level9";
       const SATELLITE_FALLBACK_IMAGE = "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x21600x10800.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
-      const MAX_RENDER_PIXEL_RATIO = 2;
+      const MAX_RENDER_PIXEL_RATIO = 2.25;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3431,11 +3430,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return overlays;
       }
 
-      function satelliteTileUrl(x, y, level) {
-        const z = Math.min(9, Math.max(1, Math.round(level || 1)));
-        return `${SATELLITE_TILE_ROOT}/${z}/${y}/${x}.jpg`;
-      }
-
       function currentAltitude() {
         if (!globeInstance || typeof globeInstance.pointOfView !== "function") return Infinity;
         const view = globeInstance.pointOfView();
@@ -3457,6 +3451,28 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         }
         if (typeof renderer.setSize === "function") {
           renderer.setSize(host.clientWidth || 1200, host.clientHeight || 620, false);
+        }
+        const maxAnisotropy = renderer.capabilities?.getMaxAnisotropy?.() || 1;
+        if (typeof globeInstance.globeMaterial === "function") {
+          const material = globeInstance.globeMaterial();
+          if (material?.map) {
+            material.map.anisotropy = Math.max(4, Math.min(maxAnisotropy, 16));
+            material.map.needsUpdate = true;
+          }
+          if (material?.bumpMap) {
+            material.bumpMap.anisotropy = Math.max(4, Math.min(maxAnisotropy, 16));
+            material.bumpMap.needsUpdate = true;
+          }
+          if (typeof material?.specular?.set === "function") {
+            material.specular.set("#0d1520");
+          }
+          if (typeof material?.emissive?.set === "function") {
+            material.emissive.set("#06101a");
+            material.emissiveIntensity = 0.05;
+          }
+          material.bumpScale = 3.2;
+          material.shininess = 2.1;
+          material.needsUpdate = true;
         }
       }
 
@@ -3481,11 +3497,11 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .backgroundColor("rgba(0,0,0,0)")
           .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
           .globeImageUrl(SATELLITE_FALLBACK_IMAGE)
-          .globeTileEngineUrl(satelliteTileUrl)
           .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
           .showAtmosphere(true)
           .atmosphereColor("#9fd6ff")
           .atmosphereAltitude(0.17)
+          .globeCurvatureResolution(2)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => d.isFocus ? 0.7 : 0.45)
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
@@ -3524,6 +3540,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               const element = document.createElement("div");
               element.className = "globe-arc-arrow";
               element.style.color = item.color;
+              element.textContent = "➜";
               element.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               return element;
             }
