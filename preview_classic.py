@@ -3396,9 +3396,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             });
           });
         }
-        if (data?.lines?.length) {
-          overlays.push(...buildLineArrowheadOverlays(data.lines));
-        }
         return overlays;
       }
 
@@ -3433,45 +3430,18 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
 
       function buildRenderLines(lines) {
-        return lines.flatMap((line) => {
+        return lines.flatMap((line, lineIndex) => {
           const base = { ...line, renderKind: "base" };
           if (!(line.isActive || line.isFocus)) {
             return [base];
           }
-          const glow = { ...line, renderKind: "glow" };
-          return [glow, base];
+          const pulse = {
+            ...line,
+            renderKind: "pulse",
+            pulseOffset: ((lineIndex * 0.173) + Math.abs(line.sourceLat + line.targetLon) * 0.0037) % 1,
+          };
+          return [base, pulse];
         });
-      }
-
-      function arcVectorAt(line, progress) {
-        const start = latLonToVector(line.sourceLat, line.sourceLon);
-        const end = latLonToVector(line.targetLat, line.targetLon);
-        const curved = slerpVectors(start, end, progress);
-        const altitude = 1 + Math.sin(progress * Math.PI) * arcPeakAltitude(line);
-        return {
-          x: curved.x * altitude,
-          y: curved.y * altitude,
-          z: curved.z * altitude,
-        };
-      }
-
-      function buildLineArrowheadOverlays(lines) {
-        return lines
-          .filter((line) => line.isActive || line.isFocus)
-          .map((line) => {
-            const progress = 0.84;
-            const previousProgress = 0.79;
-            const current = vectorToLatLon(arcVectorAt(line, progress));
-            const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
-            return {
-              type: "flow_arrowhead",
-              lat: current.lat,
-              lng: current.lng,
-              altitude: Math.max(line.isFocus ? 0.03 : 0.021, arcPeakAltitude(line) * 0.42),
-              color: flowLineColor(line.stage, line.isFocus),
-              rotation: bearingDegrees(previous.lat, previous.lng, current.lat, current.lng),
-            };
-          });
       }
 
       function syncRendererQuality() {
@@ -3536,18 +3506,18 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .globeCurvatureResolution(2)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => {
-            if (d.renderKind === "glow") return d.isFocus ? 0.58 : 0.44;
-            return d.isFocus ? 0.4 : 0.28;
+            if (d.renderKind === "pulse") return d.isFocus ? 0.42 : 0.32;
+            return d.isFocus ? 0.24 : 0.16;
           })
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcAltitude((d) => arcPeakAltitude(d))
           .arcCurveResolution(96)
           .arcCircularResolution(10)
-          .arcDashLength(1)
-          .arcDashGap(0)
-          .arcDashInitialGap(0)
-          .arcDashAnimateTime(0)
+          .arcDashLength((d) => d.renderKind === "pulse" ? (d.isFocus ? 0.16 : 0.13) : 1)
+          .arcDashGap((d) => d.renderKind === "pulse" ? 1.15 : 0)
+          .arcDashInitialGap((d) => d.renderKind === "pulse" ? (d.pulseOffset || 0) : 0)
+          .arcDashAnimateTime((d) => d.renderKind === "pulse" ? (d.isFocus ? 2600 : 3200) : 0)
           .arcsTransitionDuration(0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .pointRadius((d) => d.isFocus ? 0.16 : 0.1)
@@ -3571,20 +3541,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .htmlLng("lng")
           .htmlAltitude((item) => item.altitude ?? 0.028)
           .htmlElement((item) => {
-            if (item.type === "flow_arrowhead") {
-              const arrow = document.createElement("div");
-              arrow.className = "globe-country-label";
-              arrow.style.width = item.altitude > 0.028 ? "9px" : "8px";
-              arrow.style.height = item.altitude > 0.028 ? "9px" : "8px";
-              arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
-              arrow.style.pointerEvents = "none";
-              arrow.style.filter = `drop-shadow(0 0 2px rgba(255,255,255,0.12))`;
-              arrow.innerHTML = `
-                <svg viewBox="0 0 10 10" width="100%" height="100%" aria-hidden="true">
-                  <path d="M1.8 1.8L7.4 5L1.8 8.2" fill="none" stroke="${item.color}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"></path>
-                </svg>`;
-              return arrow;
-            }
             const label = document.createElement("div");
             label.className = "globe-country-label";
             label.lang = "en";
@@ -3647,9 +3603,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcStartLng("sourceLon")
           .arcEndLat("targetLat")
           .arcEndLng("targetLon")
-          .arcColor((line) => line.renderKind === "glow"
-            ? colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.22 : 0.14)
-            : lineColor(line.stage, line.isActive || line.isFocus));
+          .arcColor((line) => line.renderKind === "pulse"
+            ? flowLineColor(line.stage, line.isFocus)
+            : colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.42 : 0.28));
 
         const focusPoints = activePoints.length ? activePoints : (data.points || []);
         if (focusPoints.length) {
