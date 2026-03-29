@@ -914,6 +914,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       transform: translate(-50%, -50%);
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
+    .globe-arc-arrow {
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 14px solid currentColor;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.18));
+      transform-origin: 50% 55%;
+      pointer-events: none;
+      user-select: none;
+    }
     .globe-country-label[hidden] {
       display: none;
     }
@@ -3244,8 +3255,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
-      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
-      const SATELLITE_FALLBACK_IMAGE = "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/january/world.200401.3x5400x2700.jpg";
+      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level9";
+      const SATELLITE_FALLBACK_IMAGE = "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x21600x10800.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 2;
       if (!host || typeof window.Globe !== "function") {
@@ -3303,6 +3314,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return value * Math.PI / 180;
       }
 
+      function degrees(value) {
+        return value * 180 / Math.PI;
+      }
+
       function angularDistanceRadians(line) {
         const startLat = radians(line.sourceLat);
         const endLat = radians(line.targetLat);
@@ -3320,18 +3335,104 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return Math.max(line.isFocus ? 0.08 : 0.055, Math.min(line.isFocus ? 0.2 : 0.16, adaptive));
       }
 
-      function buildCountryLabels(data, altitude) {
-        if (!data || !data.hasFocus) return [];
-        if (!Number.isFinite(altitude) || altitude > COUNTRY_LABEL_ALTITUDE) return [];
-        return (data.countries || []).map((country) => ({
-          lat: country.lat,
-          lng: country.lon,
-          text: country.name || "",
-        }));
+      function normalizeVector(vector) {
+        const length = Math.hypot(vector.x, vector.y, vector.z) || 1;
+        return {
+          x: vector.x / length,
+          y: vector.y / length,
+          z: vector.z / length,
+        };
+      }
+
+      function latLonToVector(lat, lon) {
+        const latRad = radians(lat);
+        const lonRad = radians(lon);
+        const cosLat = Math.cos(latRad);
+        return {
+          x: Math.cos(latRad) * Math.cos(lonRad),
+          y: Math.sin(latRad),
+          z: Math.cos(latRad) * Math.sin(lonRad),
+        };
+      }
+
+      function vectorToLatLon(vector) {
+        const unit = normalizeVector(vector);
+        return {
+          lat: degrees(Math.asin(unit.y)),
+          lng: degrees(Math.atan2(unit.z, unit.x)),
+        };
+      }
+
+      function slerpVectors(start, end, t) {
+        const dot = Math.max(-1, Math.min(1, start.x * end.x + start.y * end.y + start.z * end.z));
+        const omega = Math.acos(dot);
+        if (omega < 1e-6) {
+          return normalizeVector({
+            x: start.x + (end.x - start.x) * t,
+            y: start.y + (end.y - start.y) * t,
+            z: start.z + (end.z - start.z) * t,
+          });
+        }
+        const sinOmega = Math.sin(omega) || 1;
+        const scaleStart = Math.sin((1 - t) * omega) / sinOmega;
+        const scaleEnd = Math.sin(t * omega) / sinOmega;
+        return normalizeVector({
+          x: start.x * scaleStart + end.x * scaleEnd,
+          y: start.y * scaleStart + end.y * scaleEnd,
+          z: start.z * scaleStart + end.z * scaleEnd,
+        });
+      }
+
+      function bearingDegrees(fromLat, fromLng, toLat, toLng) {
+        const phi1 = radians(fromLat);
+        const phi2 = radians(toLat);
+        const lambda1 = radians(fromLng);
+        const lambda2 = radians(toLng);
+        const y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
+        const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
+        return degrees(Math.atan2(y, x));
+      }
+
+      function buildArcArrow(line) {
+        const start = latLonToVector(line.sourceLat, line.sourceLon);
+        const end = latLonToVector(line.targetLat, line.targetLon);
+        const previousPoint = slerpVectors(start, end, 0.79);
+        const anchorPoint = slerpVectors(start, end, 0.84);
+        const previousGeo = vectorToLatLon(previousPoint);
+        const anchorGeo = vectorToLatLon(anchorPoint);
+        return {
+          type: "arrow",
+          lat: anchorGeo.lat,
+          lng: anchorGeo.lng,
+          altitude: Math.max(line.isFocus ? 0.068 : 0.048, arcPeakAltitude(line) * 0.72),
+          color: lineColor(line.stage, true),
+          rotation: bearingDegrees(previousGeo.lat, previousGeo.lng, anchorGeo.lat, anchorGeo.lng) + 90,
+        };
+      }
+
+      function buildOverlayElements(data, altitude) {
+        const overlays = [];
+        if (data?.hasFocus && Number.isFinite(altitude) && altitude <= COUNTRY_LABEL_ALTITUDE) {
+          (data.countries || []).forEach((country) => {
+            overlays.push({
+              type: "country",
+              lat: country.lat,
+              lng: country.lon,
+              altitude: 0.028,
+              text: country.name || "",
+            });
+          });
+        }
+        (data?.lines || [])
+          .filter((line) => line.isActive || line.isFocus)
+          .forEach((line) => {
+            overlays.push(buildArcArrow(line));
+          });
+        return overlays;
       }
 
       function satelliteTileUrl(x, y, level) {
-        const z = Math.min(8, Math.max(1, Math.round(level || 1)));
+        const z = Math.min(9, Math.max(1, Math.round(level || 1)));
         return `${SATELLITE_TILE_ROOT}/${z}/${y}/${x}.jpg`;
       }
 
@@ -3344,7 +3445,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       function refreshCountryLabels(altitudeOverride) {
         if (!globeInstance) return;
         const altitude = Number.isFinite(altitudeOverride) ? altitudeOverride : currentAltitude();
-        globeInstance.htmlElementsData(buildCountryLabels(latestGlobeData, altitude));
+        globeInstance.htmlElementsData(buildOverlayElements(latestGlobeData, altitude));
       }
 
       function syncRendererQuality() {
@@ -3417,13 +3518,20 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           })
           .htmlLat("lat")
           .htmlLng("lng")
-          .htmlAltitude(() => 0.028)
-          .htmlElement((label) => {
-            const element = document.createElement("div");
-            element.className = "globe-country-label";
-            element.lang = "en";
-            element.textContent = label.text;
-            return element;
+          .htmlAltitude((item) => item.altitude ?? 0.028)
+          .htmlElement((item) => {
+            if (item.type === "arrow") {
+              const element = document.createElement("div");
+              element.className = "globe-arc-arrow";
+              element.style.color = item.color;
+              element.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
+              return element;
+            }
+            const label = document.createElement("div");
+            label.className = "globe-country-label";
+            label.lang = "en";
+            label.textContent = item.text;
+            return label;
           });
 
         const controls = globeInstance.controls?.();
