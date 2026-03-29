@@ -918,15 +918,21 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
     .globe-arc-arrow {
-      font: 700 20px/1 "Segoe UI Symbol", "Segoe UI", "Arial Unicode MS", sans-serif;
-      letter-spacing: 0;
-      white-space: nowrap;
-      text-shadow:
-        0 0 8px rgba(255,255,255,0.18),
-        0 0 14px rgba(0,0,0,0.38);
+      width: 18px;
+      height: 18px;
+      display: block;
+      filter:
+        drop-shadow(0 0 6px rgba(255,255,255,0.16))
+        drop-shadow(0 0 10px rgba(0,0,0,0.34));
       transform-origin: 50% 50%;
       pointer-events: none;
       user-select: none;
+    }
+    .globe-arc-arrow svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
     }
     .globe-country-label[hidden] {
       display: none;
@@ -3398,17 +3404,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       function buildArcArrow(line) {
         const start = latLonToVector(line.sourceLat, line.sourceLon);
         const end = latLonToVector(line.targetLat, line.targetLon);
-        const previousPoint = slerpVectors(start, end, 0.79);
-        const anchorPoint = slerpVectors(start, end, 0.84);
+        const previousPoint = slerpVectors(start, end, 0.88);
+        const anchorPoint = slerpVectors(start, end, 0.93);
         const previousGeo = vectorToLatLon(previousPoint);
         const anchorGeo = vectorToLatLon(anchorPoint);
         return {
           type: "arrow",
           lat: anchorGeo.lat,
           lng: anchorGeo.lng,
-          altitude: Math.max(line.isFocus ? 0.068 : 0.048, arcPeakAltitude(line) * 0.72),
+          altitude: Math.max(line.isFocus ? 0.05 : 0.036, arcPeakAltitude(line) * 0.58),
           color: lineColor(line.stage, true),
-          rotation: bearingDegrees(previousGeo.lat, previousGeo.lng, anchorGeo.lat, anchorGeo.lng) + 90,
+          rotation: bearingDegrees(previousGeo.lat, previousGeo.lng, anchorGeo.lat, anchorGeo.lng),
         };
       }
 
@@ -3543,7 +3549,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               const element = document.createElement("div");
               element.className = "globe-arc-arrow";
               element.style.color = item.color;
-              element.textContent = "➜";
+              element.innerHTML = '<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9 H11 M8 5 L13 9 L8 13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
               element.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               return element;
             }
