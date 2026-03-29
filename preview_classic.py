@@ -485,7 +485,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>钴供应链三维图谱</title>
-  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+  <script>window.CESIUM_BASE_URL = "https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/";</script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/Cesium.js"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
     :root {
@@ -754,6 +756,24 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       height: 100%;
       display: block;
     }
+    .google-globe-host .cesium-viewer,
+    .google-globe-host .cesium-widget,
+    .google-globe-host canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .globe-label-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .globe-label-layer .globe-country-label {
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
     .globe-setup {
       display: none;
       position: absolute;
@@ -896,6 +916,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       transform: translate(-50%, -50%);
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
+    .globe-country-label[hidden] {
+      display: none;
+    }
     .empty {
       padding: 36px 20px;
       color: var(--muted);
@@ -974,6 +997,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             <div class="globe-wrap">
               <canvas id="globeCanvas" class="globe-canvas"></canvas>
               <div id="googleGlobeHost" class="google-globe-host"></div>
+              <div id="globeLabelLayer" class="globe-label-layer"></div>
               <div id="globeSetup" class="globe-setup">
                 <h3>Google 3D 地图</h3>
                 <p>输入 Google Maps API key 后，下方将切换到官方 3D 地图；未配置时，仍保留当前本地 3D 地球作为兜底预览。</p>
@@ -3222,18 +3246,22 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
-      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
-      const SATELLITE_FALLBACK_IMAGE = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg";
-      const COUNTRY_LABEL_ALTITUDE = 1.72;
-      if (!host || typeof window.Globe !== "function") {
+      const labelLayer = document.getElementById("globeLabelLayer");
+      const COUNTRY_LABEL_CAMERA_HEIGHT = 6200000;
+      const GIBS_WMTS_URL = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{TileMatrix}/{TileRow}/{TileCol}.jpg";
+      if (!host || !labelLayer || typeof window.Cesium === "undefined") {
         return;
       }
 
       let mouseX = 24;
       let mouseY = 24;
       let hoverPayload = null;
-      let globeInstance = null;
+      let viewer = null;
+      let pointerHandler = null;
+      let postRenderCleanup = null;
       let latestGlobeData = null;
+      let labelModels = [];
+      let animatedEntities = [];
 
       function showTooltip(content) {
         if (!tooltip) return;
@@ -3250,6 +3278,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function setSatelliteMode(active) {
         host.classList.toggle("is-active", active);
+        labelLayer.hidden = !active;
         if (canvas) {
           canvas.style.visibility = active ? "hidden" : "visible";
           canvas.style.pointerEvents = active ? "none" : "auto";
@@ -3261,153 +3290,320 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         }
       }
 
+      function toCesiumColor(color, alpha = 1) {
+        const parsed = Cesium.Color.fromCssColorString(color || "#7fd0ff");
+        return parsed ? parsed.withAlpha(alpha) : Cesium.Color.fromCssColorString("#7fd0ff").withAlpha(alpha);
+      }
+
       function lineColor(stage, active) {
-        if (!active) return "rgba(150, 170, 190, 0.18)";
-        return stepColors[stage] || "#7fd0ff";
+        if (!active) return toCesiumColor("#9aa8b6", 0.22);
+        return toCesiumColor(stepColors[stage] || "#7fd0ff", 0.9);
       }
 
       function pointColor(point) {
-        return point.isFocus ? "#f6fbff" : (stepColors[point.stage] || "#7fd0ff");
+        if (point.isFocus) return Cesium.Color.WHITE.withAlpha(0.98);
+        return toCesiumColor(stepColors[point.stage] || "#7fd0ff", 0.96);
       }
 
-      function buildCountryLabels(data, altitude) {
-        if (!data || !data.hasFocus) return [];
-        if (!Number.isFinite(altitude) || altitude > COUNTRY_LABEL_ALTITUDE) return [];
-        return (data.countries || []).map((country) => ({
-          lat: country.lat,
-          lng: country.lon,
-          text: country.name || "",
-        }));
+      function normalizeLongitude(lon) {
+        let value = Number(lon || 0);
+        while (value > 180) value -= 360;
+        while (value < -180) value += 360;
+        return value;
       }
 
-      function satelliteTileUrl(x, y, level) {
-        const z = Math.min(8, Math.max(1, Math.round(level || 1)));
-        return `${SATELLITE_TILE_ROOT}/${z}/${y}/${x}.jpg`;
+      function longitudeDelta(fromLon, toLon) {
+        const start = normalizeLongitude(fromLon);
+        const end = normalizeLongitude(toLon);
+        let delta = end - start;
+        while (delta > 180) delta -= 360;
+        while (delta < -180) delta += 360;
+        return delta;
       }
 
-      function currentAltitude() {
-        if (!globeInstance || typeof globeInstance.pointOfView !== "function") return Infinity;
-        const view = globeInstance.pointOfView();
-        return typeof view?.altitude === "number" ? view.altitude : Infinity;
+      function toRadians(value) {
+        return value * Math.PI / 180;
       }
 
-      function refreshCountryLabels(altitudeOverride) {
-        if (!globeInstance) return;
-        const altitude = Number.isFinite(altitudeOverride) ? altitudeOverride : currentAltitude();
-        globeInstance.htmlElementsData(buildCountryLabels(latestGlobeData, altitude));
+      function geographicAverage(points) {
+        if (!points.length) return { lat: 18, lon: 16 };
+        let x = 0;
+        let y = 0;
+        let z = 0;
+        points.forEach((point) => {
+          const lat = toRadians(point.lat);
+          const lon = toRadians(point.lon);
+          x += Math.cos(lat) * Math.cos(lon);
+          y += Math.cos(lat) * Math.sin(lon);
+          z += Math.sin(lat);
+        });
+        const count = points.length || 1;
+        x /= count;
+        y /= count;
+        z /= count;
+        const hyp = Math.sqrt(x * x + y * y);
+        return {
+          lat: Cesium.Math.toDegrees(Math.atan2(z, hyp)),
+          lon: normalizeLongitude(Cesium.Math.toDegrees(Math.atan2(y, x))),
+        };
       }
 
-      function createGlobe() {
-        if (globeInstance) return globeInstance;
-        globeInstance = new window.Globe(host)
-          .width(host.clientWidth || 1200)
-          .height(host.clientHeight || 620)
-          .backgroundColor("rgba(0,0,0,0)")
-          .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
-          .globeImageUrl(SATELLITE_FALLBACK_IMAGE)
-          .globeTileEngineUrl(satelliteTileUrl)
-          .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
-          .showAtmosphere(true)
-          .atmosphereColor("#9fd6ff")
-          .atmosphereAltitude(0.17)
-          .arcAltitudeAutoScale(0.22)
-          .arcStroke((d) => d.isFocus ? 0.55 : 0.35)
-          .arcDashLength((d) => d.isActive ? 0.14 : 0.18)
-          .arcDashGap((d) => d.isActive ? 1.65 : 2.2)
-          .arcDashInitialGap((d) => d.isFocus ? 0.08 : 0.18)
-          .arcDashAnimateTime((d) => d.isActive ? (d.isFocus ? 5200 : 6200) : 0)
-          .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
-          .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
-          .onPointHover((point) => {
-            hoverPayload = point
-              ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
-              : null;
-            showTooltip(hoverPayload);
-          })
-          .onPointClick((point) => {
-            if (point && typeof bridge.toggleMapFocus === "function") {
-              bridge.toggleMapFocus(point.label);
-            }
-          })
-          .onZoom((view) => {
-            refreshCountryLabels(typeof view?.altitude === "number" ? view.altitude : currentAltitude());
-          })
-          .htmlLat("lat")
-          .htmlLng("lng")
-          .htmlAltitude(() => 0.028)
-          .htmlElement((label) => {
-            const element = document.createElement("div");
-            element.className = "globe-country-label";
-            element.lang = "en";
-            element.textContent = label.text;
-            return element;
-          })
-          });
+      function estimateCameraHeight(points, hasFocus) {
+        if (!points.length) return hasFocus ? 4800000 : 12000000;
+        const center = geographicAverage(points);
+        const latitudes = points.map((point) => point.lat);
+        const longitudes = points.map((point) => longitudeDelta(center.lon, point.lon));
+        const latSpan = Math.max(...latitudes) - Math.min(...latitudes);
+        const lonSpan = Math.max(...longitudes) - Math.min(...longitudes);
+        const span = Math.max(latSpan, lonSpan);
+        const adaptive = hasFocus
+          ? 2200000 + span * 108000
+          : 7400000 + span * 76000;
+        return Math.max(hasFocus ? 2200000 : 7400000, Math.min(hasFocus ? 9800000 : 17000000, adaptive));
+      }
 
-        const controls = globeInstance.controls?.();
-        if (controls) {
-          controls.autoRotate = false;
-          controls.enablePan = false;
-          controls.minDistance = 180;
-          controls.maxDistance = 420;
+      function buildArcSamples(line, segments = 48) {
+        const deltaLon = longitudeDelta(line.sourceLon, line.targetLon);
+        const deltaLat = line.targetLat - line.sourceLat;
+        const midLon = normalizeLongitude(line.sourceLon + deltaLon * 0.5);
+        const midLat = Math.max(
+          -72,
+          Math.min(78, (line.sourceLat + line.targetLat) * 0.5 + Math.sign(deltaLat || 1) * Math.min(18, Math.abs(deltaLon) * 0.08 + Math.abs(deltaLat) * 0.06))
+        );
+        const peakHeight = Math.min(
+          line.isActive ? 1850000 : 850000,
+          (line.isActive ? 260000 : 110000) + (Math.abs(deltaLon) + Math.abs(deltaLat)) * (line.isActive ? 12000 : 6800)
+        );
+        const positions = [];
+        for (let index = 0; index <= segments; index += 1) {
+          const t = index / segments;
+          const omt = 1 - t;
+          const lat = omt * omt * line.sourceLat + 2 * omt * t * midLat + t * t * line.targetLat;
+          const lon = normalizeLongitude(omt * omt * line.sourceLon + 2 * omt * t * midLon + t * t * line.targetLon);
+          const height = omt * omt * 2400 + 2 * omt * t * peakHeight + t * t * 2400;
+          positions.push(Cesium.Cartesian3.fromDegrees(lon, lat, height));
         }
-        host.addEventListener("mousemove", (event) => {
-          const rect = host.getBoundingClientRect();
-          mouseX = event.clientX - rect.left + 16;
-          mouseY = event.clientY - rect.top + 16;
-          if (hoverPayload) {
-            showTooltip(hoverPayload);
+        return positions;
+      }
+
+      function clearSceneEntities() {
+        if (!viewer) return;
+        viewer.entities.removeAll();
+        animatedEntities = [];
+      }
+
+      function clearCountryLabels() {
+        labelModels.forEach((model) => model.element.remove());
+        labelModels = [];
+      }
+
+      function buildCountryLabels(data) {
+        if (!data || !data.hasFocus) return [];
+        return data.countries || [];
+      }
+
+      function refreshCountryLabels() {
+        if (!viewer) return;
+        const cameraHeight = viewer.camera.positionCartographic?.height ?? Infinity;
+        if (!latestGlobeData?.hasFocus || cameraHeight > COUNTRY_LABEL_CAMERA_HEIGHT) {
+          labelModels.forEach((model) => {
+            model.element.hidden = true;
+          });
+          return;
+        }
+        const scene = viewer.scene;
+        const occluder = new Cesium.EllipsoidalOccluder(Cesium.Ellipsoid.WGS84, viewer.camera.positionWC);
+        labelModels.forEach((model) => {
+          if (!occluder.isPointVisible(model.position)) {
+            model.element.hidden = true;
+            return;
           }
+          const screen = Cesium.SceneTransforms.wgs84ToWindowCoordinates(scene, model.position);
+          if (!screen) {
+            model.element.hidden = true;
+            return;
+          }
+          model.element.hidden = false;
+          model.element.style.left = `${screen.x}px`;
+          model.element.style.top = `${screen.y}px`;
         });
+      }
+
+      function showPointTooltip(point) {
+        hoverPayload = point
+          ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
+          : null;
+        showTooltip(hoverPayload);
+      }
+
+      function attachPointerHandlers() {
+        if (!viewer || pointerHandler) return;
+        pointerHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+        pointerHandler.setInputAction((movement) => {
+          mouseX = movement.endPosition.x + 16;
+          mouseY = movement.endPosition.y + 16;
+          const picked = viewer.scene.pick(movement.endPosition);
+          const point = picked?.id?.__previewPoint || null;
+          showPointTooltip(point);
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        pointerHandler.setInputAction((movement) => {
+          const picked = viewer.scene.pick(movement.position);
+          const point = picked?.id?.__previewPoint || null;
+          if (point && typeof bridge.toggleMapFocus === "function") {
+            bridge.toggleMapFocus(point.label);
+          }
+        }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+      }
+
+      function createViewer() {
+        if (viewer) return viewer;
+        host.innerHTML = "";
+        viewer = new Cesium.Viewer(host, {
+          animation: false,
+          baseLayerPicker: false,
+          fullscreenButton: false,
+          geocoder: false,
+          homeButton: false,
+          infoBox: false,
+          navigationHelpButton: false,
+          sceneModePicker: false,
+          selectionIndicator: false,
+          timeline: false,
+          scene3DOnly: true,
+          terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+        });
+        viewer.imageryLayers.removeAll();
+        viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+          url: GIBS_WMTS_URL,
+          layer: "BlueMarble_NextGeneration",
+          style: "default",
+          tileMatrixSetID: "GoogleMapsCompatible_Level8",
+          format: "image/jpeg",
+          maximumLevel: 8,
+          credit: "NASA GIBS",
+        }));
+        viewer.scene.globe.enableLighting = true;
+        viewer.scene.globe.showGroundAtmosphere = true;
+        viewer.scene.skyAtmosphere.show = true;
+        viewer.scene.backgroundColor = Cesium.Color.fromCssColorString("#020913");
+        viewer.scene.postProcessStages.fxaa.enabled = true;
+        viewer.clock.shouldAnimate = true;
+        viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
         host.addEventListener("mouseleave", () => {
-          hoverPayload = null;
-          showTooltip(null);
+          showPointTooltip(null);
         });
-        return globeInstance;
+        attachPointerHandlers();
+        postRenderCleanup = viewer.scene.postRender.addEventListener(refreshCountryLabels);
+        return viewer;
+      }
+
+      function rebuildCountryLabels(data) {
+        clearCountryLabels();
+        buildCountryLabels(data).forEach((country) => {
+          const element = document.createElement("div");
+          element.className = "globe-country-label";
+          element.lang = "en";
+          element.textContent = localizeCountry(country.name || "");
+          element.hidden = true;
+          labelLayer.appendChild(element);
+          labelModels.push({
+            element,
+            position: Cesium.Cartesian3.fromDegrees(normalizeLongitude(country.lon), country.lat, 120000),
+          });
+        });
+      }
+
+      function addPointEntity(point) {
+        const entity = viewer.entities.add({
+          position: Cesium.Cartesian3.fromDegrees(normalizeLongitude(point.lon), point.lat, point.isFocus ? 14000 : 5000),
+          point: {
+            pixelSize: point.isFocus ? 11 : 8,
+            color: pointColor(point),
+            outlineColor: point.isFocus ? Cesium.Color.WHITE : Cesium.Color.fromCssColorString("#d6e3f0"),
+            outlineWidth: point.isFocus ? 2.2 : 1.4,
+            disableDepthTestDistance: Number.POSITIVE_INFINITY,
+          },
+        });
+        entity.__previewPoint = point;
+        return entity;
+      }
+
+      function addArcEntity(line, index) {
+        const color = lineColor(line.stage, line.isActive || line.isFocus);
+        const samples = buildArcSamples(line);
+        viewer.entities.add({
+          polyline: {
+            positions: samples,
+            width: line.isFocus ? 3.2 : 2.2,
+            material: new Cesium.PolylineArrowMaterialProperty(color),
+            clampToGround: false,
+          },
+        });
+        const tracer = viewer.entities.add({
+          position: new Cesium.CallbackProperty(() => {
+            const cycleMs = line.isFocus ? 9600 : 11800;
+            const t = ((performance.now() / cycleMs) + index * 0.173) % 1;
+            const scaled = t * (samples.length - 1);
+            const lower = Math.floor(scaled);
+            const upper = Math.min(samples.length - 1, lower + 1);
+            const ratio = scaled - lower;
+            return Cesium.Cartesian3.lerp(samples[lower], samples[upper], ratio, new Cesium.Cartesian3());
+          }, false),
+          point: {
+            pixelSize: line.isFocus ? 6 : 4,
+            color: color.withAlpha(0.96),
+            outlineColor: Cesium.Color.WHITE.withAlpha(0.88),
+            outlineWidth: 1.2,
+            disableDepthTestDistance: Number.POSITIVE_INFINITY,
+          },
+        });
+        animatedEntities.push(tracer);
+      }
+
+      function updateCamera(data, points) {
+        if (!points.length) return;
+        const center = geographicAverage(points);
+        const height = estimateCameraHeight(points, data.hasFocus);
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(center.lon, center.lat, height),
+          duration: 0.9,
+        });
       }
 
       function updateWebGlobe(data) {
+        latestGlobeData = data;
         if (!data) {
-          latestGlobeData = null;
+          clearCountryLabels();
+          if (viewer) clearSceneEntities();
           setSatelliteMode(false);
           return;
         }
-        const globe = createGlobe();
+
+        const cesiumViewer = createViewer();
         setSatelliteMode(true);
-        latestGlobeData = data;
+        clearSceneEntities();
+        rebuildCountryLabels(data);
 
-        const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
-        const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
+        const scenePoints = data.hasFocus
+          ? (data.points || []).filter((point) => point.isActive || point.isFocus)
+          : (data.points || []);
+        const sceneLines = data.hasFocus
+          ? (data.lines || []).filter((line) => line.isActive || line.isFocus)
+          : (data.lines || []).slice(0, 220);
 
-        globe
-          .pointsData(activePoints)
-          .pointLat("lat")
-          .pointLng("lon")
-          .pointColor((point) => pointColor(point))
-          .arcsData(activeLines)
-          .arcStartLat("sourceLat")
-          .arcStartLng("sourceLon")
-          .arcEndLat("targetLat")
-          .arcEndLng("targetLon")
-          .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus));
-
-        const focusPoints = activePoints.length ? activePoints : (data.points || []);
-        if (focusPoints.length) {
-          const avgLat = focusPoints.reduce((sum, point) => sum + point.lat, 0) / focusPoints.length;
-          const avgLon = focusPoints.reduce((sum, point) => sum + point.lon, 0) / focusPoints.length;
-          globe.pointOfView({
-            lat: avgLat,
-            lng: avgLon,
-            altitude: data.hasFocus ? 1.65 : 2.05,
-          }, 900);
-        }
+        sceneLines.forEach((line, index) => addArcEntity(line, index));
+        scenePoints.forEach((point) => addPointEntity(point));
+        updateCamera(data, scenePoints.length ? scenePoints : (data.points || []));
+        cesiumViewer.scene.requestRender();
         refreshCountryLabels();
       }
 
       bridge.updateWebGlobeScene = updateWebGlobe;
       bridge.resizeWebGlobeScene = () => {
-        if (!globeInstance) return;
-        globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
+        if (!viewer) return;
+        viewer.resize();
+        viewer.scene.requestRender();
+        refreshCountryLabels();
       };
 
       if (bridge.pendingGlobeData) {
