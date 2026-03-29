@@ -487,7 +487,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <title>钴供应链三维图谱</title>
   <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
     :root {
       --ink: #355464;
       --olive: #8f9d35;
@@ -882,6 +882,20 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       margin-top: 4px;
       color: rgba(255,255,255,0.92);
     }
+    .globe-country-label {
+      color: #eef7ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.95),
+        0 0 10px rgba(43, 118, 180, 0.45);
+      pointer-events: none;
+      user-select: none;
+      transform: translate(-50%, -50%);
+      font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Noto Sans", sans-serif;
+    }
     .empty {
       padding: 36px 20px;
       color: var(--muted);
@@ -910,7 +924,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         <div class="beta">预览版</div>
       </div>
       <div class="filters">
-        <a class="toolbar-link" href="https://supplychains.resourcematters.org/explore" target="_blank" rel="noreferrer">打开原始网站</a>
         <label class="switch" title="切换简洁 / 详细模式">
           <input id="modeToggle" type="checkbox">
           <span class="switch-track"><span class="simple">简洁</span><span class="detailed">详细</span></span>
@@ -3282,11 +3295,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcDashAnimateTime((d) => d.isActive ? 2200 : 0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
-          .labelSize(() => 1.45)
-          .labelAltitude(() => 0.028)
-          .labelColor(() => "#eaf5ff")
-          .labelDotRadius(() => 0.18)
-          .labelResolution(3)
           .onPointHover((point) => {
             hoverPayload = point
               ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
@@ -3298,9 +3306,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               bridge.toggleMapFocus(point.label);
             }
           })
-          .onLabelHover((label) => {
-            hoverPayload = label ? `<strong>${label.text}</strong><div class="meta">涉及国家</div>` : null;
-            showTooltip(hoverPayload);
           });
 
         const controls = globeInstance.controls?.();
@@ -3348,10 +3353,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcEndLat("targetLat")
           .arcEndLng("targetLon")
           .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus))
-          .labelsData(countryLabels)
-          .labelLat("lat")
-          .labelLng("lng")
-          .labelText("text");
+          .htmlElementsData(countryLabels)
+          .htmlLat("lat")
+          .htmlLng("lng")
+          .htmlAltitude(() => 0.028)
+          .htmlElement((label) => {
+            const element = document.createElement("div");
+            element.className = "globe-country-label";
+            element.lang = "zh-CN";
+            element.textContent = label.text;
+            return element;
+          });
 
         const focusPoints = activePoints.length ? activePoints : (data.points || []);
         if (focusPoints.length) {
