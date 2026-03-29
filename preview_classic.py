@@ -1806,6 +1806,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           maxLon: Math.max(...longitudes),
           minLat: Math.min(...latitudes),
           maxLat: Math.max(...latitudes),
+          centerLon: longitudes.reduce((sum, value) => sum + value, 0) / Math.max(1, longitudes.length),
+          centerLat: latitudes.reduce((sum, value) => sum + value, 0) / Math.max(1, latitudes.length),
         };
       });
       const earthLight = (() => {
@@ -1879,40 +1881,19 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return false;
       }
 
-      function buildLandSamples() {
-        const samples = [];
-        for (let lat = -84; lat <= 84; lat += 3.2) {
-          const lonStep = lat > 70 || lat < -70 ? 6.2 : 4.1;
-          for (let lon = -180; lon < 180; lon += lonStep) {
-            const jitterLon = lon + (pseudoNoise(lat * 0.71, lon * 0.61) - 0.5) * lonStep * 0.85;
-            const jitterLat = lat + (pseudoNoise(lat * 0.47 + 18.1, lon * 0.33 - 7.2) - 0.5) * 1.45;
-            if (!isLandCoordinate(jitterLat, jitterLon)) continue;
-            samples.push({
-              lat: jitterLat,
-              lon: jitterLon,
-              roughness: pseudoNoise(jitterLat * 0.18 + 24.3, jitterLon * 0.16 - 9.2),
-              moisture: pseudoNoise(jitterLat * 0.08 - 3.1, jitterLon * 0.09 + 4.7),
-              height: pseudoNoise(jitterLat * 0.23 + 11.1, jitterLon * 0.21 + 8.4),
-              size: 0.9 + pseudoNoise(jitterLat * 0.27, jitterLon * 0.29) * 1.7,
-            });
-          }
-        }
-        return samples;
-      }
-
       function buildCloudSamples() {
         const clouds = [];
-        for (let lat = -60; lat <= 68; lat += 4.8) {
-          for (let lon = -180; lon < 180; lon += 5.2) {
+        for (let lat = -58; lat <= 66; lat += 7.2) {
+          for (let lon = -180; lon < 180; lon += 8.4) {
             const density = pseudoNoise(lat * 0.05 + 71.3, lon * 0.07 - 19.7);
             const streak = pseudoNoise(lat * 0.11 - 42.2, lon * 0.15 + 13.4);
-            if (density + streak * 0.55 < 1.02) continue;
+            if (density + streak * 0.55 < 1.14) continue;
             clouds.push({
               lat: lat + (pseudoNoise(lat * 0.17 + 8.4, lon * 0.13 - 4.2) - 0.5) * 2.6,
               lon: lon + (pseudoNoise(lat * 0.19 - 2.7, lon * 0.21 + 6.1) - 0.5) * 4.4,
-              alpha: 0.08 + density * 0.14,
-              sizeX: 5 + streak * 15,
-              sizeY: 2.4 + density * 6.5,
+              alpha: 0.06 + density * 0.11,
+              sizeX: 9 + streak * 20,
+              sizeY: 3.4 + density * 7.5,
               rotation: pseudoNoise(lat * 0.23, lon * 0.17) * Math.PI,
             });
           }
@@ -1920,7 +1901,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return clouds;
       }
 
-      const landSamples = buildLandSamples();
       const cloudSamples = buildCloudSamples();
 
       function resize() {
@@ -2094,62 +2074,129 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         context.fill();
       }
 
-      function landBaseColor(sample, lighting) {
-        const absLat = Math.abs(sample.lat);
-        const arid = clamp(1 - sample.moisture * 1.18 + sample.roughness * 0.22, 0, 1);
-        let base;
+      function ringPalette(ringMeta) {
+        const absLat = Math.abs(ringMeta.centerLat);
+        const climateNoise = pseudoNoise(ringMeta.centerLat * 0.12 + 4.8, ringMeta.centerLon * 0.08 - 6.2);
         if (absLat > 68) {
-          base = [244, 246, 241];
-        } else if (absLat > 56) {
-          base = mixRgb([122, 131, 109], [236, 239, 234], clamp((absLat - 56) / 18, 0, 1) * 0.72);
-        } else if (absLat < 30 && arid > 0.56) {
-          base = mixRgb([201, 179, 118], [228, 210, 150], clamp((arid - 0.56) / 0.44, 0, 1));
-        } else if (absLat < 22) {
-          base = mixRgb([54, 108, 53], [114, 150, 74], sample.moisture * 0.75 + sample.height * 0.15);
-        } else {
-          base = mixRgb([92, 112, 71], [148, 145, 108], arid * 0.62);
+          return {
+            top: [241, 245, 241],
+            bottom: [195, 203, 197],
+            highlight: [255, 255, 255],
+            shadow: [132, 148, 156],
+          };
         }
+        if (absLat < 26 && climateNoise > 0.55) {
+          return {
+            top: [224, 208, 163],
+            bottom: [171, 142, 93],
+            highlight: [250, 236, 202],
+            shadow: [127, 97, 58],
+          };
+        }
+        if (absLat < 24) {
+          return {
+            top: [98, 145, 86],
+            bottom: [53, 97, 58],
+            highlight: [166, 196, 133],
+            shadow: [39, 70, 46],
+          };
+        }
+        return {
+          top: [134, 151, 103],
+          bottom: [83, 100, 67],
+          highlight: [192, 201, 164],
+          shadow: [60, 75, 52],
+        };
+      }
 
-        if (sample.height > 0.78 && absLat < 58) {
-          base = mixRgb(base, [160, 146, 122], clamp((sample.height - 0.78) / 0.22, 0, 1) * 0.7);
+      function buildVisibleRingProjection(ringMeta, radius, cx, cy, scale = 1.003) {
+        const visiblePoints = [];
+        let zSum = 0;
+        for (const pair of ringMeta.points) {
+          const projected = projectVector(latLonToVector(pair[1], pair[0], scale), radius, cx, cy);
+          if (projected.z > -0.035) {
+            visiblePoints.push(projected);
+            zSum += projected.z;
+          }
         }
-        const shade = clamp(0.68 + lighting * 0.48 + sample.height * 0.08, 0.46, 1.26);
-        return base.map((channel) => clamp(channel * shade, 0, 255));
+        if (visiblePoints.length < 4 || visiblePoints.length / ringMeta.points.length < 0.44) {
+          return null;
+        }
+        const bounds = visiblePoints.reduce((acc, point) => ({
+          minX: Math.min(acc.minX, point.x),
+          maxX: Math.max(acc.maxX, point.x),
+          minY: Math.min(acc.minY, point.y),
+          maxY: Math.max(acc.maxY, point.y),
+        }), {
+          minX: visiblePoints[0].x,
+          maxX: visiblePoints[0].x,
+          minY: visiblePoints[0].y,
+          maxY: visiblePoints[0].y,
+        });
+        return {
+          ringMeta,
+          points: visiblePoints,
+          avgZ: zSum / Math.max(1, visiblePoints.length),
+          ...bounds,
+        };
+      }
+
+      function traceProjectedPolygon(points) {
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
+        for (let index = 1; index < points.length; index += 1) {
+          context.lineTo(points[index].x, points[index].y);
+        }
+        context.closePath();
       }
 
       function drawLandTexture(radius, cx, cy) {
-        const visibleSamples = [];
-        landSamples.forEach((sample) => {
-          const vector = latLonToVector(sample.lat, sample.lon, 1.003);
-          const rotated = rotateVector(vector);
-          if (rotated.z <= -0.02) return;
-          visibleSamples.push({ sample, rotated });
-        });
-        visibleSamples.sort((left, right) => left.rotated.z - right.rotated.z);
-        visibleSamples.forEach(({ sample, rotated }) => {
-          const projected = {
-            x: cx + rotated.x * radius,
-            y: cy - rotated.y * radius,
-            z: rotated.z,
-          };
+        const visibleRings = earthRings
+          .map((ringMeta) => buildVisibleRingProjection(ringMeta, radius, cx, cy))
+          .filter(Boolean)
+          .sort((left, right) => left.avgZ - right.avgZ);
+
+        visibleRings.forEach((item) => {
+          const palette = ringPalette(item.ringMeta);
+          const lightVector = rotateVector(latLonToVector(item.ringMeta.centerLat, item.ringMeta.centerLon, 1));
           const lighting = clamp(
-            rotated.x * earthLight.x + rotated.y * earthLight.y + rotated.z * earthLight.z,
-            -0.35,
+            lightVector.x * earthLight.x + lightVector.y * earthLight.y + lightVector.z * earthLight.z,
+            -0.28,
             1
           );
-          const color = landBaseColor(sample, lighting);
-          const size = (0.85 + sample.size * 0.95) * (0.45 + projected.z * 0.72);
-          context.beginPath();
-          context.arc(projected.x, projected.y, Math.max(0.8, size), 0, Math.PI * 2);
-          context.fillStyle = rgba(color, 0.98);
+          const gradient = context.createLinearGradient(
+            item.minX,
+            item.minY,
+            item.maxX,
+            item.maxY
+          );
+          gradient.addColorStop(0, rgba(mixRgb(palette.top, palette.highlight, clamp(lighting * 0.38 + 0.22, 0, 0.58)), 0.98));
+          gradient.addColorStop(0.48, rgba(mixRgb(palette.top, palette.bottom, 0.24), 0.98));
+          gradient.addColorStop(1, rgba(mixRgb(palette.bottom, palette.shadow, clamp(0.30 - lighting * 0.16, 0.08, 0.38)), 0.98));
+          traceProjectedPolygon(item.points);
+          context.fillStyle = gradient;
           context.fill();
 
-          if (sample.height > 0.86 && lighting > 0.05) {
-            context.beginPath();
-            context.arc(projected.x, projected.y, Math.max(0.45, size * 0.42), 0, Math.PI * 2);
-            context.fillStyle = "rgba(246, 243, 235, 0.42)";
-            context.fill();
-          }
+          const relief = context.createLinearGradient(
+            item.minX,
+            item.minY,
+            item.maxX,
+            item.maxY
+          );
+          relief.addColorStop(0, "rgba(255,255,255,0.11)");
+          relief.addColorStop(0.45, "rgba(255,255,255,0.02)");
+          relief.addColorStop(1, "rgba(10, 28, 22, 0.14)");
+          traceProjectedPolygon(item.points);
+          context.fillStyle = relief;
+          context.fill();
+
+          context.save();
+          context.translate(-radius * 0.009, radius * 0.006);
+          traceProjectedPolygon(item.points);
+          context.strokeStyle = "rgba(10, 24, 22, 0.10)";
+          context.lineWidth = 1.4;
+          context.stroke();
+          context.restore();
         });
       }
 
@@ -2297,28 +2344,44 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         if ([point.lat, point.lon].some((value) => typeof value !== "number")) {
           return;
         }
+        if (!point.isActive && !point.isFocus) {
+          return;
+        }
         const projected = projectVector(latLonToVector(point.lat, point.lon, 1.018), radius, cx, cy);
         if (projected.z <= 0) return;
 
-        const pointRadius = point.isFocus ? 4.2 : (point.isActive ? 3.05 : 1.6);
-        if (point.isActive) {
-          context.beginPath();
-          context.arc(projected.x, projected.y, pointRadius + 6.0, 0, Math.PI * 2);
-          context.fillStyle = "rgba(119, 210, 255, 0.10)";
-          context.fill();
-          context.beginPath();
-          context.arc(projected.x, projected.y, pointRadius + 1.6, 0, Math.PI * 2);
-          context.fillStyle = "rgba(255,255,255,0.90)";
-          context.fill();
-        }
+        const pointRadius = point.isFocus ? 3.6 : 2.2;
+        const baseColor = point.isFocus ? "#f7fbff" : stageColor(point.stage || "", "#56b8ff");
+        const glow = context.createRadialGradient(
+          projected.x,
+          projected.y,
+          0,
+          projected.x,
+          projected.y,
+          pointRadius + (point.isFocus ? 12 : 8)
+        );
+        glow.addColorStop(0, point.isFocus ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.68)");
+        glow.addColorStop(0.22, point.isFocus ? "rgba(255,255,255,0.72)" : rgba([255, 255, 255], 0.26));
+        glow.addColorStop(0.5, point.isFocus ? rgba([255, 255, 255], 0.12) : rgba([86, 184, 255], 0.10));
+        glow.addColorStop(1, "rgba(255,255,255,0)");
+        context.beginPath();
+        context.arc(projected.x, projected.y, pointRadius + (point.isFocus ? 12 : 8), 0, Math.PI * 2);
+        context.fillStyle = glow;
+        context.fill();
+
+        context.beginPath();
+        context.arc(projected.x, projected.y, pointRadius + 0.8, 0, Math.PI * 2);
+        context.fillStyle = "rgba(255,255,255,0.88)";
+        context.fill();
+
         context.beginPath();
         context.arc(projected.x, projected.y, pointRadius, 0, Math.PI * 2);
-        context.fillStyle = point.isActive ? stageColor(point.stage || "", "#56b8ff") : "#a4b4c2";
+        context.fillStyle = baseColor;
         context.fill();
         globeState.hoverTargets.push({
           x: projected.x,
           y: projected.y,
-          radius: pointRadius + 4,
+          radius: pointRadius + 7,
           label: point.label,
           country: point.country || "",
           stage: point.stage || "",
@@ -2382,7 +2445,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         if (data) {
           const backgroundLines = data.lines.filter((line) => !line.isActive);
           const activeLines = data.lines.filter((line) => line.isActive);
-          const backgroundPoints = data.points.filter((point) => !point.isActive);
           const activePoints = data.points.filter((point) => point.isActive);
 
           backgroundLines.forEach((line) => drawArc(line, radius, cx, cy));
@@ -2391,7 +2453,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           activeLines.forEach((line) => drawArc(line, radius, cx, cy));
           activeLines.forEach((line) => drawArcPulse(line, radius, cx, cy));
           context.restore();
-          backgroundPoints.forEach((point) => drawPoint(point, radius, cx, cy));
           activePoints.forEach((point) => drawPoint(point, radius, cx, cy));
         }
 
