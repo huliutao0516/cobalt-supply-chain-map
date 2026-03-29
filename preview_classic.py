@@ -3245,7 +3245,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
       const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
-      const SATELLITE_FALLBACK_IMAGE = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg";
+      const SATELLITE_FALLBACK_IMAGE = "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/january/world.200401.3x5400x2700.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 2;
       if (!host || typeof window.Globe !== "function") {
@@ -3297,6 +3297,27 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function pointColor(point) {
         return point.isFocus ? "#f6fbff" : (stepColors[point.stage] || "#7fd0ff");
+      }
+
+      function radians(value) {
+        return value * Math.PI / 180;
+      }
+
+      function angularDistanceRadians(line) {
+        const startLat = radians(line.sourceLat);
+        const endLat = radians(line.targetLat);
+        const deltaLat = endLat - startLat;
+        const deltaLng = radians(line.targetLon - line.sourceLon);
+        const sinLat = Math.sin(deltaLat / 2);
+        const sinLng = Math.sin(deltaLng / 2);
+        const haversine = sinLat * sinLat + Math.cos(startLat) * Math.cos(endLat) * sinLng * sinLng;
+        return 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(Math.max(0, 1 - haversine)));
+      }
+
+      function arcPeakAltitude(line) {
+        const distance = angularDistanceRadians(line);
+        const adaptive = distance * (line.isFocus ? 0.7 : 0.56);
+        return Math.max(line.isFocus ? 0.08 : 0.055, Math.min(line.isFocus ? 0.2 : 0.16, adaptive));
       }
 
       function buildCountryLabels(data, altitude) {
@@ -3366,6 +3387,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .atmosphereAltitude(0.17)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => d.isFocus ? 0.7 : 0.45)
+          .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
+          .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
+          .arcAltitude((d) => arcPeakAltitude(d))
           .arcCurveResolution(96)
           .arcCircularResolution(10)
           .arcDashLength(1)
