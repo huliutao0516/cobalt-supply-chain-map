@@ -3462,25 +3462,22 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         const now = performance.now();
         return lines
           .filter((line) => line.isActive || line.isFocus)
-          .flatMap((line, lineIndex) => {
-            const arrowCount = line.isFocus ? 3 : 2;
-            const durationMs = line.isFocus ? 2100 : 2600;
-            const baseOffset = ((now / durationMs) + lineIndex * 0.173) % 1;
-            return Array.from({ length: arrowCount }, (_, arrowIndex) => {
-              const spacing = 0.34;
-              const progress = (baseOffset + arrowIndex * spacing) % 1;
-              const previousProgress = (progress - 0.028 + 1) % 1;
-              const current = vectorToLatLon(arcVectorAt(line, progress));
-              const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
-              return {
-                type: "flow_arrow",
-                lat: current.lat,
-                lng: current.lng,
-                altitude: Math.max(line.isFocus ? 0.034 : 0.024, arcPeakAltitude(line) * 0.44),
-                color: flowLineColor(line.stage, line.isFocus),
-                rotation: bearingDegrees(previous.lat, previous.lng, current.lat, current.lng),
-              };
-            });
+          .map((line, lineIndex) => {
+            const durationMs = line.isFocus ? 5200 : 6200;
+            const progressRange = 0.72;
+            const minProgress = 0.14;
+            const progress = minProgress + ((((now / durationMs) + lineIndex * 0.137) % 1) * progressRange);
+            const previousProgress = Math.max(minProgress, progress - 0.024);
+            const current = vectorToLatLon(arcVectorAt(line, progress));
+            const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
+            return {
+              type: "flow_arrow",
+              lat: current.lat,
+              lng: current.lng,
+              altitude: Math.max(line.isFocus ? 0.032 : 0.022, arcPeakAltitude(line) * 0.42),
+              color: flowLineColor(line.stage, line.isFocus),
+              rotation: bearingDegrees(previous.lat, previous.lng, current.lat, current.lng),
+            };
           });
       }
 
@@ -3596,12 +3593,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             if (item.type === "flow_arrow") {
               const arrow = document.createElement("div");
               arrow.className = "globe-country-label";
-              arrow.style.color = item.color;
-              arrow.style.fontSize = item.altitude > 0.03 ? "13px" : "11px";
-              arrow.style.fontWeight = "700";
-              arrow.style.textShadow = "0 0 8px rgba(255,255,255,0.18), 0 0 12px rgba(0,0,0,0.34)";
+              arrow.style.width = item.altitude > 0.03 ? "18px" : "16px";
+              arrow.style.height = item.altitude > 0.03 ? "18px" : "16px";
               arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
-              arrow.textContent = "▸";
+              arrow.style.pointerEvents = "none";
+              arrow.style.filter = `drop-shadow(0 0 5px ${item.color}) drop-shadow(0 0 10px rgba(255,255,255,0.16))`;
+              arrow.innerHTML = `
+                <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true">
+                  <path d="M3 12H15" stroke="${item.color}" stroke-width="2.2" stroke-linecap="round" opacity="0.92"></path>
+                  <path d="M11 7L18 12L11 17" fill="none" stroke="${item.color}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>`;
               return arrow;
             }
             const label = document.createElement("div");
