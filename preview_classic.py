@@ -894,7 +894,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       pointer-events: none;
       user-select: none;
       transform: translate(-50%, -50%);
-      font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Noto Sans", sans-serif;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
     .empty {
       padding: 36px 20px;
@@ -3222,6 +3222,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
+      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
+      const SATELLITE_FALLBACK_IMAGE = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg";
+      const COUNTRY_LABEL_ALTITUDE = 1.72;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3230,6 +3233,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let mouseY = 24;
       let hoverPayload = null;
       let globeInstance = null;
+      let latestGlobeData = null;
 
       function showTooltip(content) {
         if (!tooltip) return;
@@ -3266,13 +3270,31 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return point.isFocus ? "#f6fbff" : (stepColors[point.stage] || "#7fd0ff");
       }
 
-      function buildCountryLabels(data) {
+      function buildCountryLabels(data, altitude) {
         if (!data || !data.hasFocus) return [];
+        if (!Number.isFinite(altitude) || altitude > COUNTRY_LABEL_ALTITUDE) return [];
         return (data.countries || []).map((country) => ({
           lat: country.lat,
           lng: country.lon,
           text: country.name || "",
         }));
+      }
+
+      function satelliteTileUrl(x, y, level) {
+        const z = Math.min(8, Math.max(1, Math.round(level || 1)));
+        return `${SATELLITE_TILE_ROOT}/${z}/${y}/${x}.jpg`;
+      }
+
+      function currentAltitude() {
+        if (!globeInstance || typeof globeInstance.pointOfView !== "function") return Infinity;
+        const view = globeInstance.pointOfView();
+        return typeof view?.altitude === "number" ? view.altitude : Infinity;
+      }
+
+      function refreshCountryLabels(altitudeOverride) {
+        if (!globeInstance) return;
+        const altitude = Number.isFinite(altitudeOverride) ? altitudeOverride : currentAltitude();
+        globeInstance.htmlElementsData(buildCountryLabels(latestGlobeData, altitude));
       }
 
       function createGlobe() {
@@ -3282,7 +3304,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .height(host.clientHeight || 620)
           .backgroundColor("rgba(0,0,0,0)")
           .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
-          .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg")
+          .globeImageUrl(SATELLITE_FALLBACK_IMAGE)
+          .globeTileEngineUrl(satelliteTileUrl)
           .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
           .showAtmosphere(true)
           .atmosphereColor("#9fd6ff")
@@ -3305,6 +3328,19 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             if (point && typeof bridge.toggleMapFocus === "function") {
               bridge.toggleMapFocus(point.label);
             }
+          })
+          .onZoom((view) => {
+            refreshCountryLabels(typeof view?.altitude === "number" ? view.altitude : currentAltitude());
+          })
+          .htmlLat("lat")
+          .htmlLng("lng")
+          .htmlAltitude(() => 0.028)
+          .htmlElement((label) => {
+            const element = document.createElement("div");
+            element.className = "globe-country-label";
+            element.lang = "en";
+            element.textContent = label.text;
+            return element;
           })
           });
 
@@ -3332,15 +3368,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function updateWebGlobe(data) {
         if (!data) {
+          latestGlobeData = null;
           setSatelliteMode(false);
           return;
         }
         const globe = createGlobe();
         setSatelliteMode(true);
+        latestGlobeData = data;
 
         const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
         const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
-        const countryLabels = buildCountryLabels(data);
 
         globe
           .pointsData(activePoints)
@@ -3352,18 +3389,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcStartLng("sourceLon")
           .arcEndLat("targetLat")
           .arcEndLng("targetLon")
-          .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus))
-          .htmlElementsData(countryLabels)
-          .htmlLat("lat")
-          .htmlLng("lng")
-          .htmlAltitude(() => 0.028)
-          .htmlElement((label) => {
-            const element = document.createElement("div");
-            element.className = "globe-country-label";
-            element.lang = "zh-CN";
-            element.textContent = label.text;
-            return element;
-          });
+          .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus));
 
         const focusPoints = activePoints.length ? activePoints : (data.points || []);
         if (focusPoints.length) {
@@ -3375,6 +3401,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             altitude: data.hasFocus ? 1.65 : 2.05,
           }, 900);
         }
+        refreshCountryLabels();
       }
 
       bridge.updateWebGlobeScene = updateWebGlobe;
