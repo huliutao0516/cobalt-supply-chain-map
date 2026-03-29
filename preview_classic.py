@@ -3247,6 +3247,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
       const SATELLITE_FALLBACK_IMAGE = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
+      const MAX_RENDER_PIXEL_RATIO = 2;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3256,6 +3257,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let hoverPayload = null;
       let globeInstance = null;
       let latestGlobeData = null;
+      let resizeObserver = null;
 
       function showTooltip(content) {
         if (!tooltip) return;
@@ -3324,9 +3326,34 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         globeInstance.htmlElementsData(buildCountryLabels(latestGlobeData, altitude));
       }
 
+      function syncRendererQuality() {
+        if (!globeInstance || typeof globeInstance.renderer !== "function") return;
+        const renderer = globeInstance.renderer();
+        if (!renderer) return;
+        if (typeof renderer.setPixelRatio === "function") {
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_RENDER_PIXEL_RATIO));
+        }
+        if (typeof renderer.setSize === "function") {
+          renderer.setSize(host.clientWidth || 1200, host.clientHeight || 620, false);
+        }
+      }
+
+      function syncGlobeSize() {
+        if (!globeInstance) return;
+        globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
+        syncRendererQuality();
+        refreshCountryLabels();
+      }
+
       function createGlobe() {
         if (globeInstance) return globeInstance;
-        globeInstance = new window.Globe(host)
+        globeInstance = new window.Globe(host, {
+          rendererConfig: {
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          },
+        })
           .width(host.clientWidth || 1200)
           .height(host.clientHeight || 620)
           .backgroundColor("rgba(0,0,0,0)")
@@ -3338,13 +3365,18 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .atmosphereColor("#9fd6ff")
           .atmosphereAltitude(0.17)
           .arcAltitudeAutoScale(0.22)
-          .arcStroke((d) => d.isFocus ? 0.55 : 0.35)
-          .arcDashLength((d) => d.isActive ? 0.14 : 0.18)
-          .arcDashGap((d) => d.isActive ? 1.65 : 2.2)
-          .arcDashInitialGap((d) => d.isFocus ? 0.08 : 0.18)
-          .arcDashAnimateTime((d) => d.isActive ? (d.isFocus ? 5200 : 6200) : 0)
+          .arcStroke((d) => d.isFocus ? 0.7 : 0.45)
+          .arcCurveResolution(96)
+          .arcCircularResolution(10)
+          .arcDashLength(1)
+          .arcDashGap(0)
+          .arcDashInitialGap(0)
+          .arcDashAnimateTime(0)
+          .arcsTransitionDuration(0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
-          .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
+          .pointRadius((d) => d.isFocus ? 0.16 : 0.1)
+          .pointsTransitionDuration(0)
+          .htmlTransitionDuration(0)
           .onPointHover((point) => {
             hoverPayload = point
               ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
@@ -3376,6 +3408,15 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           controls.enablePan = false;
           controls.minDistance = 180;
           controls.maxDistance = 420;
+          controls.enableDamping = true;
+          controls.dampingFactor = 0.08;
+        }
+        syncRendererQuality();
+        if (typeof ResizeObserver !== "undefined") {
+          resizeObserver = new ResizeObserver(() => {
+            syncGlobeSize();
+          });
+          resizeObserver.observe(host);
         }
         host.addEventListener("mousemove", (event) => {
           const rect = host.getBoundingClientRect();
@@ -3427,13 +3468,15 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             altitude: data.hasFocus ? 1.65 : 2.05,
           }, 900);
         }
+        syncGlobeSize();
+        window.requestAnimationFrame(() => syncGlobeSize());
+        window.setTimeout(() => syncGlobeSize(), 180);
         refreshCountryLabels();
       }
 
       bridge.updateWebGlobeScene = updateWebGlobe;
       bridge.resizeWebGlobeScene = () => {
-        if (!globeInstance) return;
-        globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
+        syncGlobeSize();
       };
 
       if (bridge.pendingGlobeData) {
