@@ -1094,8 +1094,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     }
 
     function localizeCountry(country) {
-      if (!country) return "";
-      return countryPointLookup.get(normalize(country))?.name_zh || country;
+      return country || "";
     }
 
     function polarPoint(cx, cy, radius, angle) {
@@ -2585,7 +2584,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         const seed = (lineItem.stage || "").length * 0.061 + (lineItem.isFocus ? 0.14 : 0.03);
         const pulseCount = lineItem.isFocus ? 2 : 1;
         for (let pulse = 0; pulse < pulseCount; pulse += 1) {
-          const progress = (seed + pulse * 0.38 + globeState.timeMs * 0.00012) % 1;
+          const progress = (seed + pulse * 0.38 + globeState.timeMs * 0.00005) % 1;
           const point = sampleArcPoint(points, progress);
           if (!point) continue;
           const projected = projectVector(point, radius, cx, cy);
@@ -3272,7 +3271,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return (data.countries || []).map((country) => ({
           lat: country.lat,
           lng: country.lon,
-          text: country.name_zh || localizeCountry(country.name || ""),
+          text: country.name || "",
         }));
       }
 
@@ -3290,9 +3289,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .atmosphereAltitude(0.17)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => d.isFocus ? 0.55 : 0.35)
-          .arcDashLength((d) => d.isActive ? 0.48 : 0.26)
-          .arcDashGap((d) => d.isActive ? 0.75 : 1.8)
-          .arcDashAnimateTime((d) => d.isActive ? 2200 : 0)
+          .arcDashLength((d) => d.isActive ? 0.14 : 0.18)
+          .arcDashGap((d) => d.isActive ? 1.65 : 2.2)
+          .arcDashInitialGap((d) => d.isFocus ? 0.08 : 0.18)
+          .arcDashAnimateTime((d) => d.isActive ? (d.isFocus ? 5200 : 6200) : 0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
           .onPointHover((point) => {
