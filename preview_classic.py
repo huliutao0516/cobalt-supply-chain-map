@@ -3260,9 +3260,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let globeInstance = null;
       let latestGlobeData = null;
       let resizeObserver = null;
-      let overlayFrameHandle = null;
-      let lastOverlayUpdateMs = 0;
-
       function showTooltip(content) {
         if (!tooltip) return;
         if (!content) {
@@ -3400,7 +3397,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           });
         }
         if (data?.lines?.length) {
-          overlays.push(...buildMovingArrowOverlays(data.lines));
+          overlays.push(...buildLineArrowheadOverlays(data.lines));
         }
         return overlays;
       }
@@ -3458,39 +3455,23 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         };
       }
 
-      function buildMovingArrowOverlays(lines) {
-        const now = performance.now();
+      function buildLineArrowheadOverlays(lines) {
         return lines
           .filter((line) => line.isActive || line.isFocus)
-          .map((line, lineIndex) => {
-            const durationMs = line.isFocus ? 5200 : 6200;
-            const progressRange = 0.72;
-            const minProgress = 0.14;
-            const progress = minProgress + ((((now / durationMs) + lineIndex * 0.137) % 1) * progressRange);
-            const previousProgress = Math.max(minProgress, progress - 0.024);
+          .map((line) => {
+            const progress = 0.86;
+            const previousProgress = 0.81;
             const current = vectorToLatLon(arcVectorAt(line, progress));
             const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
             return {
-              type: "flow_arrow",
+              type: "flow_arrowhead",
               lat: current.lat,
               lng: current.lng,
-              altitude: Math.max(line.isFocus ? 0.032 : 0.022, arcPeakAltitude(line) * 0.42),
+              altitude: Math.max(line.isFocus ? 0.03 : 0.021, arcPeakAltitude(line) * 0.42),
               color: flowLineColor(line.stage, line.isFocus),
               rotation: bearingDegrees(previous.lat, previous.lng, current.lat, current.lng),
             };
           });
-      }
-
-      function ensureOverlayAnimation() {
-        if (overlayFrameHandle) return;
-        const step = (nowMs) => {
-          if (globeInstance && latestGlobeData && nowMs - lastOverlayUpdateMs > 70) {
-            lastOverlayUpdateMs = nowMs;
-            refreshCountryLabels();
-          }
-          overlayFrameHandle = window.requestAnimationFrame(step);
-        };
-        overlayFrameHandle = window.requestAnimationFrame(step);
       }
 
       function syncRendererQuality() {
@@ -3590,18 +3571,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .htmlLng("lng")
           .htmlAltitude((item) => item.altitude ?? 0.028)
           .htmlElement((item) => {
-            if (item.type === "flow_arrow") {
+            if (item.type === "flow_arrowhead") {
               const arrow = document.createElement("div");
               arrow.className = "globe-country-label";
-              arrow.style.width = item.altitude > 0.03 ? "30px" : "26px";
-              arrow.style.height = item.altitude > 0.03 ? "10px" : "9px";
+              arrow.style.width = item.altitude > 0.028 ? "10px" : "9px";
+              arrow.style.height = item.altitude > 0.028 ? "10px" : "9px";
               arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
               arrow.style.pointerEvents = "none";
-              arrow.style.filter = `drop-shadow(0 0 4px rgba(255,255,255,0.12))`;
+              arrow.style.filter = `drop-shadow(0 0 3px rgba(255,255,255,0.18))`;
               arrow.innerHTML = `
-                <svg viewBox="0 0 30 10" width="100%" height="100%" aria-hidden="true">
-                  <path d="M0.5 5H29.5" stroke="${item.color}" stroke-width="1.7" stroke-linecap="round" opacity="0.96"></path>
-                  <path d="M13.5 1.6L18.5 5L13.5 8.4" fill="none" stroke="${item.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                <svg viewBox="0 0 10 10" width="100%" height="100%" aria-hidden="true">
+                  <path d="M1.2 1.3L8.7 5L1.2 8.7Z" fill="${item.color}" opacity="0.98"></path>
                 </svg>`;
               return arrow;
             }
@@ -3685,7 +3665,6 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         window.requestAnimationFrame(() => syncGlobeSize());
         window.setTimeout(() => syncGlobeSize(), 180);
         refreshCountryLabels();
-        ensureOverlayAnimation();
       }
 
       bridge.updateWebGlobeScene = updateWebGlobe;
