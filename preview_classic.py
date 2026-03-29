@@ -2074,10 +2074,20 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         context.fill();
       }
 
+      function climateProfile(lat, lon) {
+        const absLat = Math.abs(lat);
+        const moisture = pseudoNoise(lat * 0.06 - 1.8, lon * 0.08 + 2.4);
+        const terrain = pseudoNoise(lat * 0.13 + 4.1, lon * 0.16 - 7.9);
+        const ridges = pseudoNoise(lat * 0.22 - 6.2, lon * 0.21 + 3.7);
+        const desert = absLat < 34 && moisture < 0.44 && terrain > 0.38;
+        const polar = absLat > 64;
+        const tropical = absLat < 22 && moisture > 0.48;
+        return { absLat, moisture, terrain, ridges, desert, polar, tropical };
+      }
+
       function ringPalette(ringMeta) {
-        const absLat = Math.abs(ringMeta.centerLat);
-        const climateNoise = pseudoNoise(ringMeta.centerLat * 0.12 + 4.8, ringMeta.centerLon * 0.08 - 6.2);
-        if (absLat > 68) {
+        const profile = climateProfile(ringMeta.centerLat, ringMeta.centerLon);
+        if (profile.polar) {
           return {
             top: [241, 245, 241],
             bottom: [195, 203, 197],
@@ -2085,7 +2095,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             shadow: [132, 148, 156],
           };
         }
-        if (absLat < 26 && climateNoise > 0.55) {
+        if (profile.desert) {
           return {
             top: [224, 208, 163],
             bottom: [171, 142, 93],
@@ -2093,7 +2103,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             shadow: [127, 97, 58],
           };
         }
-        if (absLat < 24) {
+        if (profile.tropical) {
           return {
             top: [98, 145, 86],
             bottom: [53, 97, 58],
@@ -2150,6 +2160,50 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         context.closePath();
       }
 
+      function drawOceanTexture(radius, cx, cy) {
+        context.save();
+        context.beginPath();
+        context.arc(cx, cy, radius, 0, Math.PI * 2);
+        context.clip();
+
+        const bandCount = 18;
+        for (let index = 0; index < bandCount; index += 1) {
+          const t = index / Math.max(1, bandCount - 1);
+          const y = cy - radius * 0.9 + t * radius * 1.8;
+          const band = context.createLinearGradient(cx - radius, y, cx + radius, y + radius * 0.12);
+          band.addColorStop(0, "rgba(255,255,255,0)");
+          band.addColorStop(0.18, "rgba(145, 219, 255, 0.03)");
+          band.addColorStop(0.5, "rgba(81, 180, 239, 0.08)");
+          band.addColorStop(0.82, "rgba(145, 219, 255, 0.03)");
+          band.addColorStop(1, "rgba(255,255,255,0)");
+          context.fillStyle = band;
+          context.fillRect(cx - radius, y - radius * 0.09, radius * 2, radius * 0.18);
+        }
+
+        const currentSeeds = [
+          [-0.82, -0.18, 0.22, -0.28, 0.86, 0.14],
+          [-0.76, 0.24, 0.08, 0.34, 0.82, 0.08],
+          [-0.54, -0.52, -0.04, -0.26, 0.62, -0.08],
+          [-0.22, 0.48, 0.16, 0.58, 0.78, 0.32],
+          [-0.16, -0.16, 0.38, -0.34, 0.92, -0.08],
+        ];
+        currentSeeds.forEach((seed, index) => {
+          context.beginPath();
+          context.moveTo(cx + seed[0] * radius, cy + seed[1] * radius);
+          context.bezierCurveTo(
+            cx + seed[2] * radius, cy + seed[3] * radius,
+            cx + seed[4] * radius, cy + seed[5] * radius,
+            cx + radius * 1.02, cy + (index * 0.08 - 0.26) * radius
+          );
+          context.strokeStyle = index % 2 === 0
+            ? "rgba(173, 232, 255, 0.06)"
+            : "rgba(118, 207, 255, 0.04)";
+          context.lineWidth = 1.4;
+          context.stroke();
+        });
+        context.restore();
+      }
+
       function drawLandTexture(radius, cx, cy) {
         const visibleRings = earthRings
           .map((ringMeta) => buildVisibleRingProjection(ringMeta, radius, cx, cy))
@@ -2196,6 +2250,74 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           context.strokeStyle = "rgba(10, 24, 22, 0.10)";
           context.lineWidth = 1.4;
           context.stroke();
+          context.restore();
+
+          context.save();
+          traceProjectedPolygon(item.points);
+          context.clip();
+
+          const terrainBands = 10;
+          for (let bandIndex = 0; bandIndex < terrainBands; bandIndex += 1) {
+            const ratio = bandIndex / Math.max(1, terrainBands - 1);
+            const sweep = context.createLinearGradient(
+              item.minX,
+              item.minY + (item.maxY - item.minY) * ratio,
+              item.maxX,
+              item.minY + (item.maxY - item.minY) * (ratio + 0.12)
+            );
+            const localClimate = climateProfile(
+              item.ringMeta.centerLat + (ratio - 0.5) * 8,
+              item.ringMeta.centerLon + (ratio - 0.5) * 10
+            );
+            const warmTint = localClimate.desert
+              ? "rgba(243, 218, 170, 0.12)"
+              : localClimate.tropical
+                ? "rgba(128, 182, 120, 0.10)"
+                : "rgba(210, 220, 188, 0.06)";
+            const darkTint = localClimate.polar
+              ? "rgba(124, 140, 150, 0.08)"
+              : "rgba(48, 72, 54, 0.10)";
+            sweep.addColorStop(0, "rgba(255,255,255,0)");
+            sweep.addColorStop(0.28, warmTint);
+            sweep.addColorStop(0.72, darkTint);
+            sweep.addColorStop(1, "rgba(255,255,255,0)");
+            context.fillStyle = sweep;
+            context.fillRect(item.minX, item.minY, item.maxX - item.minX, item.maxY - item.minY);
+          }
+
+          const ridgeCount = Math.max(4, Math.round((item.maxX - item.minX + item.maxY - item.minY) / 120));
+          for (let ridgeIndex = 0; ridgeIndex < ridgeCount; ridgeIndex += 1) {
+            const startX = mix(item.minX, item.maxX, pseudoNoise(item.ringMeta.centerLon * 0.17 + ridgeIndex * 1.7, item.ringMeta.centerLat * 0.23));
+            const startY = mix(item.minY, item.maxY, pseudoNoise(item.ringMeta.centerLat * 0.19 - ridgeIndex * 1.1, item.ringMeta.centerLon * 0.11));
+            const endX = startX + (pseudoNoise(ridgeIndex * 0.41, item.ringMeta.centerLon * 0.07) - 0.5) * (item.maxX - item.minX) * 0.48;
+            const endY = startY + (pseudoNoise(ridgeIndex * 0.33, item.ringMeta.centerLat * 0.09) - 0.5) * (item.maxY - item.minY) * 0.24;
+            context.beginPath();
+            context.moveTo(startX, startY);
+            context.quadraticCurveTo(
+              mix(startX, endX, 0.48) + (item.maxX - item.minX) * 0.06,
+              mix(startY, endY, 0.42) - (item.maxY - item.minY) * 0.04,
+              endX,
+              endY
+            );
+            context.strokeStyle = "rgba(255,255,255,0.05)";
+            context.lineWidth = 0.9;
+            context.stroke();
+          }
+
+          const snowChance = Math.abs(item.ringMeta.centerLat) > 46 ? 6 : 0;
+          for (let patchIndex = 0; patchIndex < snowChance; patchIndex += 1) {
+            const patchX = mix(item.minX, item.maxX, pseudoNoise(item.ringMeta.centerLon * 0.13 + patchIndex, item.ringMeta.centerLat * 0.07));
+            const patchY = mix(item.minY, item.maxY, pseudoNoise(item.ringMeta.centerLat * 0.17 - patchIndex, item.ringMeta.centerLon * 0.05));
+            const patch = context.createRadialGradient(patchX, patchY, 0, patchX, patchY, 16);
+            patch.addColorStop(0, "rgba(255,255,255,0.18)");
+            patch.addColorStop(0.55, "rgba(255,255,255,0.06)");
+            patch.addColorStop(1, "rgba(255,255,255,0)");
+            context.beginPath();
+            context.arc(patchX, patchY, 16, 0, Math.PI * 2);
+            context.fillStyle = patch;
+            context.fill();
+          }
+
           context.restore();
         });
       }
@@ -2435,6 +2557,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         context.arc(cx, cy, radius + 0.5, 0, Math.PI * 2);
         context.clip();
 
+        drawOceanTexture(radius, cx, cy);
         drawLandTexture(radius, cx, cy);
         drawCloudLayer(radius, cx, cy);
         context.strokeStyle = "rgba(238, 247, 232, 0.24)";
