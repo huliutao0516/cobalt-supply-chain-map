@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+import urllib.request
 
 
 STEP_ORDER = [
@@ -28,6 +29,8 @@ STEP_COLUMN_RENAMES = {
 MAP_WIDTH = 1400
 MAP_HEIGHT = 520
 MAP_MARGIN = 24
+GLOBE_TEXTURE_SOURCE_URL = "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x21600x10800.jpg"
+GLOBE_TEXTURE_RELATIVE_PATH = "assets/earth_satellite_21600.jpg"
 
 COUNTRY_LABELS_ZH = {
     "Australia": "澳大利亚",
@@ -3255,7 +3258,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
-      const SATELLITE_FALLBACK_IMAGE = "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x21600x10800.jpg";
+      const SATELLITE_FALLBACK_IMAGE = "assets/earth_satellite_21600.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 2.25;
       if (!host || typeof window.Globe !== "function") {
@@ -3650,6 +3653,10 @@ def export_original_style_preview(
     depth: int,
     limit: int,
 ) -> dict[str, int]:
+    texture_path = output_dir / GLOBE_TEXTURE_RELATIVE_PATH
+    texture_path.parent.mkdir(parents=True, exist_ok=True)
+    if not texture_path.exists() or texture_path.stat().st_size < 5_000_000:
+        urllib.request.urlretrieve(GLOBE_TEXTURE_SOURCE_URL, texture_path)
     payload = build_classic_preview_payload(
         links_rows,
         matrix_rows,

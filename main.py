@@ -1072,6 +1072,13 @@ def export_static_site(output_dir: Path, site_dir: Path) -> dict[str, int]:
     if summary_path.exists():
         shutil.copyfile(summary_path, site_dir / "summary.json")
 
+    assets_dir = output_dir / "assets"
+    site_assets_dir = site_dir / "assets"
+    if assets_dir.exists():
+        if site_assets_dir.exists():
+            shutil.rmtree(site_assets_dir)
+        shutil.copytree(assets_dir, site_assets_dir)
+
     return {
         "site_files": sum(1 for path in site_dir.iterdir() if path.is_file()),
     }
