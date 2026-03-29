@@ -485,9 +485,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>钴供应链三维图谱</title>
-  <script>window.CESIUM_BASE_URL = "https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/";</script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.139.1/Build/Cesium/Cesium.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
     :root {
@@ -3244,25 +3242,203 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const bridge = window.__previewBridge = window.__previewBridge || {};
       const host = document.getElementById("googleGlobeHost");
       const canvas = document.getElementById("globeCanvas");
+      const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
-      const labelLayer = document.getElementById("globeLabelLayer");
-      if (!host || !canvas) {
+      const SATELLITE_TILE_ROOT = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8";
+      const SATELLITE_FALLBACK_IMAGE = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg";
+      const COUNTRY_LABEL_ALTITUDE = 1.72;
+      if (!host || typeof window.Globe !== "function") {
         return;
       }
 
-      host.classList.remove("is-active");
-      host.innerHTML = "";
-      if (labelLayer) {
-        labelLayer.hidden = true;
-        labelLayer.innerHTML = "";
+      let mouseX = 24;
+      let mouseY = 24;
+      let hoverPayload = null;
+      let globeInstance = null;
+      let latestGlobeData = null;
+
+      function showTooltip(content) {
+        if (!tooltip) return;
+        if (!content) {
+          tooltip.hidden = true;
+          return;
+        }
+        tooltip.hidden = false;
+        const rect = host.getBoundingClientRect();
+        tooltip.style.left = `${Math.max(12, Math.min(mouseX, rect.width - 280))}px`;
+        tooltip.style.top = `${Math.max(12, Math.min(mouseY, rect.height - 110))}px`;
+        tooltip.innerHTML = content;
       }
-      canvas.style.visibility = "visible";
-      canvas.style.pointerEvents = "auto";
-      if (note) {
-        note.textContent = "拖动旋转，滚轮缩放";
+
+      function setSatelliteMode(active) {
+        host.classList.toggle("is-active", active);
+        const labelLayer = document.getElementById("globeLabelLayer");
+        if (labelLayer) {
+          labelLayer.hidden = true;
+          labelLayer.innerHTML = "";
+        }
+        if (canvas) {
+          canvas.style.visibility = active ? "hidden" : "visible";
+          canvas.style.pointerEvents = active ? "none" : "auto";
+        }
+        if (note) {
+          note.textContent = active
+            ? "卫星地球模式，可拖动旋转、滚轮缩放"
+            : "拖动旋转，滚轮缩放";
+        }
       }
-      bridge.updateWebGlobeScene = () => {};
-      bridge.resizeWebGlobeScene = () => {};
+
+      function lineColor(stage, active) {
+        if (!active) return "rgba(150, 170, 190, 0.18)";
+        return stepColors[stage] || "#7fd0ff";
+      }
+
+      function pointColor(point) {
+        return point.isFocus ? "#f6fbff" : (stepColors[point.stage] || "#7fd0ff");
+      }
+
+      function buildCountryLabels(data, altitude) {
+        if (!data || !data.hasFocus) return [];
+        if (!Number.isFinite(altitude) || altitude > COUNTRY_LABEL_ALTITUDE) return [];
+        return (data.countries || []).map((country) => ({
+          lat: country.lat,
+          lng: country.lon,
+          text: country.name || "",
+        }));
+      }
+
+      function satelliteTileUrl(x, y, level) {
+        const z = Math.min(8, Math.max(1, Math.round(level || 1)));
+        return `${SATELLITE_TILE_ROOT}/${z}/${y}/${x}.jpg`;
+      }
+
+      function currentAltitude() {
+        if (!globeInstance || typeof globeInstance.pointOfView !== "function") return Infinity;
+        const view = globeInstance.pointOfView();
+        return typeof view?.altitude === "number" ? view.altitude : Infinity;
+      }
+
+      function refreshCountryLabels(altitudeOverride) {
+        if (!globeInstance) return;
+        const altitude = Number.isFinite(altitudeOverride) ? altitudeOverride : currentAltitude();
+        globeInstance.htmlElementsData(buildCountryLabels(latestGlobeData, altitude));
+      }
+
+      function createGlobe() {
+        if (globeInstance) return globeInstance;
+        globeInstance = new window.Globe(host)
+          .width(host.clientWidth || 1200)
+          .height(host.clientHeight || 620)
+          .backgroundColor("rgba(0,0,0,0)")
+          .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
+          .globeImageUrl(SATELLITE_FALLBACK_IMAGE)
+          .globeTileEngineUrl(satelliteTileUrl)
+          .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
+          .showAtmosphere(true)
+          .atmosphereColor("#9fd6ff")
+          .atmosphereAltitude(0.17)
+          .arcAltitudeAutoScale(0.22)
+          .arcStroke((d) => d.isFocus ? 0.55 : 0.35)
+          .arcDashLength((d) => d.isActive ? 0.14 : 0.18)
+          .arcDashGap((d) => d.isActive ? 1.65 : 2.2)
+          .arcDashInitialGap((d) => d.isFocus ? 0.08 : 0.18)
+          .arcDashAnimateTime((d) => d.isActive ? (d.isFocus ? 5200 : 6200) : 0)
+          .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
+          .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
+          .onPointHover((point) => {
+            hoverPayload = point
+              ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
+              : null;
+            showTooltip(hoverPayload);
+          })
+          .onPointClick((point) => {
+            if (point && typeof bridge.toggleMapFocus === "function") {
+              bridge.toggleMapFocus(point.label);
+            }
+          })
+          .onZoom((view) => {
+            refreshCountryLabels(typeof view?.altitude === "number" ? view.altitude : currentAltitude());
+          })
+          .htmlLat("lat")
+          .htmlLng("lng")
+          .htmlAltitude(() => 0.028)
+          .htmlElement((label) => {
+            const element = document.createElement("div");
+            element.className = "globe-country-label";
+            element.lang = "en";
+            element.textContent = label.text;
+            return element;
+          });
+
+        const controls = globeInstance.controls?.();
+        if (controls) {
+          controls.autoRotate = false;
+          controls.enablePan = false;
+          controls.minDistance = 180;
+          controls.maxDistance = 420;
+        }
+        host.addEventListener("mousemove", (event) => {
+          const rect = host.getBoundingClientRect();
+          mouseX = event.clientX - rect.left + 16;
+          mouseY = event.clientY - rect.top + 16;
+          if (hoverPayload) {
+            showTooltip(hoverPayload);
+          }
+        });
+        host.addEventListener("mouseleave", () => {
+          hoverPayload = null;
+          showTooltip(null);
+        });
+        return globeInstance;
+      }
+
+      function updateWebGlobe(data) {
+        if (!data) {
+          latestGlobeData = null;
+          setSatelliteMode(false);
+          return;
+        }
+        const globe = createGlobe();
+        setSatelliteMode(true);
+        latestGlobeData = data;
+
+        const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
+        const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
+
+        globe
+          .pointsData(activePoints)
+          .pointLat("lat")
+          .pointLng("lon")
+          .pointColor((point) => pointColor(point))
+          .arcsData(activeLines)
+          .arcStartLat("sourceLat")
+          .arcStartLng("sourceLon")
+          .arcEndLat("targetLat")
+          .arcEndLng("targetLon")
+          .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus));
+
+        const focusPoints = activePoints.length ? activePoints : (data.points || []);
+        if (focusPoints.length) {
+          const avgLat = focusPoints.reduce((sum, point) => sum + point.lat, 0) / focusPoints.length;
+          const avgLon = focusPoints.reduce((sum, point) => sum + point.lon, 0) / focusPoints.length;
+          globe.pointOfView({
+            lat: avgLat,
+            lng: avgLon,
+            altitude: data.hasFocus ? 1.65 : 2.05,
+          }, 900);
+        }
+        refreshCountryLabels();
+      }
+
+      bridge.updateWebGlobeScene = updateWebGlobe;
+      bridge.resizeWebGlobeScene = () => {
+        if (!globeInstance) return;
+        globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
+      };
+
+      if (bridge.pendingGlobeData) {
+        updateWebGlobe(bridge.pendingGlobeData);
+      }
     })();
   </script>
 </body>
