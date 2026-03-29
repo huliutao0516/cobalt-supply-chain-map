@@ -3260,6 +3260,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let globeInstance = null;
       let latestGlobeData = null;
       let resizeObserver = null;
+      let overlayFrameHandle = null;
+      let lastOverlayUpdateMs = 0;
 
       function showTooltip(content) {
         if (!tooltip) return;
@@ -3354,6 +3356,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         };
       }
 
+      function bearingDegrees(fromLat, fromLng, toLat, toLng) {
+        const phi1 = radians(fromLat);
+        const phi2 = radians(toLat);
+        const lambda1 = radians(fromLng);
+        const lambda2 = radians(toLng);
+        const y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
+        const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
+        return degrees(Math.atan2(y, x));
+      }
+
       function slerpVectors(start, end, t) {
         const dot = Math.max(-1, Math.min(1, start.x * end.x + start.y * end.y + start.z * end.z));
         const omega = Math.acos(dot);
@@ -3386,6 +3398,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               text: country.name || "",
             });
           });
+        }
+        if (data?.lines?.length) {
+          overlays.push(...buildMovingArrowOverlays(data.lines));
         }
         return overlays;
       }
@@ -3421,18 +3436,64 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
 
       function buildRenderLines(lines) {
-        return lines.flatMap((line, index) => {
-          const base = { ...line, renderKind: "base", flowOffset: 0 };
+        return lines.flatMap((line) => {
+          const base = { ...line, renderKind: "base" };
           if (!(line.isActive || line.isFocus)) {
             return [base];
           }
-          const flow = {
-            ...line,
-            renderKind: "flow",
-            flowOffset: (index * 0.21) % 1,
-          };
-          return [base, flow];
+          const glow = { ...line, renderKind: "glow" };
+          return [glow, base];
         });
+      }
+
+      function arcVectorAt(line, progress) {
+        const start = latLonToVector(line.sourceLat, line.sourceLon);
+        const end = latLonToVector(line.targetLat, line.targetLon);
+        const curved = slerpVectors(start, end, progress);
+        const altitude = 1 + Math.sin(progress * Math.PI) * arcPeakAltitude(line);
+        return {
+          x: curved.x * altitude,
+          y: curved.y * altitude,
+          z: curved.z * altitude,
+        };
+      }
+
+      function buildMovingArrowOverlays(lines) {
+        const now = performance.now();
+        return lines
+          .filter((line) => line.isActive || line.isFocus)
+          .flatMap((line, lineIndex) => {
+            const arrowCount = line.isFocus ? 3 : 2;
+            const durationMs = line.isFocus ? 2100 : 2600;
+            const baseOffset = ((now / durationMs) + lineIndex * 0.173) % 1;
+            return Array.from({ length: arrowCount }, (_, arrowIndex) => {
+              const spacing = 0.34;
+              const progress = (baseOffset + arrowIndex * spacing) % 1;
+              const previousProgress = (progress - 0.028 + 1) % 1;
+              const current = vectorToLatLon(arcVectorAt(line, progress));
+              const previous = vectorToLatLon(arcVectorAt(line, previousProgress));
+              return {
+                type: "flow_arrow",
+                lat: current.lat,
+                lng: current.lng,
+                altitude: Math.max(line.isFocus ? 0.034 : 0.024, arcPeakAltitude(line) * 0.44),
+                color: flowLineColor(line.stage, line.isFocus),
+                rotation: bearingDegrees(previous.lat, previous.lng, current.lat, current.lng),
+              };
+            });
+          });
+      }
+
+      function ensureOverlayAnimation() {
+        if (overlayFrameHandle) return;
+        const step = (nowMs) => {
+          if (globeInstance && latestGlobeData && nowMs - lastOverlayUpdateMs > 70) {
+            lastOverlayUpdateMs = nowMs;
+            refreshCountryLabels();
+          }
+          overlayFrameHandle = window.requestAnimationFrame(step);
+        };
+        overlayFrameHandle = window.requestAnimationFrame(step);
       }
 
       function syncRendererQuality() {
@@ -3497,18 +3558,18 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .globeCurvatureResolution(2)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => {
-            if (d.renderKind === "flow") return d.isFocus ? 0.44 : 0.34;
-            return d.isFocus ? 0.56 : 0.36;
+            if (d.renderKind === "glow") return d.isFocus ? 0.76 : 0.58;
+            return d.isFocus ? 0.54 : 0.38;
           })
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcAltitude((d) => arcPeakAltitude(d))
           .arcCurveResolution(96)
           .arcCircularResolution(10)
-          .arcDashLength((d) => d.renderKind === "flow" ? (d.isFocus ? 0.26 : 0.22) : 1)
-          .arcDashGap((d) => d.renderKind === "flow" ? (d.isFocus ? 1.15 : 1.32) : 0)
-          .arcDashInitialGap((d) => d.renderKind === "flow" ? (d.flowOffset || 0) : 0)
-          .arcDashAnimateTime((d) => d.renderKind === "flow" ? (d.isFocus ? 1800 : 2400) : 0)
+          .arcDashLength(1)
+          .arcDashGap(0)
+          .arcDashInitialGap(0)
+          .arcDashAnimateTime(0)
           .arcsTransitionDuration(0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .pointRadius((d) => d.isFocus ? 0.16 : 0.1)
@@ -3532,6 +3593,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .htmlLng("lng")
           .htmlAltitude((item) => item.altitude ?? 0.028)
           .htmlElement((item) => {
+            if (item.type === "flow_arrow") {
+              const arrow = document.createElement("div");
+              arrow.className = "globe-country-label";
+              arrow.style.color = item.color;
+              arrow.style.fontSize = item.altitude > 0.03 ? "13px" : "11px";
+              arrow.style.fontWeight = "700";
+              arrow.style.textShadow = "0 0 8px rgba(255,255,255,0.18), 0 0 12px rgba(0,0,0,0.34)";
+              arrow.style.transform = `translate(-50%, -50%) rotate(${item.rotation}deg)`;
+              arrow.textContent = "▸";
+              return arrow;
+            }
             const label = document.createElement("div");
             label.className = "globe-country-label";
             label.lang = "en";
@@ -3594,8 +3666,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcStartLng("sourceLon")
           .arcEndLat("targetLat")
           .arcEndLng("targetLon")
-          .arcColor((line) => line.renderKind === "flow"
-            ? flowLineColor(line.stage, line.isFocus)
+          .arcColor((line) => line.renderKind === "glow"
+            ? colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.22 : 0.14)
             : lineColor(line.stage, line.isActive || line.isFocus));
 
         const focusPoints = activePoints.length ? activePoints : (data.points || []);
@@ -3612,6 +3684,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         window.requestAnimationFrame(() => syncGlobeSize());
         window.setTimeout(() => syncGlobeSize(), 180);
         refreshCountryLabels();
+        ensureOverlayAnimation();
       }
 
       bridge.updateWebGlobeScene = updateWebGlobe;
