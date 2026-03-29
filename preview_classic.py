@@ -29,6 +29,63 @@ MAP_WIDTH = 1400
 MAP_HEIGHT = 520
 MAP_MARGIN = 24
 
+COUNTRY_LABELS_ZH = {
+    "Australia": "澳大利亚",
+    "Austria": "奥地利",
+    "Belgium": "比利时",
+    "Brazil": "巴西",
+    "Canada": "加拿大",
+    "China": "中国",
+    "Cuba": "古巴",
+    "Dem. Rep. Congo": "刚果（金）",
+    "Democratic Republic of the Congo": "刚果（金）",
+    "Finland": "芬兰",
+    "France": "法国",
+    "Germany": "德国",
+    "Hong Kong": "中国香港",
+    "Hungary": "匈牙利",
+    "India": "印度",
+    "Indonesia": "印度尼西亚",
+    "Italy": "意大利",
+    "Japan": "日本",
+    "Morocco": "摩洛哥",
+    "New Caledonia": "新喀里多尼亚",
+    "Norway": "挪威",
+    "Philippines": "菲律宾",
+    "Poland": "波兰",
+    "Russia": "俄罗斯",
+    "Singapore": "新加坡",
+    "Slovakia": "斯洛伐克",
+    "South Africa": "南非",
+    "South Korea": "韩国",
+    "Spain": "西班牙",
+    "Sweden": "瑞典",
+    "Switzerland": "瑞士",
+    "Taiwan": "中国台湾",
+    "Tanzania": "坦桑尼亚",
+    "The Netherlands": "荷兰",
+    "Netherlands": "荷兰",
+    "UAE": "阿联酋",
+    "UK": "英国",
+    "United Arab Emirates": "阿联酋",
+    "United Kingdom": "英国",
+    "United States": "美国",
+    "USA": "美国",
+    "Vietnam": "越南",
+    "Zambia": "赞比亚",
+    "Zimbabwe": "津巴布韦",
+}
+
+COUNTRY_CANONICAL_ALIASES = {
+    "Democratic Republic of the Congo": "Dem. Rep. Congo",
+    "The Netherlands": "Netherlands",
+    "United Arab Emirates": "UAE",
+    "United Kingdom": "United Kingdom",
+    "UK": "United Kingdom",
+    "United States": "United States",
+    "USA": "United States",
+}
+
 
 def clean_text(value: Any) -> str:
     if value is None:
@@ -44,6 +101,15 @@ def parse_float(value: Any) -> float | None:
         return float(text.replace(",", ""))
     except ValueError:
         return None
+
+
+def normalize_country_key(name: str) -> str:
+    return clean_text(name).casefold()
+
+
+def localize_country_name(name: str) -> str:
+    cleaned = clean_text(name)
+    return COUNTRY_LABELS_ZH.get(cleaned, cleaned)
 
 
 def normalize_step_name(step_name: str) -> str:
@@ -200,6 +266,8 @@ def build_world_map_payload(
             globe_rings.append([[round(lon, 4), round(lat, 4)] for lon, lat in sampled])
 
     country_labels: list[dict[str, Any]] = []
+    country_points: list[dict[str, Any]] = []
+    seen_country_points: set[tuple[str, float, float]] = set()
     for row in country_rows:
         name = clean_text(row.get("name", ""))
         lat = parse_float(row.get("lat", ""))
@@ -208,11 +276,42 @@ def build_world_map_payload(
             continue
         x, y = project_coordinate(lon, lat)
         country_labels.append({"name": name, "x": x, "y": y})
+        country_points.append(
+            {
+                "name": name,
+                "name_zh": localize_country_name(name),
+                "lat": lat,
+                "lon": lon,
+            }
+        )
+        seen_country_points.add((normalize_country_key(name), lat, lon))
+
+    for alias, canonical in COUNTRY_CANONICAL_ALIASES.items():
+        alias_key = normalize_country_key(alias)
+        canonical_key = normalize_country_key(canonical)
+        canonical_point = next(
+            (point for point in country_points if normalize_country_key(point["name"]) == canonical_key),
+            None,
+        )
+        if canonical_point is None:
+            continue
+        alias_row = {
+            "name": alias,
+            "name_zh": localize_country_name(alias),
+            "lat": canonical_point["lat"],
+            "lon": canonical_point["lon"],
+        }
+        alias_identity = (alias_key, alias_row["lat"], alias_row["lon"])
+        if alias_identity in seen_country_points:
+            continue
+        seen_country_points.add(alias_identity)
+        country_points.append(alias_row)
 
     return {
         "paths": country_paths,
         "labels": country_labels,
         "globe_rings": globe_rings,
+        "country_points": country_points,
     }
 
 
@@ -386,6 +485,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>钴供应链三维图谱</title>
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
     :root {
@@ -890,6 +990,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     const stepColors = payload.step_colors;
     const stepLabelsZh = payload.step_labels_zh || {};
     const worldMap = payload.world_map || { paths: [], labels: [] };
+    const worldCountryPoints = worldMap.country_points || [];
     const companyList = document.getElementById("companyList");
     const companyInput = document.getElementById("companyInput");
     const searchButton = document.getElementById("searchButton");
@@ -926,6 +1027,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     let softHighlightMode = false;
     let googleGlobePreferred = false;
     const companyIndexByNormalizedName = new Map();
+    const countryPointLookup = new Map(
+      worldCountryPoints.map((item) => [normalize(item.name), item])
+    );
     companies.forEach((name, index) => {
       companyIndexByNormalizedName.set(normalize(name), index);
     });
@@ -974,6 +1078,11 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
     function localizeStep(step) {
       return stepLabelsZh[step] || step;
+    }
+
+    function localizeCountry(country) {
+      if (!country) return "";
+      return countryPointLookup.get(normalize(country))?.name_zh || country;
     }
 
     function polarPoint(cx, cy, radius, angle) {
@@ -1035,6 +1144,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       softHighlightButton.classList.toggle("is-active", softHighlightMode);
       if (window.__previewBridge && typeof window.__previewBridge.resizeGlobeScene === "function") {
         window.requestAnimationFrame(() => window.__previewBridge.resizeGlobeScene());
+      }
+      if (window.__previewBridge && typeof window.__previewBridge.resizeWebGlobeScene === "function") {
+        window.requestAnimationFrame(() => window.__previewBridge.resizeWebGlobeScene());
       }
       if (window.__previewBridge && typeof window.__previewBridge.resizeGoogleGlobeScene === "function") {
         window.requestAnimationFrame(() => window.__previewBridge.resizeGoogleGlobeScene());
@@ -1505,6 +1617,17 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         isFocus: lineItem.source.isFocus || lineItem.target.isFocus,
         stage: lineItem.stage,
       }));
+      const globeCountries = hasMapFocus
+        ? Array.from(
+            new Set(
+              activePoints
+                .map((point) => normalize(point.country))
+                .filter(Boolean)
+            )
+          )
+            .map((key) => countryPointLookup.get(key))
+            .filter(Boolean)
+        : [];
 
       mapStats.innerHTML = [
         hasMapFocus ? `相关连线: ${activeRoutes.length}` : `总览连线: ${lines.length}`,
@@ -1526,6 +1649,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           if (typeof window.__previewBridge.updateGlobeScene === "function") {
             window.__previewBridge.updateGlobeScene(null);
           }
+          if (typeof window.__previewBridge.updateWebGlobeScene === "function") {
+            window.__previewBridge.updateWebGlobeScene(null);
+          }
           if (typeof window.__previewBridge.updateGoogleGlobeScene === "function") {
             window.__previewBridge.updateGoogleGlobeScene(null);
           }
@@ -1539,9 +1665,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           focus: hasMapFocus ? mapSubgraph.focus : "",
           points: globePoints,
           lines: globeLines,
+          countries: globeCountries,
         };
         if (typeof window.__previewBridge.updateGlobeScene === "function") {
           window.__previewBridge.updateGlobeScene(window.__previewBridge.pendingGlobeData);
+        }
+        if (typeof window.__previewBridge.updateWebGlobeScene === "function") {
+          window.__previewBridge.updateWebGlobeScene(window.__previewBridge.pendingGlobeData);
         }
         if (typeof window.__previewBridge.updateGoogleGlobeScene === "function") {
           window.__previewBridge.updateGoogleGlobeScene(window.__previewBridge.pendingGlobeData);
@@ -1563,7 +1693,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           label.setAttribute("font-weight", "700");
           label.setAttribute("text-anchor", "middle");
           label.setAttribute("fill", "rgba(53,84,100,0.68)");
-          label.textContent = country.name;
+          label.textContent = localizeCountry(country.name);
           labelGroup.appendChild(label);
         });
         mapSvg.appendChild(labelGroup);
@@ -2538,7 +2668,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         const links = hit.connectionsText
           ? `<div class="links">关联节点: ${hit.connectionsText}</div>`
           : "";
-        tooltip.innerHTML = `<strong>${hit.label}</strong>${meta ? `<div class="meta">${localizeStep(hit.stage || "")}${hit.stage && hit.country ? " | " : ""}${hit.country || ""}</div>` : ""}${links}`;
+        tooltip.innerHTML = `<strong>${hit.label}</strong>${meta ? `<div class="meta">${localizeStep(hit.stage || "")}${hit.stage && hit.country ? " | " : ""}${localizeCountry(hit.country || "")}</div>` : ""}${links}`;
       }
 
       function draw() {
@@ -3070,6 +3200,179 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         renderGoogleGlobeScene(bridge.pendingGlobeData || null);
       } else {
         setGoogleMode(false);
+      }
+    })();
+  </script>
+  <script>
+    (() => {
+      const bridge = window.__previewBridge = window.__previewBridge || {};
+      const host = document.getElementById("googleGlobeHost");
+      const canvas = document.getElementById("globeCanvas");
+      const tooltip = document.getElementById("globeTooltip");
+      const note = document.querySelector(".globe-note");
+      if (!host || typeof window.Globe !== "function") {
+        return;
+      }
+
+      let mouseX = 24;
+      let mouseY = 24;
+      let hoverPayload = null;
+      let globeInstance = null;
+
+      function showTooltip(content) {
+        if (!tooltip) return;
+        if (!content) {
+          tooltip.hidden = true;
+          return;
+        }
+        tooltip.hidden = false;
+        const rect = host.getBoundingClientRect();
+        tooltip.style.left = `${Math.max(12, Math.min(mouseX, rect.width - 280))}px`;
+        tooltip.style.top = `${Math.max(12, Math.min(mouseY, rect.height - 110))}px`;
+        tooltip.innerHTML = content;
+      }
+
+      function setSatelliteMode(active) {
+        host.classList.toggle("is-active", active);
+        if (canvas) {
+          canvas.style.visibility = active ? "hidden" : "visible";
+          canvas.style.pointerEvents = active ? "none" : "auto";
+        }
+        if (note) {
+          note.textContent = active
+            ? "卫星地球模式，可拖动旋转、滚轮缩放"
+            : "拖动旋转，滚轮缩放";
+        }
+      }
+
+      function lineColor(stage, active) {
+        if (!active) return "rgba(150, 170, 190, 0.18)";
+        return stepColors[stage] || "#7fd0ff";
+      }
+
+      function pointColor(point) {
+        return point.isFocus ? "#f6fbff" : (stepColors[point.stage] || "#7fd0ff");
+      }
+
+      function buildCountryLabels(data) {
+        if (!data || !data.hasFocus) return [];
+        return (data.countries || []).map((country) => ({
+          lat: country.lat,
+          lng: country.lon,
+          text: country.name_zh || localizeCountry(country.name || ""),
+        }));
+      }
+
+      function createGlobe() {
+        if (globeInstance) return globeInstance;
+        globeInstance = new window.Globe(host)
+          .width(host.clientWidth || 1200)
+          .height(host.clientHeight || 620)
+          .backgroundColor("rgba(0,0,0,0)")
+          .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
+          .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg")
+          .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
+          .showAtmosphere(true)
+          .atmosphereColor("#9fd6ff")
+          .atmosphereAltitude(0.17)
+          .arcAltitudeAutoScale(0.22)
+          .arcStroke((d) => d.isFocus ? 0.55 : 0.35)
+          .arcDashLength((d) => d.isActive ? 0.48 : 0.26)
+          .arcDashGap((d) => d.isActive ? 0.75 : 1.8)
+          .arcDashAnimateTime((d) => d.isActive ? 2200 : 0)
+          .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
+          .pointRadius((d) => d.isFocus ? 0.18 : 0.11)
+          .labelSize(() => 1.45)
+          .labelAltitude(() => 0.028)
+          .labelColor(() => "#eaf5ff")
+          .labelDotRadius(() => 0.18)
+          .labelResolution(3)
+          .onPointHover((point) => {
+            hoverPayload = point
+              ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
+              : null;
+            showTooltip(hoverPayload);
+          })
+          .onPointClick((point) => {
+            if (point && typeof bridge.toggleMapFocus === "function") {
+              bridge.toggleMapFocus(point.label);
+            }
+          })
+          .onLabelHover((label) => {
+            hoverPayload = label ? `<strong>${label.text}</strong><div class="meta">涉及国家</div>` : null;
+            showTooltip(hoverPayload);
+          });
+
+        const controls = globeInstance.controls?.();
+        if (controls) {
+          controls.autoRotate = false;
+          controls.enablePan = false;
+          controls.minDistance = 180;
+          controls.maxDistance = 420;
+        }
+        host.addEventListener("mousemove", (event) => {
+          const rect = host.getBoundingClientRect();
+          mouseX = event.clientX - rect.left + 16;
+          mouseY = event.clientY - rect.top + 16;
+          if (hoverPayload) {
+            showTooltip(hoverPayload);
+          }
+        });
+        host.addEventListener("mouseleave", () => {
+          hoverPayload = null;
+          showTooltip(null);
+        });
+        return globeInstance;
+      }
+
+      function updateWebGlobe(data) {
+        if (!data) {
+          setSatelliteMode(false);
+          return;
+        }
+        const globe = createGlobe();
+        setSatelliteMode(true);
+
+        const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
+        const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
+        const countryLabels = buildCountryLabels(data);
+
+        globe
+          .pointsData(activePoints)
+          .pointLat("lat")
+          .pointLng("lon")
+          .pointColor((point) => pointColor(point))
+          .arcsData(activeLines)
+          .arcStartLat("sourceLat")
+          .arcStartLng("sourceLon")
+          .arcEndLat("targetLat")
+          .arcEndLng("targetLon")
+          .arcColor((line) => lineColor(line.stage, line.isActive || line.isFocus))
+          .labelsData(countryLabels)
+          .labelLat("lat")
+          .labelLng("lng")
+          .labelText("text");
+
+        const focusPoints = activePoints.length ? activePoints : (data.points || []);
+        if (focusPoints.length) {
+          const avgLat = focusPoints.reduce((sum, point) => sum + point.lat, 0) / focusPoints.length;
+          const avgLon = focusPoints.reduce((sum, point) => sum + point.lon, 0) / focusPoints.length;
+          globe.pointOfView({
+            lat: avgLat,
+            lng: avgLon,
+            altitude: data.hasFocus ? 1.65 : 2.05,
+          }, 900);
+        }
+      }
+
+      bridge.updateWebGlobeScene = updateWebGlobe;
+      bridge.resizeWebGlobeScene = () => {
+        if (!globeInstance) return;
+        globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
+      };
+
+      if (bridge.pendingGlobeData) {
+        updateWebGlobe(bridge.pendingGlobeData);
       }
     })();
   </script>
