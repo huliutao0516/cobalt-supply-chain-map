@@ -3404,7 +3404,20 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function flowLineColor(stage, isFocus) {
         const baseColor = stepColors[stage] || "#7fd0ff";
-        return colorWithAlpha(baseColor, isFocus ? 0.98 : 0.92);
+        const expanded = baseColor.startsWith("#")
+          ? (baseColor.length === 4
+              ? baseColor.slice(1).split("").map((char) => `${char}${char}`).join("")
+              : baseColor.slice(1))
+          : "7fd0ff";
+        const red = parseInt(expanded.slice(0, 2), 16);
+        const green = parseInt(expanded.slice(2, 4), 16);
+        const blue = parseInt(expanded.slice(4, 6), 16);
+        const mix = isFocus ? 0.62 : 0.5;
+        const alpha = isFocus ? 0.98 : 0.94;
+        const flowRed = Math.round(red + (255 - red) * mix);
+        const flowGreen = Math.round(green + (255 - green) * mix);
+        const flowBlue = Math.round(blue + (255 - blue) * mix);
+        return `rgba(${flowRed}, ${flowGreen}, ${flowBlue}, ${alpha})`;
       }
 
       function buildRenderLines(lines) {
@@ -3484,18 +3497,18 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .globeCurvatureResolution(2)
           .arcAltitudeAutoScale(0.22)
           .arcStroke((d) => {
-            if (d.renderKind === "flow") return d.isFocus ? 0.34 : 0.26;
-            return d.isFocus ? 0.72 : 0.46;
+            if (d.renderKind === "flow") return d.isFocus ? 0.44 : 0.34;
+            return d.isFocus ? 0.56 : 0.36;
           })
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcAltitude((d) => arcPeakAltitude(d))
           .arcCurveResolution(96)
           .arcCircularResolution(10)
-          .arcDashLength((d) => d.renderKind === "flow" ? (d.isFocus ? 0.16 : 0.13) : 1)
-          .arcDashGap((d) => d.renderKind === "flow" ? 2.25 : 0)
+          .arcDashLength((d) => d.renderKind === "flow" ? (d.isFocus ? 0.26 : 0.22) : 1)
+          .arcDashGap((d) => d.renderKind === "flow" ? (d.isFocus ? 1.15 : 1.32) : 0)
           .arcDashInitialGap((d) => d.renderKind === "flow" ? (d.flowOffset || 0) : 0)
-          .arcDashAnimateTime((d) => d.renderKind === "flow" ? (d.isFocus ? 3200 : 3900) : 0)
+          .arcDashAnimateTime((d) => d.renderKind === "flow" ? (d.isFocus ? 1800 : 2400) : 0)
           .arcsTransitionDuration(0)
           .pointAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .pointRadius((d) => d.isFocus ? 0.16 : 0.1)
