@@ -31,6 +31,8 @@ MAP_HEIGHT = 520
 MAP_MARGIN = 24
 GLOBE_TEXTURE_SOURCE_URL = "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x21600x10800.jpg"
 GLOBE_TEXTURE_RELATIVE_PATH = "assets/earth_satellite_21600.jpg"
+GLOBE_TEXTURE_PREVIEW_URL = "https://neo.gsfc.nasa.gov/archive/bluemarble/bmng/world_8km/world.topo.bathy.200412.3x5400x2700.jpg"
+GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH = "assets/earth_satellite_5400.jpg"
 
 COUNTRY_LABELS_ZH = {
     "Australia": "澳大利亚",
@@ -488,6 +490,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>钴供应链三维图谱</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/earth_satellite_5400.jpg" as="image" fetchpriority="high">
   <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
@@ -1073,6 +1079,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     });
 
     const companyRowIndex = new Map();
+    const focusedSelectionCache = new Map();
+    const chainViewCache = new WeakMap();
     const allChainNodesByStage = new Map(matrixColumns.map((column) => [column, new Map()]));
     matrixRows.forEach((row, rowIndex) => {
       const rowSeenCompanies = new Set();
@@ -1227,8 +1235,12 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     function buildFocusedSelection(focusTerm, fallbackToDefault = true) {
       const matchedFocus = findFocusCompany(focusTerm, fallbackToDefault);
       const focusId = companyIndexByNormalizedName.get(normalize(matchedFocus));
+      const cacheKey = focusId === undefined ? `missing::${normalize(matchedFocus)}` : `focus::${focusId}`;
+      if (focusedSelectionCache.has(cacheKey)) {
+        return focusedSelectionCache.get(cacheKey);
+      }
       if (focusId === undefined) {
-        return {
+        const emptySelection = {
           focus: matchedFocus,
           matchedFocus: "",
           focusId: null,
@@ -1238,6 +1250,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           activeEdgeCounts: new Map(),
           rowsMatched: 0,
         };
+        focusedSelectionCache.set(cacheKey, emptySelection);
+        return emptySelection;
       }
 
       const rowIndices = companyRowIndex.get(focusId) || [];
@@ -1273,7 +1287,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       });
 
       const relevantLinks = links.filter((link) => activeCompanies.has(link.supplier) && activeCompanies.has(link.buyer));
-      return {
+      const selection = {
         focus: matchedFocus,
         matchedFocus,
         focusId,
@@ -1283,9 +1297,14 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         activeEdgeCounts,
         rowsMatched: rowIndices.length,
       };
+      focusedSelectionCache.set(cacheKey, selection);
+      return selection;
     }
 
     function buildChainView(selection) {
+      if (chainViewCache.has(selection)) {
+        return chainViewCache.get(selection);
+      }
       const nodesByStage = new Map();
       let nodeCount = 0;
       matrixColumns.forEach((column) => {
@@ -1315,7 +1334,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         };
       }).sort((left, right) => right.count - left.count);
 
-      return { nodesByStage, edges, nodeCount };
+      const chainView = { nodesByStage, edges, nodeCount };
+      chainViewCache.set(selection, chainView);
+      return chainView;
     }
 """
     html += """
@@ -1683,11 +1704,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         mapEmpty.hidden = false;
         if (window.__previewBridge) {
           window.__previewBridge.pendingGlobeData = null;
-          if (typeof window.__previewBridge.updateGlobeScene === "function") {
-            window.__previewBridge.updateGlobeScene(null);
-          }
           if (typeof window.__previewBridge.updateWebGlobeScene === "function") {
             window.__previewBridge.updateWebGlobeScene(null);
+          } else if (typeof window.__previewBridge.updateGlobeScene === "function") {
+            window.__previewBridge.updateGlobeScene(null);
           }
           if (typeof window.__previewBridge.updateGoogleGlobeScene === "function") {
             window.__previewBridge.updateGoogleGlobeScene(null);
@@ -1704,11 +1724,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           lines: globeLines,
           countries: globeCountries,
         };
-        if (typeof window.__previewBridge.updateGlobeScene === "function") {
-          window.__previewBridge.updateGlobeScene(window.__previewBridge.pendingGlobeData);
-        }
         if (typeof window.__previewBridge.updateWebGlobeScene === "function") {
           window.__previewBridge.updateWebGlobeScene(window.__previewBridge.pendingGlobeData);
+        } else if (typeof window.__previewBridge.updateGlobeScene === "function") {
+          window.__previewBridge.updateGlobeScene(window.__previewBridge.pendingGlobeData);
         }
         if (typeof window.__previewBridge.updateGoogleGlobeScene === "function") {
           window.__previewBridge.updateGoogleGlobeScene(window.__previewBridge.pendingGlobeData);
@@ -2807,6 +2826,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function animate(timeMs) {
         globeState.timeMs = timeMs || 0;
+        if (canvas.style.visibility === "hidden") {
+          window.setTimeout(() => window.requestAnimationFrame(animate), 240);
+          return;
+        }
         draw();
         window.requestAnimationFrame(animate);
       }
@@ -3247,9 +3270,11 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
+      const SATELLITE_PREVIEW_IMAGE = "assets/earth_satellite_5400.jpg";
       const SATELLITE_FALLBACK_IMAGE = "assets/earth_satellite_21600.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
-      const MAX_RENDER_PIXEL_RATIO = 2.25;
+      const MAX_RENDER_PIXEL_RATIO = 2.05;
+      const INTERACTION_RENDER_PIXEL_RATIO = 1.2;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3260,6 +3285,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let globeInstance = null;
       let latestGlobeData = null;
       let resizeObserver = null;
+      let resizeFrameHandle = 0;
+      let updateFrameHandle = 0;
+      let restoreQualityHandle = 0;
+      let highResTextureRequested = false;
+      let highResTextureApplied = false;
+      let currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+      let pendingSceneData = null;
       function showTooltip(content) {
         if (!tooltip) return;
         if (!content) {
@@ -3444,12 +3476,12 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         });
       }
 
-      function syncRendererQuality() {
+      function syncRendererQuality(pixelRatio = currentRenderPixelRatio) {
         if (!globeInstance || typeof globeInstance.renderer !== "function") return;
         const renderer = globeInstance.renderer();
         if (!renderer) return;
         if (typeof renderer.setPixelRatio === "function") {
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_RENDER_PIXEL_RATIO));
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, pixelRatio));
         }
         if (typeof renderer.setSize === "function") {
           renderer.setSize(host.clientWidth || 1200, host.clientHeight || 620, false);
@@ -3478,11 +3510,47 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         }
       }
 
+      function setInteractiveQuality() {
+        currentRenderPixelRatio = INTERACTION_RENDER_PIXEL_RATIO;
+        syncRendererQuality();
+        if (restoreQualityHandle) {
+          window.clearTimeout(restoreQualityHandle);
+        }
+        restoreQualityHandle = window.setTimeout(() => {
+          currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+          syncRendererQuality();
+        }, 180);
+      }
+
+      function scheduleGlobeSizeSync() {
+        if (resizeFrameHandle) return;
+        resizeFrameHandle = window.requestAnimationFrame(() => {
+          resizeFrameHandle = 0;
+          syncGlobeSize();
+        });
+      }
+
       function syncGlobeSize() {
         if (!globeInstance) return;
         globeInstance.width(host.clientWidth || 1200).height(host.clientHeight || 620);
         syncRendererQuality();
         refreshCountryLabels();
+      }
+
+      function ensureHighResTexture() {
+        if (highResTextureRequested || highResTextureApplied || !globeInstance) return;
+        highResTextureRequested = true;
+        const image = new Image();
+        image.decoding = "async";
+        image.loading = "eager";
+        image.onload = () => {
+          if (!globeInstance) return;
+          globeInstance.globeImageUrl(SATELLITE_FALLBACK_IMAGE);
+          highResTextureApplied = true;
+          currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+          syncRendererQuality();
+        };
+        image.src = SATELLITE_FALLBACK_IMAGE;
       }
 
       function createGlobe() {
@@ -3498,7 +3566,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .height(host.clientHeight || 620)
           .backgroundColor("rgba(0,0,0,0)")
           .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
-          .globeImageUrl(SATELLITE_FALLBACK_IMAGE)
+          .globeImageUrl(SATELLITE_PREVIEW_IMAGE)
           .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
           .showAtmosphere(true)
           .atmosphereColor("#9fd6ff")
@@ -3556,14 +3624,33 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           controls.maxDistance = 420;
           controls.enableDamping = true;
           controls.dampingFactor = 0.08;
+          if (typeof controls.addEventListener === "function") {
+            controls.addEventListener("start", setInteractiveQuality);
+            controls.addEventListener("end", () => {
+              if (restoreQualityHandle) {
+                window.clearTimeout(restoreQualityHandle);
+              }
+              restoreQualityHandle = window.setTimeout(() => {
+                currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+                syncRendererQuality();
+              }, 140);
+            });
+          }
         }
         syncRendererQuality();
+        ensureHighResTexture();
         if (typeof ResizeObserver !== "undefined") {
           resizeObserver = new ResizeObserver(() => {
-            syncGlobeSize();
+            scheduleGlobeSizeSync();
           });
           resizeObserver.observe(host);
         }
+        host.addEventListener("pointerdown", () => {
+          setInteractiveQuality();
+        }, { passive: true });
+        host.addEventListener("wheel", () => {
+          setInteractiveQuality();
+        }, { passive: true });
         host.addEventListener("mousemove", (event) => {
           const rect = host.getBoundingClientRect();
           mouseX = event.clientX - rect.left + 16;
@@ -3617,15 +3704,21 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             altitude: data.hasFocus ? 1.65 : 2.05,
           }, 900);
         }
-        syncGlobeSize();
-        window.requestAnimationFrame(() => syncGlobeSize());
-        window.setTimeout(() => syncGlobeSize(), 180);
+        scheduleGlobeSizeSync();
+        window.setTimeout(() => scheduleGlobeSizeSync(), 180);
         refreshCountryLabels();
       }
 
-      bridge.updateWebGlobeScene = updateWebGlobe;
+      bridge.updateWebGlobeScene = (data) => {
+        pendingSceneData = data;
+        if (updateFrameHandle) return;
+        updateFrameHandle = window.requestAnimationFrame(() => {
+          updateFrameHandle = 0;
+          updateWebGlobe(pendingSceneData);
+        });
+      };
       bridge.resizeWebGlobeScene = () => {
-        syncGlobeSize();
+        scheduleGlobeSizeSync();
       };
 
       if (bridge.pendingGlobeData) {
@@ -3651,9 +3744,12 @@ def export_original_style_preview(
     limit: int,
 ) -> dict[str, int]:
     texture_path = output_dir / GLOBE_TEXTURE_RELATIVE_PATH
+    texture_preview_path = output_dir / GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH
     texture_path.parent.mkdir(parents=True, exist_ok=True)
     if not texture_path.exists() or texture_path.stat().st_size < 5_000_000:
         urllib.request.urlretrieve(GLOBE_TEXTURE_SOURCE_URL, texture_path)
+    if not texture_preview_path.exists() or texture_preview_path.stat().st_size < 1_000_000:
+        urllib.request.urlretrieve(GLOBE_TEXTURE_PREVIEW_URL, texture_preview_path)
     payload = build_classic_preview_payload(
         links_rows,
         matrix_rows,
