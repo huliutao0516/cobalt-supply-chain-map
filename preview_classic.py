@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import subprocess
 from typing import Any
 import urllib.request
 
@@ -33,6 +34,7 @@ GLOBE_TEXTURE_SOURCE_URL = "https://eoimages.gsfc.nasa.gov/images/imagerecords/7
 GLOBE_TEXTURE_RELATIVE_PATH = "assets/earth_satellite_21600.jpg"
 GLOBE_TEXTURE_PREVIEW_URL = "https://neo.gsfc.nasa.gov/archive/bluemarble/bmng/world_8km/world.topo.bathy.200412.3x5400x2700.jpg"
 GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH = "assets/earth_satellite_5400.jpg"
+GLOBE_TEXTURE_INTERACTION_RELATIVE_PATH = "assets/earth_satellite_1350.jpg"
 GLOBE_JS_URL = "https://cdn.jsdelivr.net/npm/globe.gl"
 GLOBE_JS_RELATIVE_PATH = "assets/globe.gl.min.js"
 GLOBE_BUMP_URL = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
@@ -119,6 +121,42 @@ def normalize_country_key(name: str) -> str:
 def localize_country_name(name: str) -> str:
     cleaned = clean_text(name)
     return COUNTRY_LABELS_ZH.get(cleaned, cleaned)
+
+
+def ensure_interaction_texture(preview_path: Path, interaction_path: Path) -> None:
+    if interaction_path.exists() and interaction_path.stat().st_size >= 100_000:
+        return
+    interaction_path.parent.mkdir(parents=True, exist_ok=True)
+    if not preview_path.exists():
+        return
+    powershell_script = f"""
+Add-Type -AssemblyName System.Drawing
+$sourcePath = '{preview_path}'
+$targetPath = '{interaction_path}'
+$image = [System.Drawing.Image]::FromFile($sourcePath)
+$bitmap = New-Object System.Drawing.Bitmap 1350, 675
+$graphics = [System.Drawing.Graphics]::FromImage($bitmap)
+$graphics.CompositingQuality = [System.Drawing.Drawing2D.CompositingQuality]::HighQuality
+$graphics.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+$graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
+$graphics.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
+$graphics.DrawImage($image, 0, 0, 1350, 675)
+$codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object {{ $_.MimeType -eq 'image/jpeg' }}
+$encoder = [System.Drawing.Imaging.Encoder]::Quality
+$encoderParams = New-Object System.Drawing.Imaging.EncoderParameters 1
+$encoderParams.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter($encoder, [long]72)
+$bitmap.Save($targetPath, $codec, $encoderParams)
+$encoderParams.Dispose()
+$graphics.Dispose()
+$bitmap.Dispose()
+$image.Dispose()
+"""
+    subprocess.run(
+        ["powershell", "-NoProfile", "-Command", powershell_script],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
 
 
 def normalize_step_name(step_name: str) -> str:
@@ -497,7 +535,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="assets/earth_satellite_5400.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/earth_satellite_1350.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/earth_satellite_5400.jpg" as="image">
   <script src="assets/globe.gl.min.js"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
@@ -3295,12 +3334,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const canvas = document.getElementById("globeCanvas");
       const tooltip = document.getElementById("globeTooltip");
       const note = document.querySelector(".globe-note");
+      const SATELLITE_INTERACTION_IMAGE = "assets/earth_satellite_1350.jpg";
       const SATELLITE_PREVIEW_IMAGE = "assets/earth_satellite_5400.jpg";
       const SATELLITE_FALLBACK_IMAGE = "assets/earth_satellite_21600.jpg";
       const GLOBE_BUMP_IMAGE = "assets/earth_topology.png";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 1.85;
-      const INTERACTION_RENDER_PIXEL_RATIO = 0.55;
+      const INTERACTION_RENDER_PIXEL_RATIO = 0.38;
       const DEFAULT_ARC_CURVE_RESOLUTION = 96;
       const DEFAULT_ARC_CIRCULAR_RESOLUTION = 10;
       const INTERACTION_ARC_CURVE_RESOLUTION = 42;
@@ -3316,6 +3356,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let latestGlobeData = null;
       let resizeObserver = null;
       let resizeFrameHandle = 0;
+      let labelRefreshFrameHandle = 0;
+      let pendingLabelAltitude = null;
       let updateFrameHandle = 0;
       let restoreQualityHandle = 0;
       let highResTextureRequested = false;
@@ -3324,6 +3366,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let pendingSceneData = null;
       let interactionActive = false;
       let activeScenePayload = null;
+      let storedBumpMap = null;
+      let storedMapAnisotropy = null;
+      let storedBumpAnisotropy = null;
       function showTooltip(content) {
         if (!tooltip) return;
         if (!content) {
@@ -3479,6 +3524,15 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         globeInstance.htmlElementsData(buildOverlayElements(latestGlobeData, altitude));
       }
 
+      function scheduleCountryLabelRefresh(altitudeOverride) {
+        pendingLabelAltitude = altitudeOverride;
+        if (labelRefreshFrameHandle) return;
+        labelRefreshFrameHandle = window.requestAnimationFrame(() => {
+          labelRefreshFrameHandle = 0;
+          refreshCountryLabels(pendingLabelAltitude);
+        });
+      }
+
       function flowLineColor(stage, isFocus) {
         const baseColor = stepColors[stage] || "#7fd0ff";
         const expanded = baseColor.startsWith("#")
@@ -3513,12 +3567,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
 
       function buildInteractionScene(activePoints, activeLines) {
-        const focusPoints = activePoints.filter((point) => point.isFocus);
-        const reducedPoints = focusPoints.length ? focusPoints.slice(0, 2) : [];
-        const reducedLines = [];
         return {
-          points: reducedPoints,
-          lines: reducedLines,
+          points: [],
+          lines: [],
         };
       }
 
@@ -3577,6 +3628,32 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         if (!globeInstance || typeof globeInstance.globeMaterial !== "function") return;
         const material = globeInstance.globeMaterial();
         if (!material) return;
+        if (active) {
+          if (!storedBumpMap && material.bumpMap) {
+            storedBumpMap = material.bumpMap;
+          }
+          if (material.map && storedMapAnisotropy === null) {
+            storedMapAnisotropy = material.map.anisotropy || 1;
+          }
+          if (material.bumpMap && storedBumpAnisotropy === null) {
+            storedBumpAnisotropy = material.bumpMap.anisotropy || 1;
+          }
+          if (material.map) {
+            material.map.anisotropy = 1;
+            material.map.needsUpdate = true;
+          }
+          material.bumpMap = null;
+        } else {
+          if (material.map) {
+            material.map.anisotropy = storedMapAnisotropy || material.map.anisotropy || 1;
+            material.map.needsUpdate = true;
+          }
+          if (storedBumpMap) {
+            material.bumpMap = storedBumpMap;
+            material.bumpMap.anisotropy = storedBumpAnisotropy || material.bumpMap.anisotropy || 1;
+            material.bumpMap.needsUpdate = true;
+          }
+        }
         material.bumpScale = active ? 0 : 3.2;
         material.shininess = active ? 0.7 : 2.1;
         if (typeof material?.emissive?.set === "function") {
@@ -3593,7 +3670,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         showTooltip(null);
         currentRenderPixelRatio = INTERACTION_RENDER_PIXEL_RATIO;
         if (globeInstance) {
-          globeInstance.globeImageUrl(SATELLITE_PREVIEW_IMAGE);
+          globeInstance.globeImageUrl(SATELLITE_INTERACTION_IMAGE);
           globeInstance.showAtmosphere(false);
           globeInstance
             .arcCurveResolution(INTERACTION_ARC_CURVE_RESOLUTION)
@@ -3603,6 +3680,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             applyGlobeScene(activeScenePayload.interaction);
           }
           applyInteractionVisualMode(true);
+        }
+        const controls = globeInstance?.controls?.();
+        if (controls) {
+          controls.enableDamping = false;
         }
         syncRendererQuality();
       }
@@ -3624,6 +3705,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
               applyGlobeScene(activeScenePayload.full);
             }
             applyInteractionVisualMode(false);
+          }
+          const controls = globeInstance?.controls?.();
+          if (controls) {
+            controls.enableDamping = true;
           }
           syncRendererQuality();
           refreshCountryLabels();
@@ -3716,7 +3801,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             }
           })
           .onZoom((view) => {
-            refreshCountryLabels(typeof view?.altitude === "number" ? view.altitude : currentAltitude());
+            if (interactionActive) return;
+            scheduleCountryLabelRefresh(typeof view?.altitude === "number" ? view.altitude : currentAltitude());
           })
           .htmlLat("lat")
           .htmlLng("lng")
@@ -3847,6 +3933,7 @@ def export_original_style_preview(
 ) -> dict[str, int]:
     texture_path = output_dir / GLOBE_TEXTURE_RELATIVE_PATH
     texture_preview_path = output_dir / GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH
+    texture_interaction_path = output_dir / GLOBE_TEXTURE_INTERACTION_RELATIVE_PATH
     globe_js_path = output_dir / GLOBE_JS_RELATIVE_PATH
     bump_path = output_dir / GLOBE_BUMP_RELATIVE_PATH
     texture_path.parent.mkdir(parents=True, exist_ok=True)
@@ -3854,6 +3941,7 @@ def export_original_style_preview(
         urllib.request.urlretrieve(GLOBE_TEXTURE_SOURCE_URL, texture_path)
     if not texture_preview_path.exists() or texture_preview_path.stat().st_size < 1_000_000:
         urllib.request.urlretrieve(GLOBE_TEXTURE_PREVIEW_URL, texture_preview_path)
+    ensure_interaction_texture(texture_preview_path, texture_interaction_path)
     if not globe_js_path.exists() or globe_js_path.stat().st_size < 100_000:
         urllib.request.urlretrieve(GLOBE_JS_URL, globe_js_path)
     if not bump_path.exists() or bump_path.stat().st_size < 50_000:
