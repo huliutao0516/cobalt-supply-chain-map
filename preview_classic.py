@@ -3433,6 +3433,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
       let pendingSceneData = null;
       let interactionActive = false;
+      let controlsInteracting = false;
+      let lastInteractionActivityAt = 0;
       let activeScenePayload = null;
       let storedBumpMap = null;
       let storedMapAnisotropy = null;
@@ -3577,6 +3579,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           });
         }
         return overlays;
+      }
+
+      function overviewAltitude() {
+        const width = host.clientWidth || 1200;
+        const height = host.clientHeight || 620;
+        const aspect = width / Math.max(1, height);
+        return aspect >= 1.55 ? 2.5 : 2.28;
       }
 
       function currentAltitude() {
@@ -3830,34 +3839,43 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         syncRendererQuality();
       }
 
+      function finishInteractionRestore() {
+        interactionActive = false;
+        currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+        if (globeInstance) {
+          globeInstance.globeImageUrl(highResTextureApplied ? SATELLITE_FALLBACK_IMAGE : SATELLITE_PREVIEW_IMAGE);
+          globeInstance.showAtmosphere(true);
+          if (activeScenePayload?.full) {
+            applyGlobeScene(activeScenePayload.full);
+          }
+          applyInteractionVisualMode(false);
+        }
+        const controls = globeInstance?.controls?.();
+        if (controls) {
+          controls.enableDamping = true;
+        }
+        syncRendererQuality();
+        refreshCountryLabels();
+      }
+
       function scheduleInteractionRestore() {
         if (restoreQualityHandle) {
           window.clearTimeout(restoreQualityHandle);
         }
+        restoreQualityHandle = 0;
         restoreQualityHandle = window.setTimeout(() => {
-          interactionActive = false;
-          currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
-          if (globeInstance) {
-            globeInstance.globeImageUrl(highResTextureApplied ? SATELLITE_FALLBACK_IMAGE : SATELLITE_PREVIEW_IMAGE);
-            globeInstance.showAtmosphere(true);
-            globeInstance
-              .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
-              .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
-            if (activeScenePayload?.full) {
-              applyGlobeScene(activeScenePayload.full);
-            }
-            applyInteractionVisualMode(false);
+          restoreQualityHandle = 0;
+          const idleMs = performance.now() - lastInteractionActivityAt;
+          if (controlsInteracting || idleMs < INTERACTION_RESTORE_DELAY_MS) {
+            scheduleInteractionRestore();
+            return;
           }
-          const controls = globeInstance?.controls?.();
-          if (controls) {
-            controls.enableDamping = true;
-          }
-          syncRendererQuality();
-          refreshCountryLabels();
+          finishInteractionRestore();
         }, INTERACTION_RESTORE_DELAY_MS);
       }
 
       function setInteractiveQuality() {
+        lastInteractionActivityAt = performance.now();
         enterInteractionMode();
         scheduleInteractionRestore();
       }
@@ -3961,13 +3979,20 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         if (controls) {
           controls.autoRotate = false;
           controls.enablePan = false;
-          controls.minDistance = 180;
-          controls.maxDistance = 420;
+          controls.minDistance = 150;
+          controls.maxDistance = 760;
           controls.enableDamping = true;
           controls.dampingFactor = 0.08;
           if (typeof controls.addEventListener === "function") {
-            controls.addEventListener("start", setInteractiveQuality);
+            controls.addEventListener("start", () => {
+              controlsInteracting = true;
+              setInteractiveQuality();
+            });
+            controls.addEventListener("change", () => {
+              setInteractiveQuality();
+            });
             controls.addEventListener("end", () => {
+              controlsInteracting = false;
               scheduleInteractionRestore();
             });
           }
@@ -3981,10 +4006,24 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           resizeObserver.observe(host);
         }
         host.addEventListener("pointerdown", () => {
+          controlsInteracting = true;
           setInteractiveQuality();
         }, { passive: true });
+        host.addEventListener("pointerup", () => {
+          controlsInteracting = false;
+          scheduleInteractionRestore();
+        }, { passive: true });
+        host.addEventListener("pointercancel", () => {
+          controlsInteracting = false;
+          scheduleInteractionRestore();
+        }, { passive: true });
         host.addEventListener("wheel", () => {
+          controlsInteracting = true;
           setInteractiveQuality();
+          window.setTimeout(() => {
+            controlsInteracting = false;
+            scheduleInteractionRestore();
+          }, 0);
         }, { passive: true });
         host.addEventListener("mousemove", (event) => {
           const rect = host.getBoundingClientRect();
@@ -4027,7 +4066,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           globe.pointOfView({
             lat: avgLat,
             lng: avgLon,
-            altitude: data.hasFocus ? 1.65 : 2.05,
+            altitude: data.hasFocus ? 1.82 : overviewAltitude(),
           }, 900);
         }
         scheduleGlobeSizeSync();
