@@ -3300,7 +3300,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const GLOBE_BUMP_IMAGE = "assets/earth_topology.png";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 1.85;
-      const INTERACTION_RENDER_PIXEL_RATIO = 0.72;
+      const INTERACTION_RENDER_PIXEL_RATIO = 0.55;
       const DEFAULT_ARC_CURVE_RESOLUTION = 96;
       const DEFAULT_ARC_CIRCULAR_RESOLUTION = 10;
       const INTERACTION_ARC_CURVE_RESOLUTION = 42;
@@ -3514,17 +3514,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function buildInteractionScene(activePoints, activeLines) {
         const focusPoints = activePoints.filter((point) => point.isFocus);
-        const nonFocusPoints = activePoints.filter((point) => !point.isFocus);
-        const reducedPoints = focusPoints.length
-          ? focusPoints.concat(nonFocusPoints.slice(0, 10))
-          : nonFocusPoints.slice(0, 18);
-        const reducedPointLabels = new Set(reducedPoints.map((point) => point.label));
-        const reducedLines = focusPoints.length
-          ? activeLines
-              .filter((line) => reducedPointLabels.has(line.sourceLabel || "") || reducedPointLabels.has(line.targetLabel || "") || line.isFocus)
-              .slice(0, 24)
-              .map((line) => ({ ...line, renderKind: "base" }))
-          : [];
+        const reducedPoints = focusPoints.length ? focusPoints.slice(0, 2) : [];
+        const reducedLines = [];
         return {
           points: reducedPoints,
           lines: reducedLines,
@@ -3586,7 +3577,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         if (!globeInstance || typeof globeInstance.globeMaterial !== "function") return;
         const material = globeInstance.globeMaterial();
         if (!material) return;
-        material.bumpScale = active ? 0.8 : 3.2;
+        material.bumpScale = active ? 0 : 3.2;
         material.shininess = active ? 0.7 : 2.1;
         if (typeof material?.emissive?.set === "function") {
           material.emissive.set(active ? "#08131c" : "#06101a");
