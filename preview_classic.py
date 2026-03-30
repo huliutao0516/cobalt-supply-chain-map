@@ -2888,16 +2888,41 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
       resize();
 
+      let canvasAnimationFrameHandle = 0;
+      let canvasAnimationTimerHandle = 0;
+      let canvasAnimationPaused = false;
+
+      function queueCanvasAnimation(delayMs = 0) {
+        if (canvasAnimationFrameHandle || canvasAnimationTimerHandle) return;
+        if (delayMs > 0) {
+          canvasAnimationTimerHandle = window.setTimeout(() => {
+            canvasAnimationTimerHandle = 0;
+            canvasAnimationFrameHandle = window.requestAnimationFrame(animate);
+          }, delayMs);
+          return;
+        }
+        canvasAnimationFrameHandle = window.requestAnimationFrame(animate);
+      }
+
       function animate(timeMs) {
+        canvasAnimationFrameHandle = 0;
         globeState.timeMs = timeMs || 0;
-        if (canvas.style.visibility === "hidden") {
-          window.setTimeout(() => window.requestAnimationFrame(animate), 240);
+        if (canvasAnimationPaused || canvas.style.visibility === "hidden") {
+          queueCanvasAnimation(1000);
           return;
         }
         draw();
-        window.requestAnimationFrame(animate);
+        queueCanvasAnimation();
       }
-      window.requestAnimationFrame(animate);
+
+      bridge.setCanvasAnimationPaused = (paused) => {
+        canvasAnimationPaused = !!paused;
+        if (!canvasAnimationPaused) {
+          queueCanvasAnimation();
+        }
+      };
+
+      queueCanvasAnimation();
     })();
   </script>
   <script>
@@ -3341,6 +3366,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 1.85;
       const INTERACTION_RENDER_PIXEL_RATIO = 0.38;
+      const INTERACTION_RESTORE_DELAY_MS = 850;
       const DEFAULT_ARC_CURVE_RESOLUTION = 96;
       const DEFAULT_ARC_CIRCULAR_RESOLUTION = 10;
       const INTERACTION_ARC_CURVE_RESOLUTION = 42;
@@ -3384,6 +3410,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function setSatelliteMode(active) {
         host.classList.toggle("is-active", active);
+        if (typeof bridge.setCanvasAnimationPaused === "function") {
+          bridge.setCanvasAnimationPaused(active);
+        }
         const labelLayer = document.getElementById("globeLabelLayer");
         if (labelLayer) {
           labelLayer.hidden = true;
@@ -3603,23 +3632,24 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         const maxAnisotropy = renderer.capabilities?.getMaxAnisotropy?.() || 1;
         if (typeof globeInstance.globeMaterial === "function") {
           const material = globeInstance.globeMaterial();
+          const targetAnisotropy = interactionActive ? 1 : Math.max(4, Math.min(maxAnisotropy, 16));
           if (material?.map) {
-            material.map.anisotropy = Math.max(4, Math.min(maxAnisotropy, 16));
+            material.map.anisotropy = targetAnisotropy;
             material.map.needsUpdate = true;
           }
           if (material?.bumpMap) {
-            material.bumpMap.anisotropy = Math.max(4, Math.min(maxAnisotropy, 16));
+            material.bumpMap.anisotropy = interactionActive ? 1 : targetAnisotropy;
             material.bumpMap.needsUpdate = true;
           }
           if (typeof material?.specular?.set === "function") {
             material.specular.set("#0d1520");
           }
           if (typeof material?.emissive?.set === "function") {
-            material.emissive.set("#06101a");
-            material.emissiveIntensity = 0.05;
+            material.emissive.set(interactionActive ? "#08131c" : "#06101a");
+            material.emissiveIntensity = interactionActive ? 0.02 : 0.05;
           }
-          material.bumpScale = 3.2;
-          material.shininess = 2.1;
+          material.bumpScale = interactionActive ? 0 : 3.2;
+          material.shininess = interactionActive ? 0.7 : 2.1;
           material.needsUpdate = true;
         }
       }
@@ -3712,7 +3742,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           }
           syncRendererQuality();
           refreshCountryLabels();
-        }, 180);
+        }, INTERACTION_RESTORE_DELAY_MS);
       }
 
       function setInteractiveQuality() {
