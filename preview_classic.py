@@ -3298,7 +3298,11 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const GLOBE_BUMP_IMAGE = "assets/earth_topology.png";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 1.85;
-      const INTERACTION_RENDER_PIXEL_RATIO = 1.0;
+      const INTERACTION_RENDER_PIXEL_RATIO = 0.72;
+      const DEFAULT_ARC_CURVE_RESOLUTION = 96;
+      const DEFAULT_ARC_CIRCULAR_RESOLUTION = 10;
+      const INTERACTION_ARC_CURVE_RESOLUTION = 42;
+      const INTERACTION_ARC_CIRCULAR_RESOLUTION = 6;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3316,6 +3320,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let highResTextureApplied = false;
       let currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
       let pendingSceneData = null;
+      let interactionActive = false;
       function showTooltip(content) {
         if (!tooltip) return;
         if (!content) {
@@ -3463,6 +3468,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       function refreshCountryLabels(altitudeOverride) {
         if (!globeInstance) return;
+        if (interactionActive) {
+          globeInstance.htmlElementsData([]);
+          return;
+        }
         const altitude = Number.isFinite(altitudeOverride) ? altitudeOverride : currentAltitude();
         globeInstance.htmlElementsData(buildOverlayElements(latestGlobeData, altitude));
       }
@@ -3535,14 +3544,30 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
 
       function setInteractiveQuality() {
+        interactionActive = true;
+        hoverPayload = null;
+        showTooltip(null);
         currentRenderPixelRatio = INTERACTION_RENDER_PIXEL_RATIO;
+        if (globeInstance) {
+          globeInstance
+            .arcCurveResolution(INTERACTION_ARC_CURVE_RESOLUTION)
+            .arcCircularResolution(INTERACTION_ARC_CIRCULAR_RESOLUTION)
+            .htmlElementsData([]);
+        }
         syncRendererQuality();
         if (restoreQualityHandle) {
           window.clearTimeout(restoreQualityHandle);
         }
         restoreQualityHandle = window.setTimeout(() => {
+          interactionActive = false;
           currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+          if (globeInstance) {
+            globeInstance
+              .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
+              .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
+          }
           syncRendererQuality();
+          refreshCountryLabels();
         }, 180);
       }
 
@@ -3603,8 +3628,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcStartAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcEndAltitude((d) => d.isFocus ? 0.028 : 0.018)
           .arcAltitude((d) => arcPeakAltitude(d))
-          .arcCurveResolution(96)
-          .arcCircularResolution(10)
+          .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
+          .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION)
           .arcDashLength((d) => d.renderKind === "pulse" ? (d.isFocus ? 0.16 : 0.13) : 1)
           .arcDashGap((d) => d.renderKind === "pulse" ? 1.15 : 0)
           .arcDashInitialGap((d) => d.renderKind === "pulse" ? (d.pulseOffset || 0) : 0)
@@ -3615,6 +3640,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .pointsTransitionDuration(0)
           .htmlTransitionDuration(0)
           .onPointHover((point) => {
+            if (interactionActive) return;
             hoverPayload = point
               ? `<strong>${point.label}</strong><div class="meta">${localizeStep(point.stage || "")}${point.country ? " | " : ""}${localizeCountry(point.country || "")}</div>${point.connectionsText ? `<div class="links">关联节点: ${point.connectionsText}</div>` : ""}`
               : null;
@@ -3649,13 +3675,21 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           controls.dampingFactor = 0.08;
           if (typeof controls.addEventListener === "function") {
             controls.addEventListener("start", setInteractiveQuality);
+            controls.addEventListener("change", setInteractiveQuality);
             controls.addEventListener("end", () => {
               if (restoreQualityHandle) {
                 window.clearTimeout(restoreQualityHandle);
               }
               restoreQualityHandle = window.setTimeout(() => {
+                interactionActive = false;
                 currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
+                if (globeInstance) {
+                  globeInstance
+                    .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
+                    .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
+                }
                 syncRendererQuality();
+                refreshCountryLabels();
               }, 140);
             });
           }
