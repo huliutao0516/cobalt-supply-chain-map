@@ -1671,6 +1671,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         sourceLon: lineItem.source.lon,
         targetLat: lineItem.target.lat,
         targetLon: lineItem.target.lon,
+        sourceLabel: lineItem.source.label,
+        targetLabel: lineItem.target.label,
         isActive: lineItem.isActive,
         isFocus: lineItem.source.isFocus || lineItem.target.isFocus,
         stage: lineItem.stage,
@@ -3321,6 +3323,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       let currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
       let pendingSceneData = null;
       let interactionActive = false;
+      let activeScenePayload = null;
       function showTooltip(content) {
         if (!tooltip) return;
         if (!content) {
@@ -3509,6 +3512,38 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         });
       }
 
+      function buildInteractionScene(activePoints, activeLines) {
+        const focusPoints = activePoints.filter((point) => point.isFocus);
+        const nonFocusPoints = activePoints.filter((point) => !point.isFocus);
+        const reducedPoints = focusPoints.concat(nonFocusPoints.slice(0, 28));
+        const reducedPointLabels = new Set(reducedPoints.map((point) => point.label));
+        const reducedLines = activeLines
+          .filter((line) => reducedPointLabels.has(line.sourceLabel || "") || reducedPointLabels.has(line.targetLabel || "") || line.isFocus)
+          .slice(0, 140)
+          .map((line) => ({ ...line, renderKind: "base" }));
+        return {
+          points: reducedPoints,
+          lines: reducedLines,
+        };
+      }
+
+      function applyGlobeScene(scene) {
+        if (!globeInstance || !scene) return;
+        globeInstance
+          .pointsData(scene.points || [])
+          .pointLat("lat")
+          .pointLng("lon")
+          .pointColor((point) => pointColor(point))
+          .arcsData(scene.lines || [])
+          .arcStartLat("sourceLat")
+          .arcStartLng("sourceLon")
+          .arcEndLat("targetLat")
+          .arcEndLng("targetLon")
+          .arcColor((line) => line.renderKind === "pulse"
+            ? flowLineColor(line.stage, line.isFocus)
+            : colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.42 : 0.28));
+      }
+
       function syncRendererQuality(pixelRatio = currentRenderPixelRatio) {
         if (!globeInstance || typeof globeInstance.renderer !== "function") return;
         const renderer = globeInstance.renderer();
@@ -3553,6 +3588,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             .arcCurveResolution(INTERACTION_ARC_CURVE_RESOLUTION)
             .arcCircularResolution(INTERACTION_ARC_CIRCULAR_RESOLUTION)
             .htmlElementsData([]);
+          if (activeScenePayload?.interaction) {
+            applyGlobeScene(activeScenePayload.interaction);
+          }
         }
         syncRendererQuality();
         if (restoreQualityHandle) {
@@ -3565,6 +3603,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             globeInstance
               .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
               .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
+            if (activeScenePayload?.full) {
+              applyGlobeScene(activeScenePayload.full);
+            }
           }
           syncRendererQuality();
           refreshCountryLabels();
@@ -3726,6 +3767,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       function updateWebGlobe(data) {
         if (!data) {
           latestGlobeData = null;
+          activeScenePayload = null;
           setSatelliteMode(false);
           return;
         }
@@ -3736,20 +3778,14 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
         const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
         const renderLines = buildRenderLines(activeLines);
-
-        globe
-          .pointsData(activePoints)
-          .pointLat("lat")
-          .pointLng("lon")
-          .pointColor((point) => pointColor(point))
-          .arcsData(renderLines)
-          .arcStartLat("sourceLat")
-          .arcStartLng("sourceLon")
-          .arcEndLat("targetLat")
-          .arcEndLng("targetLon")
-          .arcColor((line) => line.renderKind === "pulse"
-            ? flowLineColor(line.stage, line.isFocus)
-            : colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.42 : 0.28));
+        activeScenePayload = {
+          full: {
+            points: activePoints,
+            lines: renderLines,
+          },
+          interaction: buildInteractionScene(activePoints, activeLines),
+        };
+        applyGlobeScene(interactionActive ? activeScenePayload.interaction : activeScenePayload.full);
 
         const focusPoints = activePoints.length ? activePoints : (data.points || []);
         if (focusPoints.length) {
