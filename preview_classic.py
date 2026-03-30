@@ -1070,6 +1070,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     let activeGeoView = "globe";
     let softHighlightMode = false;
     let googleGlobePreferred = false;
+    let renderFrameHandle = 0;
     const companyIndexByNormalizedName = new Map();
     const countryPointLookup = new Map(
       worldCountryPoints.map((item) => [normalize(item.name), item])
@@ -1195,6 +1196,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
       if (window.__previewBridge && typeof window.__previewBridge.resizeGoogleGlobeScene === "function") {
         window.requestAnimationFrame(() => window.__previewBridge.resizeGoogleGlobeScene());
+      }
+      if (showMap) {
+        render();
       }
     }
 
@@ -1485,21 +1489,13 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const margin = 24;
       const innerWidth = width - margin * 2;
       const innerHeight = height - margin * 2;
-      mapSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      mapSvg.innerHTML = "";
+      const shouldDrawMapSvg = activeGeoView === "map";
+      if (shouldDrawMapSvg) {
+        mapSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+        mapSvg.innerHTML = "";
+      }
       const hasMapFocus = Boolean(mapSubgraph && mapSubgraph.rowsMatched);
       const reservedLabelBoxes = [];
-
-      const boundaryGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      worldMap.paths.forEach((country) => {
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", country.path);
-        path.setAttribute("fill", "none");
-        path.setAttribute("stroke", "rgba(83, 94, 101, 0.24)");
-        path.setAttribute("stroke-width", "0.85");
-        boundaryGroup.appendChild(path);
-      });
-      mapSvg.appendChild(boundaryGroup);
 
       const lineMap = new Map();
       const pointMap = new Map();
@@ -1734,6 +1730,21 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         }
       }
 
+      if (!shouldDrawMapSvg) {
+        return;
+      }
+
+      const boundaryGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      worldMap.paths.forEach((country) => {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", country.path);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", "rgba(83, 94, 101, 0.24)");
+        path.setAttribute("stroke-width", "0.85");
+        boundaryGroup.appendChild(path);
+      });
+      mapSvg.appendChild(boundaryGroup);
+
       if (hasMapFocus) {
         const labelGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
         worldMap.labels.forEach((country) => {
@@ -1863,7 +1874,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       foregroundPoints.forEach(drawMapPoint);
     }
 
-    function render() {
+    function performRender() {
       const focusTerm = companyInput.value.trim();
       const simpleMode = modeToggle.checked;
       const subgraph = buildFocusedSelection(focusTerm, true);
@@ -1883,6 +1894,14 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
       renderChainPanel(subgraph, simpleMode);
       renderMapPanel(subgraph, mapSubgraph, simpleMode);
+    }
+
+    function render() {
+      if (renderFrameHandle) return;
+      renderFrameHandle = window.requestAnimationFrame(() => {
+        renderFrameHandle = 0;
+        performRender();
+      });
     }
 
     function searchAndRender() {
@@ -3273,8 +3292,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const SATELLITE_PREVIEW_IMAGE = "assets/earth_satellite_5400.jpg";
       const SATELLITE_FALLBACK_IMAGE = "assets/earth_satellite_21600.jpg";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
-      const MAX_RENDER_PIXEL_RATIO = 2.05;
-      const INTERACTION_RENDER_PIXEL_RATIO = 1.2;
+      const MAX_RENDER_PIXEL_RATIO = 1.85;
+      const INTERACTION_RENDER_PIXEL_RATIO = 1.0;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
