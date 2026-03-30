@@ -1125,6 +1125,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     const companyRowIndex = new Map();
     const focusedSelectionCache = new Map();
     const chainViewCache = new WeakMap();
+    const globeSceneCache = new Map();
     const allChainNodesByStage = new Map(matrixColumns.map((column) => [column, new Map()]));
     matrixRows.forEach((row, rowIndex) => {
       const rowSeenCompanies = new Set();
@@ -1539,6 +1540,28 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       }
       const hasMapFocus = Boolean(mapSubgraph && mapSubgraph.rowsMatched);
       const reservedLabelBoxes = [];
+      const globeCacheKey = hasMapFocus ? `focus::${normalize(mapSubgraph.focus || "")}` : "__global__";
+
+      function applyGlobeBundle(bundle) {
+        mapStats.innerHTML = bundle.statsHtml;
+        mapLegend.innerHTML = bundle.legendHtml;
+        mapEmpty.hidden = !bundle.hasPoints;
+        if (!window.__previewBridge) return;
+        window.__previewBridge.pendingGlobeData = bundle.hasPoints ? bundle.globeData : null;
+        if (typeof window.__previewBridge.updateWebGlobeScene === "function") {
+          window.__previewBridge.updateWebGlobeScene(window.__previewBridge.pendingGlobeData);
+        } else if (typeof window.__previewBridge.updateGlobeScene === "function") {
+          window.__previewBridge.updateGlobeScene(window.__previewBridge.pendingGlobeData);
+        }
+        if (typeof window.__previewBridge.updateGoogleGlobeScene === "function") {
+          window.__previewBridge.updateGoogleGlobeScene(window.__previewBridge.pendingGlobeData);
+        }
+      }
+
+      if (!shouldDrawMapSvg && globeSceneCache.has(globeCacheKey)) {
+        applyGlobeBundle(globeSceneCache.get(globeCacheKey));
+        return;
+      }
 
       const lineMap = new Map();
       const pointMap = new Map();
@@ -1740,6 +1763,21 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
             .map((step) => `<span class="legend-item"><i class="legend-dot" style="background:${stepColors[step] || "#355464"}"></i>${escapeHtml(localizeStep(step))}</span>`)
             .join("")
         : `<span class="legend-item"><i class="legend-dot" style="background:#c9d0d5"></i>总览模式</span>`;
+
+      globeSceneCache.set(globeCacheKey, {
+        hasPoints: points.length > 0,
+        statsHtml: mapStats.innerHTML,
+        legendHtml: mapLegend.innerHTML,
+        globeData: points.length
+          ? {
+              hasFocus: hasMapFocus,
+              focus: hasMapFocus ? mapSubgraph.focus : "",
+              points: globePoints,
+              lines: globeLines,
+              countries: globeCountries,
+            }
+          : null,
+      });
 
       if (!points.length) {
         mapEmpty.hidden = false;
@@ -3371,6 +3409,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const DEFAULT_ARC_CIRCULAR_RESOLUTION = 10;
       const INTERACTION_ARC_CURVE_RESOLUTION = 42;
       const INTERACTION_ARC_CIRCULAR_RESOLUTION = 6;
+      const MEDIUM_SCENE_LINE_THRESHOLD = 72;
+      const HEAVY_SCENE_LINE_THRESHOLD = 132;
+      const MEDIUM_SCENE_PULSE_LIMIT = 26;
+      const HEAVY_SCENE_PULSE_LIMIT = 14;
       if (!host || typeof window.Globe !== "function") {
         return;
       }
@@ -3580,10 +3622,64 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         return `rgba(${flowRed}, ${flowGreen}, ${flowBlue}, ${alpha})`;
       }
 
-      function buildRenderLines(lines) {
+      function sampleEvenly(items, limit) {
+        if (items.length <= limit) return items.slice();
+        if (limit <= 1) return items.length ? [items[0]] : [];
+        const result = [];
+        const used = new Set();
+        for (let index = 0; index < limit; index += 1) {
+          const rawIndex = Math.round((index * (items.length - 1)) / Math.max(1, limit - 1));
+          const item = items[Math.max(0, Math.min(items.length - 1, rawIndex))];
+          if (used.has(item)) continue;
+          used.add(item);
+          result.push(item);
+        }
+        return result;
+      }
+
+      function lineKey(line) {
+        return [
+          line.sourceLabel,
+          line.targetLabel,
+          line.stage,
+          line.sourceLat,
+          line.sourceLon,
+          line.targetLat,
+          line.targetLon,
+        ].join("|");
+      }
+
+      function fullSceneSettings(lines) {
+        if (lines.length >= HEAVY_SCENE_LINE_THRESHOLD) {
+          return {
+            pulseLimit: HEAVY_SCENE_PULSE_LIMIT,
+            arcCurveResolution: 38,
+            arcCircularResolution: 6,
+          };
+        }
+        if (lines.length >= MEDIUM_SCENE_LINE_THRESHOLD) {
+          return {
+            pulseLimit: MEDIUM_SCENE_PULSE_LIMIT,
+            arcCurveResolution: 58,
+            arcCircularResolution: 8,
+          };
+        }
+        return {
+          pulseLimit: lines.length,
+          arcCurveResolution: DEFAULT_ARC_CURVE_RESOLUTION,
+          arcCircularResolution: DEFAULT_ARC_CIRCULAR_RESOLUTION,
+        };
+      }
+
+      function buildRenderLines(lines, pulseLimit = lines.length) {
+        const pulseCandidates = sampleEvenly(
+          lines.filter((line) => line.isActive || line.isFocus),
+          Math.max(0, pulseLimit)
+        );
+        const pulseKeys = new Set(pulseCandidates.map((line) => lineKey(line)));
         return lines.flatMap((line, lineIndex) => {
           const base = { ...line, renderKind: "base" };
-          if (!(line.isActive || line.isFocus)) {
+          if (!pulseKeys.has(lineKey(line))) {
             return [base];
           }
           const pulse = {
@@ -3593,6 +3689,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           };
           return [base, pulse];
         });
+      }
+
+      function buildFullScene(activePoints, activeLines) {
+        const settings = fullSceneSettings(activeLines);
+        return {
+          points: activePoints,
+          lines: buildRenderLines(activeLines, settings.pulseLimit),
+          arcCurveResolution: settings.arcCurveResolution,
+          arcCircularResolution: settings.arcCircularResolution,
+        };
       }
 
       function buildInteractionScene(activePoints, activeLines) {
@@ -3617,6 +3723,12 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .arcColor((line) => line.renderKind === "pulse"
             ? flowLineColor(line.stage, line.isFocus)
             : colorWithAlpha(stepColors[line.stage] || "#7fd0ff", line.isFocus ? 0.42 : 0.28));
+        if (typeof scene.arcCurveResolution === "number") {
+          globeInstance.arcCurveResolution(scene.arcCurveResolution);
+        }
+        if (typeof scene.arcCircularResolution === "number") {
+          globeInstance.arcCircularResolution(scene.arcCircularResolution);
+        }
       }
 
       function syncRendererQuality(pixelRatio = currentRenderPixelRatio) {
@@ -3902,12 +4014,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
         const activePoints = (data.points || []).filter((point) => point.isActive || point.isFocus);
         const activeLines = (data.lines || []).filter((line) => line.isActive || line.isFocus);
-        const renderLines = buildRenderLines(activeLines);
         activeScenePayload = {
-          full: {
-            points: activePoints,
-            lines: renderLines,
-          },
+          full: buildFullScene(activePoints, activeLines),
           interaction: buildInteractionScene(activePoints, activeLines),
         };
         applyGlobeScene(interactionActive ? activeScenePayload.interaction : activeScenePayload.full);
