@@ -3515,12 +3515,16 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       function buildInteractionScene(activePoints, activeLines) {
         const focusPoints = activePoints.filter((point) => point.isFocus);
         const nonFocusPoints = activePoints.filter((point) => !point.isFocus);
-        const reducedPoints = focusPoints.concat(nonFocusPoints.slice(0, 28));
+        const reducedPoints = focusPoints.length
+          ? focusPoints.concat(nonFocusPoints.slice(0, 10))
+          : nonFocusPoints.slice(0, 18);
         const reducedPointLabels = new Set(reducedPoints.map((point) => point.label));
-        const reducedLines = activeLines
-          .filter((line) => reducedPointLabels.has(line.sourceLabel || "") || reducedPointLabels.has(line.targetLabel || "") || line.isFocus)
-          .slice(0, 140)
-          .map((line) => ({ ...line, renderKind: "base" }));
+        const reducedLines = focusPoints.length
+          ? activeLines
+              .filter((line) => reducedPointLabels.has(line.sourceLabel || "") || reducedPointLabels.has(line.targetLabel || "") || line.isFocus)
+              .slice(0, 24)
+              .map((line) => ({ ...line, renderKind: "base" }))
+          : [];
         return {
           points: reducedPoints,
           lines: reducedLines,
@@ -3578,12 +3582,28 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         }
       }
 
-      function setInteractiveQuality() {
+      function applyInteractionVisualMode(active) {
+        if (!globeInstance || typeof globeInstance.globeMaterial !== "function") return;
+        const material = globeInstance.globeMaterial();
+        if (!material) return;
+        material.bumpScale = active ? 0.8 : 3.2;
+        material.shininess = active ? 0.7 : 2.1;
+        if (typeof material?.emissive?.set === "function") {
+          material.emissive.set(active ? "#08131c" : "#06101a");
+          material.emissiveIntensity = active ? 0.02 : 0.05;
+        }
+        material.needsUpdate = true;
+      }
+
+      function enterInteractionMode() {
+        if (interactionActive) return;
         interactionActive = true;
         hoverPayload = null;
         showTooltip(null);
         currentRenderPixelRatio = INTERACTION_RENDER_PIXEL_RATIO;
         if (globeInstance) {
+          globeInstance.globeImageUrl(SATELLITE_PREVIEW_IMAGE);
+          globeInstance.showAtmosphere(false);
           globeInstance
             .arcCurveResolution(INTERACTION_ARC_CURVE_RESOLUTION)
             .arcCircularResolution(INTERACTION_ARC_CIRCULAR_RESOLUTION)
@@ -3591,8 +3611,12 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           if (activeScenePayload?.interaction) {
             applyGlobeScene(activeScenePayload.interaction);
           }
+          applyInteractionVisualMode(true);
         }
         syncRendererQuality();
+      }
+
+      function scheduleInteractionRestore() {
         if (restoreQualityHandle) {
           window.clearTimeout(restoreQualityHandle);
         }
@@ -3600,16 +3624,24 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           interactionActive = false;
           currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
           if (globeInstance) {
+            globeInstance.globeImageUrl(highResTextureApplied ? SATELLITE_FALLBACK_IMAGE : SATELLITE_PREVIEW_IMAGE);
+            globeInstance.showAtmosphere(true);
             globeInstance
               .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
               .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
             if (activeScenePayload?.full) {
               applyGlobeScene(activeScenePayload.full);
             }
+            applyInteractionVisualMode(false);
           }
           syncRendererQuality();
           refreshCountryLabels();
         }, 180);
+      }
+
+      function setInteractiveQuality() {
+        enterInteractionMode();
+        scheduleInteractionRestore();
       }
 
       function scheduleGlobeSizeSync() {
@@ -3716,22 +3748,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           controls.dampingFactor = 0.08;
           if (typeof controls.addEventListener === "function") {
             controls.addEventListener("start", setInteractiveQuality);
-            controls.addEventListener("change", setInteractiveQuality);
             controls.addEventListener("end", () => {
-              if (restoreQualityHandle) {
-                window.clearTimeout(restoreQualityHandle);
-              }
-              restoreQualityHandle = window.setTimeout(() => {
-                interactionActive = false;
-                currentRenderPixelRatio = MAX_RENDER_PIXEL_RATIO;
-                if (globeInstance) {
-                  globeInstance
-                    .arcCurveResolution(DEFAULT_ARC_CURVE_RESOLUTION)
-                    .arcCircularResolution(DEFAULT_ARC_CIRCULAR_RESOLUTION);
-                }
-                syncRendererQuality();
-                refreshCountryLabels();
-              }, 140);
+              scheduleInteractionRestore();
             });
           }
         }
