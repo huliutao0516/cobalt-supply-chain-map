@@ -33,6 +33,10 @@ GLOBE_TEXTURE_SOURCE_URL = "https://eoimages.gsfc.nasa.gov/images/imagerecords/7
 GLOBE_TEXTURE_RELATIVE_PATH = "assets/earth_satellite_21600.jpg"
 GLOBE_TEXTURE_PREVIEW_URL = "https://neo.gsfc.nasa.gov/archive/bluemarble/bmng/world_8km/world.topo.bathy.200412.3x5400x2700.jpg"
 GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH = "assets/earth_satellite_5400.jpg"
+GLOBE_JS_URL = "https://cdn.jsdelivr.net/npm/globe.gl"
+GLOBE_JS_RELATIVE_PATH = "assets/globe.gl.min.js"
+GLOBE_BUMP_URL = "https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
+GLOBE_BUMP_RELATIVE_PATH = "assets/earth_topology.png"
 
 COUNTRY_LABELS_ZH = {
     "Australia": "澳大利亚",
@@ -494,7 +498,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="assets/earth_satellite_5400.jpg" as="image" fetchpriority="high">
-  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+  <script src="assets/globe.gl.min.js"></script>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
     :root {
@@ -744,10 +748,10 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       inset: 0;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% 28%, rgba(54, 118, 179, 0.26), transparent 30%),
-        radial-gradient(circle at 18% 18%, rgba(52, 92, 146, 0.22), transparent 28%),
-        radial-gradient(circle at 82% 22%, rgba(88, 161, 238, 0.14), transparent 30%),
-        linear-gradient(180deg, #06121e 0%, #0b1f34 52%, #081521 100%);
+        radial-gradient(circle at 50% 30%, rgba(94, 154, 212, 0.20), transparent 34%),
+        radial-gradient(circle at 18% 20%, rgba(117, 163, 210, 0.10), transparent 28%),
+        radial-gradient(circle at 82% 22%, rgba(117, 178, 226, 0.10), transparent 26%),
+        linear-gradient(180deg, #eaf2f7 0%, #dce8f1 44%, #d4e0ea 100%);
     }
     .google-globe-host {
       position: absolute;
@@ -3291,6 +3295,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const note = document.querySelector(".globe-note");
       const SATELLITE_PREVIEW_IMAGE = "assets/earth_satellite_5400.jpg";
       const SATELLITE_FALLBACK_IMAGE = "assets/earth_satellite_21600.jpg";
+      const GLOBE_BUMP_IMAGE = "assets/earth_topology.png";
       const COUNTRY_LABEL_ALTITUDE = 1.72;
       const MAX_RENDER_PIXEL_RATIO = 1.85;
       const INTERACTION_RENDER_PIXEL_RATIO = 1.0;
@@ -3584,9 +3589,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
           .width(host.clientWidth || 1200)
           .height(host.clientHeight || 620)
           .backgroundColor("rgba(0,0,0,0)")
-          .backgroundImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png")
           .globeImageUrl(SATELLITE_PREVIEW_IMAGE)
-          .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
+          .bumpImageUrl(GLOBE_BUMP_IMAGE)
           .showAtmosphere(true)
           .atmosphereColor("#9fd6ff")
           .atmosphereAltitude(0.17)
@@ -3764,11 +3768,17 @@ def export_original_style_preview(
 ) -> dict[str, int]:
     texture_path = output_dir / GLOBE_TEXTURE_RELATIVE_PATH
     texture_preview_path = output_dir / GLOBE_TEXTURE_PREVIEW_RELATIVE_PATH
+    globe_js_path = output_dir / GLOBE_JS_RELATIVE_PATH
+    bump_path = output_dir / GLOBE_BUMP_RELATIVE_PATH
     texture_path.parent.mkdir(parents=True, exist_ok=True)
     if not texture_path.exists() or texture_path.stat().st_size < 5_000_000:
         urllib.request.urlretrieve(GLOBE_TEXTURE_SOURCE_URL, texture_path)
     if not texture_preview_path.exists() or texture_preview_path.stat().st_size < 1_000_000:
         urllib.request.urlretrieve(GLOBE_TEXTURE_PREVIEW_URL, texture_preview_path)
+    if not globe_js_path.exists() or globe_js_path.stat().st_size < 100_000:
+        urllib.request.urlretrieve(GLOBE_JS_URL, globe_js_path)
+    if not bump_path.exists() or bump_path.stat().st_size < 50_000:
+        urllib.request.urlretrieve(GLOBE_BUMP_URL, bump_path)
     payload = build_classic_preview_payload(
         links_rows,
         matrix_rows,
