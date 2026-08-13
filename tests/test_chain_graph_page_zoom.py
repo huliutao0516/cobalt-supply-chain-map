@@ -31,7 +31,10 @@ class ChainGraphPageZoomTests(unittest.TestCase):
         shell_rule = re.search(r"\.shell\s*\{(?P<body>[^}]*)\}", self.html)
 
         self.assertIsNotNone(shell_rule)
-        self.assertRegex(shell_rule.group("body"), r"(?m)^\s*height: calc\(100vh - 36px\);")
+        self.assertRegex(
+            shell_rule.group("body"),
+            r"(?m)^\s*height: max\(calc\(100vh - 36px\), 790px\);",
+        )
 
     def test_mobile_shell_uses_fixed_graph_tracks_and_auto_height(self) -> None:
         mobile_shell_rule = re.search(
