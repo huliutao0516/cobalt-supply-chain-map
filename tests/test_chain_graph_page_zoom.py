@@ -46,7 +46,10 @@ class ChainGraphPageZoomTests(unittest.TestCase):
         self.assertIsNotNone(mobile_shell_rule)
         css = mobile_shell_rule.group("body")
         self.assertRegex(css, r"(?m)^\s*height: auto;")
-        self.assertRegex(css, r"(?m)^\s*grid-template-rows: 28px auto 300px 320px;")
+        self.assertRegex(
+            css,
+            r"(?m)^\s*grid-template-rows: 28px auto clamp\(460px, 70vh, 600px\) 320px;",
+        )
 
     def test_map_svg_keeps_responsive_panel_sizing(self) -> None:
         map_rule = re.search(r"#mapSvg\s*\{(?P<body>[^}]*)\}", self.html)

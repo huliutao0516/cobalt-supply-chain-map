@@ -730,7 +730,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       .shell {
         height: auto;
         grid-template-columns: auto;
-        grid-template-rows: 28px auto 300px 320px;
+        grid-template-rows: 28px auto clamp(460px, 70vh, 600px) 320px;
         grid-template-areas:
           "title"
           "filters"
