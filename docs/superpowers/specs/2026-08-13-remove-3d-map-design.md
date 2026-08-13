@@ -28,13 +28,13 @@ The two-dimensional SVG map rendering path becomes unconditional.
 
 ## Published artifact cleanup
 
-Regenerate `site/index.html` from the updated generator. Remove these tracked files because the site will no longer reference or produce them:
+Regenerate `site/index.html` from the updated generator. Remove both tracked copies of each three-dimensional asset from `output/assets` and `site/assets` because the site will no longer reference or produce them:
 
-- `site/assets/globe.gl.min.js`
-- `site/assets/earth_satellite_1350.jpg`
-- `site/assets/earth_satellite_5400.jpg`
-- `site/assets/earth_satellite_21600.jpg`
-- `site/assets/earth_topology.png`
+- `assets/globe.gl.min.js`
+- `assets/earth_satellite_1350.jpg`
+- `assets/earth_satellite_5400.jpg`
+- `assets/earth_satellite_21600.jpg`
+- `assets/earth_topology.png`
 
 Update the static-site export so future local builds and GitHub Actions runs neither download nor republish three-dimensional resources.
 
@@ -52,4 +52,3 @@ Update the static-site export so future local builds and GitHub Actions runs nei
 - Redesigning the two-dimensional map.
 - Changing supply-chain data or ETL output.
 - Refactoring unrelated preview features.
-
