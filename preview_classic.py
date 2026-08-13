@@ -501,6 +501,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       border-radius: 12px;
       box-shadow: 0 0 1px var(--olive), 0 20px 60px rgba(53, 84, 100, 0.08);
       min-height: calc(100vh - 36px);
+      height: calc(100vh - 36px);
       display: grid;
       grid-template-columns: auto auto;
       grid-template-rows: 40px minmax(330px, 0.95fr) minmax(360px, 1.08fr);

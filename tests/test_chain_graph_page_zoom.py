@@ -27,6 +27,12 @@ class ChainGraphPageZoomTests(unittest.TestCase):
         self.assertIn('chainsSvg.removeAttribute("width");', self.html)
         self.assertIn('chainsSvg.removeAttribute("height");', self.html)
 
+    def test_shell_has_a_definite_viewport_relative_height(self) -> None:
+        shell_rule = re.search(r"\.shell\s*\{(?P<body>[^}]*)\}", self.html)
+
+        self.assertIsNotNone(shell_rule)
+        self.assertRegex(shell_rule.group("body"), r"(?m)^\s*height: calc\(100vh - 36px\);")
+
     def test_map_svg_keeps_responsive_panel_sizing(self) -> None:
         map_rule = re.search(r"#mapSvg\s*\{(?P<body>[^}]*)\}", self.html)
 
