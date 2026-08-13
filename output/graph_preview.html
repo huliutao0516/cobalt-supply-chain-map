@@ -38,6 +38,7 @@
       border-radius: 12px;
       box-shadow: 0 0 1px var(--olive), 0 20px 60px rgba(53, 84, 100, 0.08);
       min-height: calc(100vh - 36px);
+      height: max(calc(100vh - 36px), 790px);
       display: grid;
       grid-template-columns: auto auto;
       grid-template-rows: 40px minmax(330px, 0.95fr) minmax(360px, 1.08fr);
@@ -188,7 +189,14 @@
       height: 100%;
       overflow: auto;
     }
-    #chainsSvg, #mapSvg {
+    #chainsSvg {
+      display: block;
+      width: auto;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+    }
+    #mapSvg {
       display: block;
       width: 100%;
       height: 100%;
@@ -257,8 +265,9 @@
     }
     @media (max-width: 860px) {
       .shell {
+        height: auto;
         grid-template-columns: auto;
-        grid-template-rows: 28px auto minmax(300px, 0.95fr) minmax(320px, 1fr);
+        grid-template-rows: 28px auto 300px 320px;
         grid-template-areas:
           "title"
           "filters"
@@ -626,6 +635,8 @@
 
       if (!stageEntries.length || !subgraph.rowsMatched) {
         chainsSvg.innerHTML = "";
+        chainsSvg.removeAttribute("width");
+        chainsSvg.removeAttribute("height");
         chainsEmpty.hidden = false;
         return;
       }
@@ -642,6 +653,8 @@
       const width = Math.max(960, leftPadding * 2 + stageEntries.length * columnWidth + (stageEntries.length - 1) * stageGap);
       const height = Math.max(320, topPadding + maxRows * (nodeHeight + rowGap) + 72);
       chainsSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      chainsSvg.setAttribute("width", String(width));
+      chainsSvg.setAttribute("height", String(height));
       chainsSvg.innerHTML = "";
 
       const positions = new Map();
