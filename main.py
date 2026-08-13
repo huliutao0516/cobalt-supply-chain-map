@@ -1074,9 +1074,9 @@ def export_static_site(output_dir: Path, site_dir: Path) -> dict[str, int]:
 
     assets_dir = output_dir / "assets"
     site_assets_dir = site_dir / "assets"
+    if site_assets_dir.exists():
+        shutil.rmtree(site_assets_dir)
     if assets_dir.exists():
-        if site_assets_dir.exists():
-            shutil.rmtree(site_assets_dir)
         shutil.copytree(assets_dir, site_assets_dir)
 
     return {
