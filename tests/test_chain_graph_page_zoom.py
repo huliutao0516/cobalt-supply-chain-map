@@ -33,6 +33,17 @@ class ChainGraphPageZoomTests(unittest.TestCase):
         self.assertIsNotNone(shell_rule)
         self.assertRegex(shell_rule.group("body"), r"(?m)^\s*height: calc\(100vh - 36px\);")
 
+    def test_mobile_shell_uses_fixed_graph_tracks_and_auto_height(self) -> None:
+        mobile_shell_rule = re.search(
+            r"@media \(max-width: 860px\)\s*\{\s*\.shell\s*\{(?P<body>[^}]*)\}",
+            self.html,
+        )
+
+        self.assertIsNotNone(mobile_shell_rule)
+        css = mobile_shell_rule.group("body")
+        self.assertRegex(css, r"(?m)^\s*height: auto;")
+        self.assertRegex(css, r"(?m)^\s*grid-template-rows: 28px auto 300px 320px;")
+
     def test_map_svg_keeps_responsive_panel_sizing(self) -> None:
         map_rule = re.search(r"#mapSvg\s*\{(?P<body>[^}]*)\}", self.html)
 

@@ -728,8 +728,9 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
     }
     @media (max-width: 860px) {
       .shell {
+        height: auto;
         grid-template-columns: auto;
-        grid-template-rows: 28px auto minmax(300px, 0.95fr) minmax(320px, 1fr);
+        grid-template-rows: 28px auto 300px 320px;
         grid-template-areas:
           "title"
           "filters"
