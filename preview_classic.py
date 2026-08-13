@@ -651,7 +651,14 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       height: 100%;
       overflow: auto;
     }
-    #chainsSvg, #mapSvg {
+    #chainsSvg {
+      display: block;
+      width: auto;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+    }
+    #mapSvg {
       display: block;
       width: 100%;
       height: 100%;
@@ -1091,6 +1098,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
 
       if (!stageEntries.length || !subgraph.rowsMatched) {
         chainsSvg.innerHTML = "";
+        chainsSvg.removeAttribute("width");
+        chainsSvg.removeAttribute("height");
         chainsEmpty.hidden = false;
         return;
       }
@@ -1107,6 +1116,8 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
       const width = Math.max(960, leftPadding * 2 + stageEntries.length * columnWidth + (stageEntries.length - 1) * stageGap);
       const height = Math.max(320, topPadding + maxRows * (nodeHeight + rowGap) + 72);
       chainsSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      chainsSvg.setAttribute("width", String(width));
+      chainsSvg.setAttribute("height", String(height));
       chainsSvg.innerHTML = "";
 
       const positions = new Map();
