@@ -26,6 +26,7 @@ class ChainGraphPageZoomTests(unittest.TestCase):
     def test_empty_chain_view_removes_stale_intrinsic_dimensions(self) -> None:
         self.assertIn('chainsSvg.removeAttribute("width");', self.html)
         self.assertIn('chainsSvg.removeAttribute("height");', self.html)
+        self.assertIn('chainsSvg.removeAttribute("viewBox");', self.html)
 
     def test_shell_has_a_definite_viewport_relative_height(self) -> None:
         shell_rule = re.search(r"\.shell\s*\{(?P<body>[^}]*)\}", self.html)

@@ -1102,6 +1102,7 @@ def build_classic_preview_html(payload: dict[str, Any]) -> str:
         chainsSvg.innerHTML = "";
         chainsSvg.removeAttribute("width");
         chainsSvg.removeAttribute("height");
+        chainsSvg.removeAttribute("viewBox");
         chainsEmpty.hidden = false;
         return;
       }
